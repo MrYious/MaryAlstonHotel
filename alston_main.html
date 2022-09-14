@@ -1,0 +1,335 @@
+<html>
+    <head>
+        <title>Mary Alston Hotel</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="alston.css">
+        <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+        <!-- <link rel = "icon" href = "images/logo.png" type = "image/png"> -->
+    </head>
+
+    <body>
+        <!-- header -->
+        <header class = "header" id = "header">
+            <div class = "head-top">
+                <div class = "site-name">
+                    <a href="alston_main.html"><span>MARY ALSTON HOTEL</span></a>
+                </div>
+                <div class = "site-nav">
+                    <span id = "nav-btn">MENU <i class = "fas fa-bars"></i></span>
+                </div>
+            </div>
+
+            <div class = "head-bottom flex">
+                <h2>WELCOME TO MARY ALSTON</h2>
+                <p>Making your stay comfortable</p> <!-- hotel description -->
+                <button type = "button" class = "head-btn">BOOK NOW</button>
+            </div>
+        </header>
+        <!-- end of header -->
+
+        <!-- side navbar -->
+        <div class = "sidenav" id = "sidenav">
+            <span class = "cancel-btn" id = "cancel-btn">
+                <i class = "fas fa-times"></i>
+            </span>
+
+            <!--<ul class = "navbar">
+                <li><a href = "#header">home</a></li>
+                <li><a href = "#services">services</a></li>
+                <li><a href = "#rooms">rooms</a></li>
+                <li><a href = "#customers">customers</a></li>
+            </ul>-->
+
+            <ul class = "navbar">
+                <li><a href = "alston_main.html">home</a></li>
+                <!--<li><a href = "#about">about</a></li>-->
+                <li><a href = "alston_about.html">about</a></li>
+                <!--<li><a href = "#rooms">rooms</a></li>-->
+                <li><a href = "alston_rooms.html">rooms</a></li>
+                <!--<li><a href = "#gallery">gallery</a></li>-->
+                <li><a href = "alston_gallery.html">gallery</a></li>
+            </ul>
+
+        </div>
+        <!-- end of side navbar -->
+
+        <!-- fullscreen modal -->
+        <div id = "modal"></div>
+        <!-- end of fullscreen modal -->
+
+        <!-- body content  -->
+        <div class="arrow">
+            <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+         </div>
+         
+        <!--form-->
+        <div class = "book">
+            <form class = "book-form">
+                <div class = "form-item">
+                    <label for = "checkin-date">Check In Date: </label>
+                    <input type = "date" id = "chekin-date">
+                </div>
+                <div class = "form-item">
+                    <label for = "checkout-date">Check Out Date: </label>
+                    <input type = "date" id = "chekout-date">
+                </div>
+                <div class = "form-item">
+                    <label for = "adult">Adults: </label>
+                    <input type = "number" min = "1" value = "1" id = "adult">
+                </div>
+                <div class = "form-item">
+                    <label for = "children">Children: </label>
+                    <input type = "number" min = "0" value = "0" id = "children">
+                </div>
+                <div class = "form-item">
+                    <label for = "rooms">Rooms: </label>
+                    <input type = "number" min = "1" value = "1" id = "rooms">
+                </div>
+                <div class = "form-item">
+                    <input type = "submit" class = "btn" value = "Book Now">
+                </div>
+            </form>
+        </div>
+        <!--end of form-->
+
+        <section class = "about1 sec-width" id = "about1">
+        <!--<section class = "rooms sec-width" id = "rooms">-->
+            <div class = "title">
+                <h2>About</h2>
+            </div>
+            <div class = "about-container"></div>
+            <!--<div class = "rooms-container">-->
+                <!-- rooms -->
+                <article class = "about2">
+                <!--<article class = "room">-->
+                    <div class = "about-image">
+                    <!--<div class = "room-image">-->
+                        <img src = "gallery/pahiyas4.jpg" alt = "rooms">
+                    </div>
+                    <div class = "about-text">
+                    <!--<div class = "room-text">-->
+                        <h3>Rooms</h3>
+                        <p>With 5 rooms in total, Mary Alston provides you the spaces that you need. </p>
+                        <!--<a href = "alston_rooms.html"></a>-->
+                        <button type = "button" class = "btn" onclick="alston_rooms.html">Reservations</button>
+                    </div>
+                </article>
+                <!-- end of rooms -->
+
+                <!-- dining -->
+                <article class = "about2">
+                    <!--<article class = "room">-->
+                        <div class = "about-image">
+                        <!--<div class = "room-image">-->
+                        <img src = "gallery/cafe3.jpg" alt = "dining">
+                    </div>
+                    <div class = "about-text">
+                        <!--<div class = "room-text">-->
+                        <h3>Dining</h3>
+                        <p>The Manager's Lounge is the hotel's own coffee shop.</p>
+                        <button type = "button" class = "btn">Learn More</button>
+                    </div>
+                </article>
+                <!-- end of dining -->
+
+                <!-- events -->
+                <article class = "about2">
+                    <!--<article class = "room">-->
+                        <div class = "about-image">
+                        <!--<div class = "room-image">-->
+                        <img src = "gallery/sinulog3.jpg" alt = "function room">
+                    </div>
+                    <div class = "about-text">
+                        <!--<div class = "room-text">-->
+                        <h3>Events</h3>
+                        <p>The Sinulog Lounge where conferences, symposiums, and events can be held.</p>
+                        <button type = "button" class = "btn">Read More</button>
+                    </div>
+                </article>
+                <!-- end of events -->
+            </div>
+        </section>
+
+        <section class = "rooms" id = "rooms">
+        <!--<section class = "customers" id = "customers">-->
+            <div class = "sec-width">
+                <div class = "title">
+                    <h2>rooms</h2>
+                </div>
+                <div class = "rooms-container">
+                <!--<div class = "customers-container">-->
+                    <!-- single room -->
+                    <div class = "room">
+                    <!--<div class = "customer">-->
+                        <img src = "gallery/pahiyas9.jpg" alt = "executive suite">
+                        <h3>Executive Suite</h3>
+                        <p>The Pahiyas Executive Suite is the best room one can stay in at the hotel - perfect for relaxation.</p>
+                        <button type = "button" class = "btn">Book Now</button>
+                    </div>
+                    <!-- end of single room -->
+
+                    <!-- single room -->
+                    <div class = "room">
+                        <!--<div class = "customer">-->
+                            <img src = "gallery/imbayah2.jpg" alt = "junior suite">
+                        <h3>Junior Suite</h3>
+                        <p>The Harana and Imbayah Junior Suites provide guests the comfort and relaxation they need.</p>
+                        <button type = "button" class = "btn">Book Now</button>
+                    </div>
+                    <!-- end of single room -->
+
+                    <!-- single customer -->
+                    <div class = "room">
+                        <!--<div class = "customer">-->
+                        <img src = "gallery/pagdayao4.jpg" alt = "dormitory">
+                        <h3>Dormitory</h3>
+                        <p>The Pagdayao and Moriones Dormitories are for groups of people who liked staying together.</p>
+                        <button type = "button" class = "btn">Book Now</button>
+                    </div>
+                    <!-- end of single room -->
+                </div>
+            </div>
+        </section>
+
+        <section class = "reviews sec-width" id = "reviews">
+        <!--<section class = "services sec-width" id = "services">-->
+            <div class = "title">
+                <h2>guest reviews</h2>
+            </div>
+            <div class = "reviews-container">
+            <!--<div class = "services-container">-->
+                <!-- single review -->
+                <article class = "review">
+                <!--<article class = "service">-->
+                    <div class = "review-content">
+                    <!--<div class = "service-content">-->
+                        <span><i class = "fas fa-star"></i></span>
+                        <span><i class = "fas fa-star"></i></span>
+                        <span><i class = "fas fa-star"></i></span>
+                        <span><i class = "fas fa-star"></i></span>
+                        <span><i class = "fas fa-star"></i></span>
+                        <h2>Nice place for the money</h2>
+                        <p>"Hotel was in good location. Clean and comfortable room with comfortable mattress. Good sized room with good service. Convenient to restaurants in the area."</p>
+                    </div>
+                </article>
+                <!-- end of single review -->
+
+                <article class = "review">
+                <!--<article class = "service">-->
+                    <div class = "review-content">
+                        <!--<div class = "service-content">-->
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "far fa-star"></i></span>
+                    <!--<div class = "service-content">-->
+                        <h2>Second home</h2>
+                        <p>"First time in this hotel and definitely will not be the last. Its like home away from home. Very nice room, and comfortable beds. The hotel staffs are very kind and hospitable. I enjoyed every minute of our stay. Thank you."</p>
+                    </div>
+                </article>
+                <!-- end of single review -->
+
+                <article class = "review">
+                <!--<article class = "service">-->
+                    <div class = "review-content">
+                        <!--<div class = "service-content">-->
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "far fa-star"></i></span>
+                    <!--<div class = "service-content">-->
+                        <h2>Nice Place and Staff</h2>
+                        <p>"Very friendly and helpful staff, great safety and health precautions monitoring people who enter the hotel for fever amid the current health situation. Over all a very excellent Hotel"</p>
+                    </div>
+                </article>
+                <!-- end of single review -->
+
+                <article class = "review">
+                <!--<article class = "service">-->
+                    <div class = "review-content">
+                        <!--<div class = "service-content">-->
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                            <span><i class = "fas fa-star"></i></span>
+                    <!--<div class = "service-content">-->
+                        <h2>Great experience!</h2>
+                        <p>"The receptionist are very courteous and professional. Specially the lady that checked us in. Staff are so attentive in all of our needs. The housekeeper made our room so neat and tidy. Thank you all , for making our stay a home away from home. Will be back."</p>
+                    </div>
+                </article>
+                <!-- end of single review -->
+            </div>
+        </section>
+        <!-- end of body content -->
+
+        <!-- footer -->
+        <footer class = "footer">
+            <div class = "footer-container">
+                 <div>
+                    <a href="alston_main.html">
+                    <h2>Mary Alston Hotel</h2></a>
+                    <div class = "contact-item">
+                        <span>
+                            <i class = "fas fa-map-marker-alt"></i>
+                        </span>
+                        <span>
+                            Cathedral Heights, 275 E. Rodriguez Sr. Avenue, Quezon City, Philippines
+                        </span>
+                    </div>
+                    <div class = "contact-item">
+                        <span>
+                            <i class = "fas fa-phone-alt"></i>
+                        </span>
+                        <span>
+                            (632) 8702 2882
+                        </span>
+                    </div>
+                    <div class = "contact-item">
+                        <span>
+                            <i class = "fas fa-envelope"></i>
+                        </span>
+                        <span>
+                            maryalston@domain.com
+                        </span>
+                    </div>
+                   </div>
+
+                <div class="others">
+                    <a href = "alston_about.html">About Us</a>
+                    <a href = "alston_rooms.html">Rooms</a>
+                    <a href = "alston_gallery.html">Gallery</a>
+                    <a href = "#">Dining</a>
+                    <a href = "#">Events</a>
+                    <a href = "#">Reviews</a>
+                    <a href = "#">FAQs</a>
+                    <a href = "#">Contact Us</a>
+                </div>
+
+                <div class="others2">
+                    <a href = "#">Privacy Policy</a>
+                    <a href = "#">Terms and Conditions</a>
+
+
+               <ul class = "social-icons">
+                    <li class = "flex">
+                    <i class = "fa fa-twitter fa-2x"></i>
+                    </li>
+                    <li class = "flex">
+                    <i class = "fa fa-facebook fa-2x"></i>
+                    </li>
+                    <li class = "flex">
+                    <i class = "fa fa-instagram fa-2x"></i>
+                    </li>
+                </ul>
+                </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end of footer -->
+
+        <script src="alston_script.js"></script>
+    </body>
+</html>
