@@ -7,6 +7,7 @@
 <html>
     <head>
         <title> Title </title>
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="js/jquery-3.6.1.min.js"></script>
