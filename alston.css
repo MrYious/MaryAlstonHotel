@@ -141,6 +141,7 @@ img{
     text-shadow: 1px 1px 50px #0c0c0c;
 }
 .head-btn{
+    text-decoration: none;
     margin: 20px 0;
     font-size: 20px;
     font-weight: bold;
@@ -413,6 +414,7 @@ img{
 .room .btn{
     background: #e89f37;
     cursor: pointer;
+    text-decoration: none;
 }
 .room .btn:hover{
     opacity: 0.8;
