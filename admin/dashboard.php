@@ -29,5 +29,6 @@
         <section id="" class="flex justify-center items-center min-h-screen">
             <a href="/api/logout.php" class="p-3 bg-red-500">Log out</a>
         </section>
+        <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     </body>
 </html>
