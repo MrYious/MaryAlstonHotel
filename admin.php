@@ -27,7 +27,7 @@
 
     <body>
         <main class="flex justify-center items-center w-full min-h-screen bg-[url('/images/gallery.jpg')] bg-cover">
-            <form action="api/validateLogin.php" method="POST" class="flex flex-col items-center gap-3 p-6 border-2 border-slate-100 text-lg bg-slate-100 drop-shadow-2xl shadow-2xl shadow-black rounded-lg">
+            <form id="adminLogin" action="api/validateLogin.php" method="POST" class="flex flex-col items-center gap-3 p-6 border-2 border-slate-100 text-lg bg-slate-100 drop-shadow-2xl shadow-2xl shadow-black rounded-lg">
                 <div class="text-2xl lg:text-3xl font-semibold text-center ">Administrator </div>
                 <!-- ERROR MESSAGE -->
                 <?php
@@ -37,7 +37,7 @@
                 ?>
                 <div class="flex justify-center items-center flex-col w-64 lg:w-72 text-sm lg:text-base">
                     <div class="form-floating mb-3 w-full">
-                        <input type="text" name="username" class="form-control
+                        <input id="username" type="text" name="username" class="form-control
                             block
                             w-full
                             px-3
@@ -55,7 +55,7 @@
                         <label for="floatingInput" class="text-gray-700">Username</label>
                     </div>
                     <div class="form-floating mb-3 w-full">
-                        <input type="password" name="password" class="form-control
+                        <input id="password" type="password" name="password" class="form-control
                             block
                             w-full
                             px-3
@@ -73,8 +73,14 @@
                         <label for="floatingPassword" class="text-gray-700">Password</label>
                     </div>
                 </div>
-                <input type="submit" value="LOGIN" class="p-2 w-full cursor-pointer bg-green-700 shadow-md shadow-black text-white font-semibold tracking-widest  hover:bg-green-900">
+                <input id="submitBtn" type="submit" value="LOGIN" class="p-2 w-full cursor-pointer bg-green-700 shadow-md shadow-black text-white font-semibold tracking-widest  hover:bg-green-900">
             </form>
         </main>
+        <script>
+            $(document).ready(function(){
+                $('#username').focus();
+                $('#password').val('');
+            });
+        </script>
     </body>
 </html>

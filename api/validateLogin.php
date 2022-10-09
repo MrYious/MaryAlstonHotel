@@ -4,16 +4,31 @@
 
 	include 'dbConnection.php';
 
-	// TODO: query database accounts
-
-	$query = '';
-
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if($_REQUEST['username'] == 'test' && $_REQUEST['password']=='qwertyuiop'){
-			$_SESSION['username'] = 'test';
-			$_SESSION['password'] = 'qwertyuiop';
-			header('location: /admin/dashboard.php');
+
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$encryptedPassword = md5($password);
+		echo '<b>'. $encryptedPassword .'</b>';
+
+		// QUERY
+		$sql = "SELECT * FROM `admin_tbl` WHERE `username` = '". $username ."'";
+		$result = $conn->query($sql);
+
+		// RESULT
+		if(mysqli_num_rows($result) > 0){
+			while($row = mysqli_fetch_assoc($result)) {
+				if($username == $row['username'] && $encryptedPassword == $row['password']){
+					$_SESSION['username'] = 'test';
+					$_SESSION['password'] = $encryptedPassword;
+					header('location: /admin/dashboard.php');
+				}else{
+					$_SESSION['errorMsg'] = 'Incorrect username and password';
+					header('location:/admin.php');
+				}
+			}
 		}else{
+			echo 'Error '.$conn->error;
 			$_SESSION['errorMsg'] = 'Incorrect username and password';
 			header('location:/admin.php');
 		}
