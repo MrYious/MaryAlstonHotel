@@ -322,21 +322,21 @@
                                     <div class="flex gap-4  w-full lg:w-1/2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Room Name</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Pahiyas - Executive lorem</div>
+                                            <div id="bi_roomName" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Pahiyas - Executive</div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                            <div class="font-medium text-base lg:text-lg">No. of Person(s)</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">9</div>
+                                            <div class="font-medium text-base lg:text-lg">No. of Guests(s)</div>
+                                            <div id="bi_guests" class="text-sm lg:text-base  py-2 w-full font-bold truncate">9</div>
                                         </div>
                                     </div>
                                     <div class="flex gap-4 w-full lg:w-1/2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Check-in Date</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
+                                            <div id="bi_inDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Check-out Date</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
+                                            <div id="bi_outDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
                                         </div>
                                     </div>
                                 </div>
@@ -352,28 +352,28 @@
                                     <div class="flex gap-4 w-full lg:w-1/2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">First Name</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Mark Edison</div>
+                                            <div id="gi_fname" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Mark Edison</div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Last Name</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Rosario</div>
+                                            <div id="gi_lname" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Rosario</div>
                                         </div>
                                     </div>
                                     <div class="flex gap-4 w-full lg:w-1/2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Email Address</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">rosariomark37@gmail.com</div>
+                                            <div id="gi_email" class="text-sm lg:text-base  py-2 w-full font-bold truncate">rosariomark37@gmail.com</div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Contact Number</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09322831860</div>
+                                            <div id="gi_mobileNo" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09322831860</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex flex-col lg:flex-row gap-4">
                                     <div class="flex flex-col gap-2 w-full lg:1/2 ">
                                         <div class="font-medium text-base lg:text-lg">Special Request</div>
-                                        <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold ">
+                                        <div id="gi_specialRequests" class="text-sm lg:text-base  py-2 w-full font-bold ">
                                             None
                                         </div>
                                         <!-- <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold ">
@@ -383,11 +383,11 @@
                                     <div class="flex gap-4 w-full lg:w-1/2 shrink-0 lg:pl-2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Birth Date</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
+                                            <div id="gi_birthDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">From TUA</div>
-                                            <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Yes</div>
+                                            <div id="gi_fromTua" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Yes</div>
                                         </div>
                                     </div>
                                 </div>
@@ -404,25 +404,29 @@
                                     </div>
                                     <div class="flex flex-col border-[1px] border-black p-3 gap-2 rounded-xl">
                                         <b class="text-lg ">Total Breakdown</b>
-                                        <div>Pahiyas - Executive Suite</div>
+                                        <div>
+                                            <span id="ta_roomName">Pahiyas</span>
+                                            -
+                                            <span id="ta_roomType">Executive Suite</span>
+                                        </div>
                                         <div class="flex flex-col gap-2 px-3">
                                             <div class="flex justify-between">
                                                 <b>First Night </b>
-                                                <b>2,500.00</b>
+                                                <b id="ta_roomCost">0.00</b>
                                             </div>
                                             <div class="flex justify-between pl-7">
-                                                <div>2,500 x 1 night</div>
+                                                <div id="ta_sub1">2,500 x 0 night</div>
                                             </div>
                                             <div class="flex justify-between">
                                                 <b>Succeeding night(s) </b>
-                                                <b>4,000.00</b>
+                                                <b id="ta_roomOtherCosts">0.00</b>
                                             </div>
                                             <div class="flex justify-between pl-7">
-                                                <div>1,000 x 2 guest(s) x 1 night(s)</div>
+                                                <div  id="ta_sub2">1,000 x 1 guest(s) x 0 night(s)</div>
                                             </div>
                                             <div class="border-2 border-black w-full h-1"></div>
                                         </div>
-                                        <div class="text-right w-full p-3"><b class="text-3xl">2,500.00</b> PHP</div>
+                                        <div class="text-right w-full p-3"><b id="ta_total" class="text-3xl">0.00</b> PHP</div>
                                     </div>
                                     <div class="text-sm">
                                         <b>Note:</b> You have to pay at least <b>50%</b> of the total amount as down payment for the reservation to be official.
@@ -499,30 +503,34 @@
                                         <div class="border-2 border-black w-full"></div>
                                     </div>
                                     <div class="flex flex-col border-[1px] border-black p-3 gap-2 rounded-xl">
-                                        <b class="text-lg ">Total Breakdown</b>
-                                        <div>Pahiyas - Executive Suite</div>
+                                    <b class="text-lg ">Total Breakdown</b>
+                                        <div>
+                                            <span id="tc_roomName">Pahiyas</span>
+                                            -
+                                            <span id="tc_roomType">Executive Suite</span>
+                                        </div>
                                         <div class="flex flex-col gap-2 px-3">
                                             <div class="flex justify-between">
                                                 <b>First Night </b>
-                                                <b>2,500.00</b>
+                                                <b id="tc_roomCost">0.00</b>
                                             </div>
                                             <div class="flex justify-between pl-7">
-                                                <div>2,500 x 1 night</div>
+                                                <div id="tc_sub1">2,500 x 0 night</div>
                                             </div>
                                             <div class="flex justify-between">
                                                 <b>Succeeding night(s) </b>
-                                                <b>4,000.00</b>
+                                                <b id="tc_roomOtherCosts">0.00</b>
                                             </div>
                                             <div class="flex justify-between pl-7">
-                                                <div>1,000 x 2 guest(s) x 1 night(s)</div>
+                                                <div  id="tc_sub2">1,000 x 1 guest(s) x 0 night(s)</div>
                                             </div>
                                             <div class="border-2 border-black w-full h-1"></div>
                                         </div>
-                                        <div class="text-right w-full p-3"><b class="text-3xl">2,500.00</b> PHP</div>
+                                        <div class="text-right w-full p-3"><b id="tc_total" class="text-3xl">0.00</b> PHP</div>
                                     </div>
                                     <div class="flex justify-center items-center border-[1px] border-black p-3 gap-1 rounded-xl">
                                         <b class="text-md shrink-0">Down Payment</b>
-                                        <div class="text-right w-full "><b class="text-lg">1,250.00</b> PHP</div>
+                                        <div class="text-right w-full "><b id='tc_downpayment' class="text-lg">1,250.00</b> PHP</div>
                                     </div>
                                 </div>
                             </div>
@@ -706,6 +714,8 @@
 
                     console.table('FormData |', formData)
 
+                    updateStep3()
+
                     return true;
                 } else if(StepID == 3){
                     console.log('Validate 3');
@@ -788,6 +798,50 @@
                     $("#tb_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + guests + ' guest(s) x 0 night(s)');
                 }
                 $("#tb_total").text(new Intl.NumberFormat().format(totalCost) + '.00')
+            }
+
+            const updateStep3 = () => {
+                $("#bi_roomName").text(formData.roomDetail.name + ' - ' + formData.roomDetail.type);
+                $("#bi_guests").text(formData.guests.total);
+                $("#bi_inDate").text(formData.inDate);
+                $("#bi_outDate").text(formData.outDate);
+                $("#gi_fname").text(formData.guestInfo.firstName);
+                $("#gi_lname").text(formData.guestInfo.lastName);
+                $("#gi_email").text(formData.guestInfo.email);
+                $("#gi_mobileNo").text(formData.guestInfo.mobileNo);
+                $("#gi_specialRequests").text(formData.guestInfo.specialRequests);
+                $("#gi_birthDate").text(formData.guestInfo.birthDate);
+                $("#gi_fromTua").text(formData.guestInfo.fromTua);
+
+                $("#ta_roomName").text(formData.roomDetail.name);
+                $("#ta_roomType").text(formData.roomDetail.type);
+                $("#ta_roomCost").text(formData.costs.firstNight);
+                $("#ta_roomOtherCosts").text(formData.costs.otherNights);
+                $("#ta_total").text(formData.costs.total);
+
+                if(formData.nights > 0){
+                    $("#ta_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
+                    $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
+                }else{
+                    $("#ta_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
+                    $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x 0 night(s)');
+                }
+
+                $("#tc_roomName").text(formData.roomDetail.name);
+                $("#tc_roomType").text(formData.roomDetail.type);
+                $("#tc_roomCost").text(formData.costs.firstNight);
+                $("#tc_roomOtherCosts").text(formData.costs.otherNights);
+                $("#tc_total").text(formData.costs.total);
+
+                if(formData.nights > 0){
+                    $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
+                    $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
+                }else{
+                    $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
+                    $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x 0 night(s)');
+                }
+                const down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
+                $("#tc_downpayment").text(new Intl.NumberFormat().format(down) + '.00');
             }
 
             // data
