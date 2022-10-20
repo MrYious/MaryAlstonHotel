@@ -1,0 +1,11 @@
+ul.stepper .step.active .step-content {
+    display: flex;
+}
+
+/* ul.stepper.horizontal {
+    height: 600px !important;
+} */
+
+.fc-daygrid-day-bg {
+    background-color:blue !important;
+}

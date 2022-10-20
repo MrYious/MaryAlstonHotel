@@ -1,3 +1,143 @@
 $(document).ready(function(){
     
 });
+
+
+        <section class="bg-slate-300 step-1">
+            <ul class="stepper linear horizontal
+                bg-slate-400"
+            >
+                <!-- 1 -->
+                <li class="step active">
+                    <!-- title -->
+                    <div class="step-title waves-effect " >Room & Date </div>
+                    <!-- content -->
+                    <div class="step-content flex flex-col">
+                        <div class="flex flex-col md:flex-row gap-10 h-fit">
+                            <!-- COLUMN 1 -->
+                            <div class="flex flex-col gap-4 w-full md:w-[25%] bg-slate-100">
+                                <div class="flex flex-col gap-2">
+                                    <div class="font-medium text-md lg:text-xl">Please select a room:</div>
+                                    <select name="room" id="room" class="inline w-full px-2 border-[1px] focus:border-blue-800 rounded border-black text-sm lg:text-base ">
+                                        <option value="ES_Pahiyas">Pahiyas - Executive Suite</option>
+                                        <option value="JS_Harana">Harana  - Junior Suite</option>
+                                        <option value="JS_Imbayah">Imbayah  - Junior Suite</option>
+                                        <option value="DM_Pagdayao">Pagdayao - Dormitory</option>
+                                        <option value="DM_Moriones">Moriones - Dormitory</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col w-full rounded-xl border-[1px] border-black">
+                                    <img src="gallery/pahiyas4.jpg" alt="room image" class="w-full rounded-t-xl">
+                                    <div class="flex flex-col justify-start items-start gap-2 p-4">
+                                        <div><b>Room Name:</b> Pahiyas</div>
+                                        <div><b>Room Type:</b> Executive Suite</div>
+                                        <div><b>Capacity:</b> 2 Persons</div>
+                                        <div><b>Bedroom:</b> (1) Double Bed</div>
+                                        <div class="text-right w-full"><b class="text-3xl">2,500.00</b> / Per Night</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- COLUMN 2 -->
+                            <div class="flex flex-col w-full md:w-[50%] gap-5 bg-slate-200">
+                                <!-- <div class="font-semibold text-xl ">Check-in and Check-out Date</div> -->
+                                <div class="flex flex-col lg:flex-row gap-3 ">
+                                    <!-- 1 -->
+                                    <div class="flex flex-col gap-2 w-full lg:w-1/5">
+                                        <div class="font-medium text-md lg:text-xl">Arrival Date:</div>
+                                        <input type="date" name="inDate" id="inDate" required readonly  class="text-sm lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    </div>
+                                    <!-- 2 -->
+                                    <div class="flex flex-col gap-2 w-full lg:w-1/5">
+                                        <div class="font-medium text-md lg:text-xl">Arrival Time:</div>
+                                        <input type="time" name="inDate" id="inDate" required class="text-sm lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    </div>
+                                    <!-- 3 -->
+                                    <div class="flex flex-col gap-2  w-full lg:w-1/5">
+                                        <div class="font-medium text-md lg:text-xl">No. of Night(s):</div>
+                                        <input type="value" value="0" id="nights" required readonly class="text-sm lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black "></input>
+                                    </div>
+                                    <!-- 4 -->
+                                    <div class="flex flex-col gap-2 w-full lg:w-1/5">
+                                        <div class="font-medium text-md lg:text-xl">Departure Time:</div>
+                                        <input type="date" name="outDate" id="outDate" required readonly  class="text-sm lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    </div>
+                                    <!-- 5 -->
+                                    <div class="flex flex-col gap-2 w-full lg:w-1/5">
+                                        <div class="font-medium text-md lg:text-xl">Departure Date:</div>
+                                        <input type="time" name="outDate" id="outDate" required class="text-sm lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    </div>
+                                </div>
+                                <!-- CALENDAR -->
+                                <div class="flex w-full flex-col-reverse lg:flex-row">
+                                    <div class="p-2 w-full ">
+                                        <div id='calendar'></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- COLUMN 3 -->
+                            <div class="flex flex-col w-full md:w-[20%] bg-slate-300">
+                                <div class="flex flex-col w-full gap-5 p-5">
+                                    <div class="text-md lg:text-xl px-2 font-medium text-left lg:text-center">LEGEND</div>
+                                    <div class="flex lg:flex-col flex-wrap px-4 gap-2 lg:gap-5">
+                                        <div class="flex gap-4 items-center">
+                                            <div class="border-2 border-black bg-black w-4 h-4 rounded-full"></div>
+                                            <div class="text-sm lg:text-base">Available Date</div>
+                                        </div>
+                                        <div class="flex gap-4 items-center">
+                                            <div class="border-2 border-black bg-black w-4 h-4 rounded-full"></div>
+                                            <div class="text-sm lg:text-base">Not Available Date</div>
+                                        </div>
+                                        <div class="flex gap-4 items-center">
+                                            <div class="border-2 border-black bg-black w-4 h-4 rounded-full"></div>
+                                            <div class="text-sm lg:text-base">Check-in Date</div>
+                                        </div>
+                                        <div class="flex gap-4 items-center">
+                                            <div class="border-2 border-black bg-black w-4 h-4 rounded-full"></div>
+                                            <div class="text-sm lg:text-base">Check-out Date</div>
+                                        </div>
+                                        <div class="flex gap-4 items-center">
+                                            <div class="border-2 border-black bg-black w-4 h-4 rounded-full"></div>
+                                            <div class="text-sm lg:text-base">Period of Stay</div>
+                                        </div>
+                                        <div class="flex gap-4 items-center">
+                                            <div class="border-2 border-black bg-black w-4 h-4 rounded-full"></div>
+                                            <div class="text-sm lg:text-base">Invalid Date</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-2 bg-red-200">
+                                    <div>Current Total</div>
+                                    <div></div>
+                                    <!-- DO HERE -->
+                                    <!-- PAYMENT -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-actions">
+                            <!-- Here goes your actions buttons -->
+                            <button class="waves-effect waves-dark btn next-step">CONTINUE</button>
+                            <button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+                        </div>
+                    </div>
+                </li>
+                <!-- 2 -->
+                <li class="step">
+                    <div class="step-title waves-effect " > Guest Information</div>
+                    <div class="step-content ">
+                        <!-- Your step content goes here (like inputs or so) -->
+                    </div>
+                </li>
+                <!-- 3 -->
+                <li class="step">
+                    <div class="step-title waves-effect w-full">Confirmation</div>
+                    <div class="step-content">
+                        <!-- Your step content goes here (like inputs or so) -->
+                        <div class="step-actions">
+                            <!-- Here goes your actions buttons -->
+                            <button class="waves-effect waves-dark btn next-step">CONTINUE</button>
+                            <button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
