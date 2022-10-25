@@ -850,7 +850,6 @@
             $( "#submitBtn" ).click(function(e) {
                 e.preventDefault();
 
-                var result;
                 $.post("/api/newBooking.php",{
                     formData: formData
                 }).done(function(data, status) {
@@ -863,7 +862,6 @@
                     alert( "Submission Error" );
                     console.log('Submission Error')
                 })
-                console.log('End', result)
                 return false;
             });
 
