@@ -291,7 +291,7 @@
                                         <div class="text-xs">(optional)</div>
                                     </div>
                                     <div class="font-medium text-xs lg:text-sm">(Subject to availability)</div>
-                                    <textarea name="specialRequest" id="specialRequest" class="w-full h-32 lg:h-full text-sm lg:text-base browser-default bg-white px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black resize-none"></textarea>
+                                    <textarea name="specialRequest" id="specialRequest" maxlength="500" class="w-full h-32 lg:h-full text-sm lg:text-base browser-default bg-white px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black resize-none"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -436,7 +436,7 @@
                         </div>
                         <div class="step-actions">
                             <!-- Here goes your actions buttons -->
-                            <button class="waves-effect waves-dark btn next-step">SUBMIT</button>
+                            <button id="submitBtn" class="waves-effect waves-dark btn">SUBMIT</button>
                             <button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
                         </div>
                     </div>
@@ -494,13 +494,16 @@
                             </div>
                             <!-- 2ND COLUMN -->
                             <div class="flex lg:w-1/4 w-full ">
-                                <div class="flex flex-col gap-4 w-full">
+                                <div class="flex flex-col gap-3 w-full">
                                     <div class=" flex  justify-start items-center">
                                         <div class="border-2 border-black w-full"></div>
                                         <div class="text-lg lg:text-2xl font-semibold w-fit shrink-0 px-4">
                                             TOTAL AMOUNT
                                         </div>
                                         <div class="border-2 border-black w-full"></div>
+                                    </div>
+                                    <div class="text-sm lg:text-base py-2 w-full  ">
+                                        <b>Transaction #:</b> <span id="transCode"></span>
                                     </div>
                                     <div class="flex flex-col border-[1px] border-black p-3 gap-2 rounded-xl">
                                     <b class="text-lg ">Total Breakdown</b>
@@ -537,7 +540,7 @@
                         </div>
                         <div class="step-actions">
                             <!-- Here goes your actions buttons -->
-                            <button class="waves-effect waves-dark btn next-step">FINISH</button>
+                            <button id="finishBtn" class="waves-effect waves-dark btn ">FINISH</button>
                         </div>
                     </div>
                 </li>
@@ -627,9 +630,10 @@
 
             // STEPPER
             var stepper = document.querySelector('.stepper');
-            var stepperInstace = new MStepper(stepper, {
+            var stepperInstance = new MStepper(stepper, {
                 firstActive: 0,
                 validationFunction: validationFunction,
+                stepTitleNavigation: false,
             })
 
             function validationFunction(stepperForm, activeStepContent) {
@@ -719,12 +723,11 @@
                     return true;
                 } else if(StepID == 3){
                     console.log('Validate 3');
+                    return true;
                 } else if(StepID == 4){
                     console.log('Validate 4');
+                    return true;
                 }
-
-                return true;
-
             }
 
             const showRoomDetails = () => {
@@ -843,6 +846,31 @@
                 const down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
                 $("#tc_downpayment").text(new Intl.NumberFormat().format(down) + '.00');
             }
+
+            $( "#submitBtn" ).click(function(e) {
+                e.preventDefault();
+
+                var result;
+                $.post("/api/newBooking.php",{
+                    formData: formData
+                }).done(function(data, status) {
+                    console.log('Status', status)
+                    console.log('Data', data)
+                    console.log('Submission Success')
+                    stepperInstance.nextStep();
+                    $("#transCode").text(data.transactionCode)
+                }).fail(function() {
+                    alert( "Submission Error" );
+                    console.log('Submission Error')
+                })
+                console.log('End', result)
+                return false;
+            });
+
+            $( "#finishBtn" ).click(function(e) {
+                e.preventDefault();
+                window.location.replace("/");
+            });
 
             // data
         </script>
