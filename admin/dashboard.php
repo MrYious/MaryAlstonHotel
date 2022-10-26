@@ -30,12 +30,7 @@
         </script>
     </head>
     <body>
-        <!-- <section id="" class="flex justify-center items-center min-h-screen bg-slate-200">
-            <a href="/api/logout.php" class="p-3 bg-red-500">Log out</a>
-
-        </section> -->
-
-        <!-- Mobile Button -->
+        <!-- Mobile Nav Button -->
         <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="openSidebar()" >
             <div class="p-1 bg-gray-900 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
@@ -107,8 +102,6 @@
                 </section>
             </div>
         </div>
-
-
 
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script type="text/javascript">
