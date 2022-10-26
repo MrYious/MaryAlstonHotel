@@ -40,6 +40,7 @@
         </span>
 
         <div class="flex">
+            <!-- NAV -->
             <div class="bg-gray-200 lg:w-[300px] shrink-0">
                 <div class="sidebar fixed top-0 bottom-0 left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-800">
                     <div class="text-gray-100 text-xl">
@@ -97,6 +98,7 @@
                     </a>
                 </div>
             </div>
+            <!-- CONTENT -->
             <div class="w-full">
                 <section id="" class="flex justify-center items-center min-h-screen bg-gray-200">
                     Section 1
