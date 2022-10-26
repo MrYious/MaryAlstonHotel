@@ -49,26 +49,26 @@
                         </div>
                         <div class="my-2 bg-gray-600 h-[1px]"></div>
                     </div>
-                    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    <a href="/admin/dashboard.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-columns"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Dashboard</span>
-                    </div>
-                    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    </a>
+                    <a href="/admin/calendar.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-calendar-week"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Official Calendar</span>
-                    </div>
-                    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    </a>
+                    <a href="/admin/reschedule.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-arrow-repeat"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Reschedule</span>
-                    </div>
-                    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    </a>
+                    <a href="/admin/reservations.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-calendar-plus"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Pending Reservations</span>
-                    </div>
-                    <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    </a>
+                    <a href="/admin/history.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-clock-history"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">History</span>
-                    </div>
+                    </a>
                     <div class="my-4 bg-gray-600 h-[1px]"></div>
                     <div onclick="dropdown()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-bar-chart"></i>
@@ -80,13 +80,17 @@
                         </div>
                     </div>
                     <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu">
-                        <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                        <a href="/admin/reports/monthly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
                             Monthly
-                        </h1>
-                        <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                        </a>
+                        <a href="/admin/reports/weekly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
                             Weekly
-                        </h1>
+                        </a>
                     </div>
+                    <a href="/admin/settings.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                        <i class="bi bi-gear"></i>
+                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Settings</span>
+                    </a>
                     <a href="/api/logout.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-box-arrow-in-right"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
