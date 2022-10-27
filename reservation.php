@@ -532,11 +532,14 @@
                                     <div class="flex flex-col gap-2 w-full ">
                                         <div class="text-sm lg:text-base  py-2 w-full">
                                             The guest has 48 hrs (2 days) to pay atleast 50% of the total amount of the booking as down payment to the reservation.
-                                            Failure to pay within prescribed time allows the system to automatically remove the guest's reservation.
+                                            Failure to pay within alloted time allows the system to automatically remove the guest's reservation.
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
                                             The down payment must be paid via the given official payment channels below. The guest shall receive an email in a few minutes containing the booking and payment information.
                                             The guest must reply to the email a valid proof of payment such as official receipts and any similar that is valid.
+                                        </div>
+                                        <div class="text-sm lg:text-base  py-2 w-full  ">
+                                            For important concerns, you can reach us via the following email: <b>hotelemail@gmail.com. </b> Save your transaction number for future reference.
                                         </div>
                                     </div>
                                 </div>
@@ -921,25 +924,29 @@
             $( "#submitBtn" ).click(function(e) {
                 e.preventDefault();
 
-                $.post("/api/newBooking.php",{
-                    formData: formData
-                }).done(function(data, status) {
-                    console.log('Status', status)
-                    console.log('Data', data)
-                    console.log('Submission Success')
-                    stepperInstance.nextStep();
-                    $("#transCode").text(data.transactionCode)
-                }).fail(function() {
-                    alert( "Submission Error" );
-                    console.log('Submission Error')
-                })
-                return false;
+                let text = "Are you sure you want to submit this reservation?";
+
+                if (confirm(text) == true) {
+                    $.post("/api/newBooking.php",{
+                        formData: formData
+                    }).done(function(data, status) {
+                        console.log('Status', status)
+                        console.log('Data', data)
+                        console.log('Submission Success')
+                        stepperInstance.nextStep();
+                        $("#transCode").text(data.transactionCode)
+                    }).fail(function() {
+                        alert( "Submission Error" );
+                        console.log('Submission Error')
+                    })
+                }
             });
 
             $( "#finishBtn" ).click(function(e) {
                 e.preventDefault();
                 window.location.replace("/");
             });
+
 
             // data
         </script>
