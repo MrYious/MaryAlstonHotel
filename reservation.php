@@ -42,7 +42,6 @@
                 console.log('DATE TODAY: ', formatDate(new Date()));
 
                 var calendarEl = document.getElementById('calendar');
-                // TODO: Get events from database
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
                     selectable: true,
@@ -144,6 +143,8 @@
                     return num.toString().padStart(2, '0');
                 }
 
+                // TODO
+                // Fetch all reservation then insert to calendar as events
                 function getAllEvents() {
                     
                 }
@@ -947,8 +948,6 @@
                 window.location.replace("/");
             });
 
-
-            // data
         </script>
     </body>
 </html>
