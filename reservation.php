@@ -42,6 +42,7 @@
                 console.log('DATE TODAY: ', formatDate(new Date()));
 
                 var calendarEl = document.getElementById('calendar');
+                // TODO: Get events from database
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
                     selectable: true,
@@ -83,7 +84,8 @@
                         // Delete previously selected dates made as temporary events
 
                         // console.log('SelectAllow ', selectInfo)
-                        // console.log('Events ', calendar.getEvents())
+                        console.log('ALL Events ', calendar.getEvents())
+                        // console.log('ALL Events Sources', calendar.getEventSources())
                         const tempEvent = calendar.getEventById('TEMPORARY');
                         console.log('Event TEMPORARY : ', tempEvent)
                         if(tempEvent){
@@ -141,6 +143,10 @@
                 function padTo2Digits(num) {
                     return num.toString().padStart(2, '0');
                 }
+
+                function getAllEvents() {
+                    
+                }
             });
         </script>
     </head>
@@ -192,7 +198,7 @@
                             <div class="flex flex-col w-full md:w-[40%] gap-5 p-3">
                                 <!-- CALENDAR -->
                                 <div class="p-2 w-full ">
-                                    <div id='calendar' class=""></div>
+                                    <div id='calendar' class="select-none"></div>
                                 </div>
                                 <div class="flex flex-wrap justify-around px-4 gap-2 lg:gap-5">
                                     <div class="flex gap-2 items-center">
