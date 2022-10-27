@@ -38,27 +38,68 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3/main.min.css,npm/fullcalendar@5.11.3/main.min.css">
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+
+                console.log('DATE TODAY: ', formatDate(new Date()));
+
                 var calendarEl = document.getElementById('calendar');
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
                     selectable: true,
+                    unselectAuto: false,
+                    selectOverlap: false,
+                    eventDisplay: 'background',
                     events: [
                         {
+                            id: '0',
+                            groupId: 'Invalid',
                             start: '2020-10-08',
-                            end: '2022-10-18',
-                            display: 'background',
-                            overlap: false,
-                            backgroundColor: 'black'
-                        }
+                            end: formatDate(new Date()),
+                            backgroundColor: '#241d1c', //black
+                        },
+                        {
+                            id: '1',
+                            groupId: 'Unavailable',
+                            start: '2022-10-29',
+                            end: '2022-10-30',
+                            backgroundColor: 'red',
+                        },
                     ],
-                    // selectOverlap: function(event) {
-                    //     return event.rendering === 'red';
-                    // },
+                    selectOverlap: function(event) {
+                        // Utilize these by preventing the user to select invalid and unavailable dates presented as events.
+                        // Allow temporary made events to be selected or #Remove temporary event before selecting new
+
+                        // console.log('OVERLAP Event ', event)
+                        // console.log('OVERLAP Date ', event.start)
+                        // console.log('OVERLAP Event ID ', event.id)
+                        // console.log('OVERLAP Event Group ID ', event.groupId)
+
+                        if (event.groupId === 'Invalid' || event.groupId === 'Unavailable'){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    },
+                    selectAllow: function (selectInfo) {
+                        // Delete previously selected dates made as temporary events
+
+                        // console.log('SelectAllow ', selectInfo)
+                        // console.log('Events ', calendar.getEvents())
+                        const tempEvent = calendar.getEventById('TEMPORARY');
+                        console.log('Event TEMPORARY : ', tempEvent)
+                        if(tempEvent){
+                            tempEvent.remove();
+                        }
+                        return true;
+                    },
                     select: handleSelectDate,
                 });
                 calendar.render();
 
                 function handleSelectDate (selectionInfo ) {
+                    // WILL NOT PROCEED WHEN SELECT ALLOW IS FALSE
+
+                    // WILL NOT PROCEED WHEN AN OVERLAPPING EVENT IS HIT AND FALSE
+
                     // console.log('Selected Date');
                     // console.log(selectionInfo);
                     $('#inDate').val(selectionInfo.startStr);
@@ -75,6 +116,30 @@
                     $('#nights').text(TotalNights);
 
                     updateTotal();
+
+                    console.log('Start Date: ', selectionInfo.startStr);
+                    console.log('End Date: ', selectionInfo.endStr);
+
+                    // DATE EVENT
+                    calendar.addEvent({
+                        id: 'TEMPORARY',
+                        groupId: 'TEMPORARY',
+                        start: selectionInfo.startStr,
+                        end: selectionInfo.endStr,
+                        backgroundColor: 'blue',
+                    });
+                }
+
+                function formatDate(date) {
+                    return [
+                        date.getFullYear(),
+                        padTo2Digits(date.getMonth() + 1),
+                        padTo2Digits(date.getDate()),
+                    ].join('-');
+                }
+
+                function padTo2Digits(num) {
+                    return num.toString().padStart(2, '0');
                 }
             });
         </script>
@@ -90,7 +155,7 @@
             </a>
         </div>
         <!-- STEPPER -->
-        <section class="p-5 bg-slate-200">
+        <section class="p-5 bg-slate-100">
             <ul class="stepper linear ">
                 <!-- 1 -->
                 <li class="step active">
