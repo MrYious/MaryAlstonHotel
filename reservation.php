@@ -127,12 +127,12 @@
                                         <!-- 3 -->
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">No. of Adults*</div>
-                                            <input type="number" name="noAdults" id="noAdults" value="1" min="1" max="2" onchange="updateNoGuests()" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                            <input type="number" name="noAdults" id="noAdults" value="1" min="1" max="2" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
                                         </div>
                                         <!-- 4 -->
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">No. of Children*</div>
-                                            <input type="number" name="noChildren" id="noChildren" value="0" min="0" max="1" onchange="updateNoGuests()"  class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                            <input type="number" name="noChildren" id="noChildren" value="0" min="0" max="1" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
                                         </div>
                                     </div>
                                     <div class="flex w-full gap-6">
@@ -787,15 +787,6 @@
                     }
                 }
 
-                const updateNoGuests = () => {
-                    var adults = $("#noAdults").val();
-                    var children = $("#noChildren").val();
-                    var sum = parseInt(adults) + parseInt(children);
-                    $("#guests").text(sum);
-
-                    updateTotal();
-                }
-
                 const updateTotal = () => {
                     console.log('Updating Total Breakdown', formData);
                     var guests = $("#guests").text();
@@ -873,10 +864,15 @@
                     // console.log('All Events: ', allEvents);
                     allEvents.forEach((event, i) => {
                         // console.log('Event ' + i + ': ', event.groupId)
-                        if(event.groupId === 'Unavailable'){
+                        if(event.groupId === 'Unavailable' || event.groupId === 'TEMPORARY'){
                             event.remove();
                         }
                     });
+                    calendar.unselect()
+                    $('#inDate').val('');
+                    $('#outDate').val('');
+                    $('#nights').text('0');
+                    updateTotal();
                 }
 
                 // EVENT HANDLERS
@@ -939,6 +935,24 @@
                     $("#roomImg").attr("src",roomDetail.img);
                     $("#noAdults").attr("max",roomDetail.adults);
                     $("#noChildren").attr("max",roomDetail.children);
+
+                    updateTotal();
+                });
+
+                $('#noAdults').on('change', function() {
+                    var adults = $("#noAdults").val();
+                    var children = $("#noChildren").val();
+                    var sum = parseInt(adults) + parseInt(children);
+                    $("#guests").text(sum);
+
+                    updateTotal();
+                });
+
+                $('#noChildren').on('change', function() {
+                    var adults = $("#noAdults").val();
+                    var children = $("#noChildren").val();
+                    var sum = parseInt(adults) + parseInt(children);
+                    $("#guests").text(sum);
 
                     updateTotal();
                 });
