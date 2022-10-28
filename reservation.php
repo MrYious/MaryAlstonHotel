@@ -30,135 +30,6 @@
         <!-- FULL CALENDAR -->
         <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3,npm/fullcalendar@5.11.3/locales-all.min.js,npm/fullcalendar@5.11.3/locales-all.min.js,npm/fullcalendar@5.11.3/main.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3/main.min.css,npm/fullcalendar@5.11.3/main.min.css">
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-
-                // STATES
-                var allReservations;
-
-
-                console.log('DATE TODAY: ', formatDate(new Date()));
-
-                var calendarEl = document.getElementById('calendar');
-                var calendar = new FullCalendar.Calendar(calendarEl, {
-                    initialView: 'dayGridMonth',
-                    selectable: true,
-                    unselectAuto: false,
-                    selectOverlap: false,
-                    eventDisplay: 'background',
-                    events: [
-                        {
-                            id: '0',
-                            groupId: 'Invalid',
-                            start: '2020-10-08',
-                            end: formatDate(new Date()),
-                            backgroundColor: '#241d1c', //black
-                        },
-                        {
-                            id: '1',
-                            groupId: 'Unavailable',
-                            start: '2022-10-29',
-                            end: '2022-10-30',
-                            backgroundColor: 'red',
-                        },
-                    ],
-                    selectOverlap: function(event) {
-                        // Utilize these by preventing the user to select invalid and unavailable dates presented as events.
-                        // Allow temporary made events to be selected or #Remove temporary event before selecting new
-
-                        // console.log('OVERLAP Event ', event)
-                        // console.log('OVERLAP Date ', event.start)
-                        // console.log('OVERLAP Event ID ', event.id)
-                        // console.log('OVERLAP Event Group ID ', event.groupId)
-
-                        if (event.groupId === 'Invalid' || event.groupId === 'Unavailable'){
-                            return false;
-                        }else{
-                            return true;
-                        }
-                    },
-                    selectAllow: function (selectInfo) {
-                        // Delete previously selected dates made as temporary events
-
-                        // console.log('SelectAllow ', selectInfo)
-                        console.log('ALL Events ', calendar.getEvents())
-                        // console.log('ALL Events Sources', calendar.getEventSources())
-                        const tempEvent = calendar.getEventById('TEMPORARY');
-                        console.log('Event TEMPORARY : ', tempEvent)
-                        if(tempEvent){
-                            tempEvent.remove();
-                        }
-                        return true;
-                    },
-                    select: handleSelectDate,
-                });
-
-                calendar.render();
-
-                function handleSelectDate (selectionInfo ) {
-                    // WILL NOT PROCEED WHEN SELECT ALLOW IS FALSE
-
-                    // WILL NOT PROCEED WHEN AN OVERLAPPING EVENT IS HIT AND FALSE
-
-                    // console.log('Selected Date');
-                    // console.log(selectionInfo);
-                    $('#inDate').val(selectionInfo.startStr);
-                    $('#outDate').val(selectionInfo.endStr);
-
-                    let start = new Date(selectionInfo.startStr);
-                    let end = new Date(selectionInfo.endStr);
-
-                    let difference = start.getTime() - end.getTime();
-                    // console.log(difference);
-
-                    let TotalNights = Math.abs(Math.ceil(difference / (1000 * 3600 * 24)));
-                    // console.log(TotalNights + ' night');
-                    $('#nights').text(TotalNights);
-
-                    updateTotal();
-
-                    console.log('Start Date: ', selectionInfo.startStr);
-                    console.log('End Date: ', selectionInfo.endStr);
-
-                    // DATE EVENT
-                    calendar.addEvent({
-                        id: 'TEMPORARY',
-                        groupId: 'TEMPORARY',
-                        start: selectionInfo.startStr,
-                        end: selectionInfo.endStr,
-                        backgroundColor: 'blue',
-                    });
-                }
-
-                function formatDate(date) {
-                    return [
-                        date.getFullYear(),
-                        padTo2Digits(date.getMonth() + 1),
-                        padTo2Digits(date.getDate()),
-                    ].join('-');
-                }
-
-                function padTo2Digits(num) {
-                    return num.toString().padStart(2, '0');
-                }
-
-                // TODO
-                // Fetch all reservation then insert to calendar as events
-                function getAllEvents() {
-                    $.get("/api/getAllReservations.php")
-                    .done(function(data, status) {
-                        console.log('Retrieval Success')
-                        console.log('Status', status)
-                        console.log('ALL RESERVATIONS', data)
-                    }).fail(function() {
-                        alert( "Retrieval Error" );
-                        console.log('Retrieval Error')
-                    })
-                }
-
-                getAllEvents()
-            });
-        </script>
     </head>
     <body>
         <!-- TITLE BAR -->
@@ -185,7 +56,7 @@
                             <div class="flex flex-col w-full md:w-[25%] gap-4 p-3">
                                 <div class="flex flex-col gap-2">
                                     <div class="font-medium text-base lg:text-lg">Please select a room:</div>
-                                    <select name="room" id="room" onchange="showRoomDetails()" class="inline w-full px-2 border-[1px] focus:border-blue-800 rounded border-black text-sm lg:text-base ">
+                                    <select name="room" id="room" class="inline w-full px-2 border-[1px] focus:border-blue-800 rounded border-black text-sm lg:text-base ">
                                         <option value="ES_Pahiyas">Pahiyas - Executive Suite</option>
                                         <option value="JS_Harana">Harana  - Junior Suite</option>
                                         <option value="JS_Imbayah">Imbayah  - Junior Suite</option>
@@ -632,331 +503,481 @@
         </section>
         <script src="https://unpkg.com/materialize-stepper@3.1.0/dist/js/mstepper.min.js"></script>
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('DATE TODAY: ', formatDate(new Date()));
 
-            // DATA
-            var formData = {
-                roomDetail: {
-                    id: 0,
-                    name: 'Pahiyas',
-                    type: 'Executive Suite',
-                    capacity: 2,
-                    bed: '(1) Double Bed',
-                    cost: 2500,
-                    img: 'gallery/pahiyas4.jpg',
-                    adults: 2,
-                    children: 1,
-                    perPerson: 1000
-                },
-            };
+                // STATES
+                var allReservations;
+                var formData = {
+                    roomDetail: {
+                        id: 0,
+                        name: 'Pahiyas',
+                        type: 'Executive Suite',
+                        capacity: 2,
+                        bed: '(1) Double Bed',
+                        cost: 2500,
+                        img: 'gallery/pahiyas4.jpg',
+                        adults: 2,
+                        children: 1,
+                        perPerson: 1000
+                    },
+                };
 
-            const roomDetails = [
-                {
-                    id: 0,
-                    name: 'Pahiyas',
-                    type: 'Executive Suite',
-                    capacity: 2,
-                    bed: '(1) Double Bed',
-                    cost: 2500,
-                    img: 'gallery/pahiyas4.jpg',
-                    adults: 2,
-                    children: 1,
-                    perPerson: 1000
-                },
-                {
-                    id: 1,
-                    name: 'Harana',
-                    type: 'Junior  Suite',
-                    capacity: 2,
-                    bed: '(2) Single Beds',
-                    cost: 1800,
-                    img: 'gallery/harana3.jpg',
-                    adults: 2,
-                    children: 1,
-                    perPerson: 600
-                },
-                {
-                    id: 2,
-                    name: 'Imbayah',
-                    type: 'Junior  Suite',
-                    capacity: 2,
-                    bed: '(2) Single Beds',
-                    cost: 1800,
-                    img: 'gallery/imbayah2.jpg',
-                    adults: 2,
-                    children: 1,
-                    perPerson: 600
-                },
-                {
-                    id: 3,
-                    name: 'Pagdayao ',
-                    type: 'Dormitory',
-                    capacity: 5,
-                    bed: '(4) Single Beds',
-                    cost: 2800,
-                    img: 'gallery/pagdayao2.jpg',
-                    adults: 5,
-                    children: 4,
-                    perPerson: 500
-                },
-                {
-                    id: 4,
-                    name: 'Moriones ',
-                    type: 'Dormitory',
-                    capacity: 5,
-                    bed: '(4) Single Beds',
-                    cost: 2800,
-                    img: 'gallery/moriones2.jpg',
-                    adults: 5,
-                    children: 4,
-                    perPerson: 500
-                },
-            ]
+                // CONSTANTS
+                const roomDetails = [
+                    {
+                        id: 0,
+                        name: 'Pahiyas',
+                        type: 'Executive Suite',
+                        capacity: 2,
+                        bed: '(1) Double Bed',
+                        cost: 2500,
+                        img: 'gallery/pahiyas4.jpg',
+                        adults: 2,
+                        children: 1,
+                        perPerson: 1000
+                    },
+                    {
+                        id: 1,
+                        name: 'Harana',
+                        type: 'Junior  Suite',
+                        capacity: 2,
+                        bed: '(2) Single Beds',
+                        cost: 1800,
+                        img: 'gallery/harana3.jpg',
+                        adults: 2,
+                        children: 1,
+                        perPerson: 600
+                    },
+                    {
+                        id: 2,
+                        name: 'Imbayah',
+                        type: 'Junior  Suite',
+                        capacity: 2,
+                        bed: '(2) Single Beds',
+                        cost: 1800,
+                        img: 'gallery/imbayah2.jpg',
+                        adults: 2,
+                        children: 1,
+                        perPerson: 600
+                    },
+                    {
+                        id: 3,
+                        name: 'Pagdayao ',
+                        type: 'Dormitory',
+                        capacity: 5,
+                        bed: '(4) Single Beds',
+                        cost: 2800,
+                        img: 'gallery/pagdayao2.jpg',
+                        adults: 5,
+                        children: 4,
+                        perPerson: 500
+                    },
+                    {
+                        id: 4,
+                        name: 'Moriones ',
+                        type: 'Dormitory',
+                        capacity: 5,
+                        bed: '(4) Single Beds',
+                        cost: 2800,
+                        img: 'gallery/moriones2.jpg',
+                        adults: 5,
+                        children: 4,
+                        perPerson: 500
+                    },
+                ]
 
-            // STEPPER
-            var stepper = document.querySelector('.stepper');
-            var stepperInstance = new MStepper(stepper, {
-                firstActive: 0,
-                validationFunction: validationFunction,
-                stepTitleNavigation: false,
-            })
+                // CALENDAR
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    selectable: true,
+                    unselectAuto: false,
+                    selectOverlap: false,
+                    eventDisplay: 'background',
+                    events: [
+                        {
+                            id: '0',
+                            groupId: 'Invalid',
+                            start: '2020-10-08',
+                            end: formatDate(new Date()),
+                            backgroundColor: '#241d1c', //black
+                        },
+                    ],
+                    selectOverlap: function(event) {
+                        // Utilize these by preventing the user to select invalid and unavailable dates presented as events.
+                        // Allow temporary made events to be selected or #Remove temporary event before selecting new
 
-            function validationFunction(stepperForm, activeStepContent) {
-                const StepID = activeStepContent.querySelector('.id').value;
-                // console.log('Active Step ID: ', StepID)
-                // console.log('Active Step Content', activeStepContent)
+                        // console.log('OVERLAP Event ', event)
+                        // console.log('OVERLAP Date ', event.start)
+                        // console.log('OVERLAP Event ID ', event.id)
+                        // console.log('OVERLAP Event Group ID ', event.groupId)
 
-                if(StepID == 1){
-                    console.log('Validate 1');
-                    const strD = $('#inDate').val();
-                    const endD = $('#outDate').val();
+                        if (event.groupId === 'Invalid' || event.groupId === 'Unavailable'){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    },
+                    selectAllow: function (selectInfo) {
+                        // Delete previously selected dates made as temporary events
 
-                    if( !strD || !endD ){
-                        alert('Please select a date.')
-                        return false;
-                    }
+                        // console.log('SelectAllow ', selectInfo)
+                        console.log('ALL Events ', calendar.getEvents())
+                        // console.log('ALL Events Sources', calendar.getEventSources())
+                        const tempEvent = calendar.getEventById('TEMPORARY');
+                        console.log('Event TEMPORARY : ', tempEvent)
+                        if(tempEvent){
+                            tempEvent.remove();
+                        }
+                        return true;
+                    },
+                    select: handleSelectDate,
+                });
 
-                    if( ($('#guests').text()) > formData.roomDetail.capacity ){
-                        alert('The max allowed capacity is only ' + formData.roomDetail.capacity + ' !')
-                        return false;
-                    }
+                calendar.render();
 
-                    $('.active').removeClass('wrong');
+                // STEPPER
+                var stepper = document.querySelector('.stepper');
+                var stepperInstance = new MStepper(stepper, {
+                    firstActive: 0,
+                    validationFunction: validationFunction,
+                    stepTitleNavigation: false,
+                })
 
-                    formData.inDate = $('#inDate').val();
-                    formData.outDate = $('#outDate').val();
-                    formData.guests = {
-                        adults: $('#noAdults').val(),
-                        children: $('#noChildren').val(),
-                        total: $('#guests').text(),
-                    }
-                    formData.nights = $('#nights').text();
-                    formData.costs = {
-                        firstNight: $('#tb_roomCost').text(),
-                        otherNights: $('#tb_roomOtherCosts').text(),
-                        total: $('#tb_total').text(),
-                    }
+                // FUNCTIONS
+                function handleSelectDate (selectionInfo ) {
+                    // WILL NOT PROCEED WHEN SELECT ALLOW IS FALSE
 
-                    console.table('FormData |', formData)
+                    // WILL NOT PROCEED WHEN AN OVERLAPPING EVENT IS HIT AND FALSE
 
-                    return true;
+                    // console.log('Selected Date');
+                    // console.log(selectionInfo);
+                    $('#inDate').val(selectionInfo.startStr);
+                    $('#outDate').val(selectionInfo.endStr);
 
-                } else if(StepID == 2){
-                    console.log('Validate 2');
-                    if( !(activeStepContent.querySelector('#fname').checkValidity()) || !(activeStepContent.querySelector('#lname').checkValidity()) ){
-                        alert('Enter your name')
-                        return false;
-                    }
+                    let start = new Date(selectionInfo.startStr);
+                    let end = new Date(selectionInfo.endStr);
 
-                    if( !activeStepContent.querySelector('#email').checkValidity() ){
-                        alert('Enter your valid email')
-                        return false;
-                    }
+                    let difference = start.getTime() - end.getTime();
+                    // console.log(difference);
 
-                    if( !activeStepContent.querySelector('#mobileNo').checkValidity() ){
-                        alert('Enter your valid mobile number')
-                        return false;
-                    }else if(!(activeStepContent.querySelector('#mobileNo').value.length === 11)){
-                        alert('The mobile number should be 11 characters long')
-                        return false;
-                    }
+                    let TotalNights = Math.abs(Math.ceil(difference / (1000 * 3600 * 24)));
+                    // console.log(TotalNights + ' night');
+                    $('#nights').text(TotalNights);
 
-                    if( !activeStepContent.querySelector('#birthDate').checkValidity() ){
-                        alert('Enter your birth date')
-                        return false;
-                    }
+                    updateTotal();
 
-                    if( !$('input[name="fromTua"]:checked').val() ){
-                        alert('Please state if your from TUA or not')
-                        return false;
-                    }
+                    console.log('Start Date: ', selectionInfo.startStr);
+                    console.log('End Date: ', selectionInfo.endStr);
 
-                    formData.guestInfo = {
-                        firstName: $('#fname').val(),
-                        lastName: $('#lname').val(),
-                        email: $('#email').val(),
-                        mobileNo: $('#mobileNo').val(),
-                        birthDate: $('#birthDate').val(),
-                        fromTua: $('input[name="fromTua"]:checked').val(),
-                        specialRequests: $('#specialRequest').val(),
-                    }
-
-                    console.table('FormData |', formData)
-
-                    updateStep3()
-
-                    return true;
-                } else if(StepID == 3){
-                    console.log('Validate 3');
-                    return true;
-                } else if(StepID == 4){
-                    console.log('Validate 4');
-                    return true;
-                }
-            }
-
-            const showRoomDetails = () => {
-                const val = $('#room').val();
-                console.log(val);
-                var roomDetail;
-                switch(val){
-                    case 'ES_Pahiyas':
-                        roomDetail = roomDetails[0]
-                        break;
-                    case 'JS_Harana':
-                        roomDetail = roomDetails[1]
-                        break;
-                    case 'JS_Imbayah':
-                        roomDetail = roomDetails[2]
-                        break;
-                    case 'DM_Pagdayao':
-                        roomDetail = roomDetails[3]
-                        break;
-                    case 'DM_Moriones':
-                        roomDetail = roomDetails[4]
-                        break;
-                }
-                console.table(roomDetail);
-                formData.roomDetail = roomDetail;
-
-                $('#roomName').text(roomDetail.name)
-                $('#roomType').text(roomDetail.type)
-                $('#roomCapacity').text(roomDetail.capacity)
-                $('#roomBed').text(roomDetail.bed)
-                $('#roomCost').text(new Intl.NumberFormat().format(roomDetail.cost) + '.00')
-                $("#roomImg").attr("src",roomDetail.img);
-                $("#noAdults").attr("max",roomDetail.adults);
-                $("#noChildren").attr("max",roomDetail.children);
-
-                updateTotal();
-            }
-
-            const updateNoGuests = () => {
-                var adults = $("#noAdults").val();
-                var children = $("#noChildren").val();
-                var sum = parseInt(adults) + parseInt(children);
-                $("#guests").text(sum);
-
-                updateTotal();
-            }
-
-            const updateTotal = () => {
-                console.log('Updating Total Breakdown', formData);
-                var guests = $("#guests").text();
-                var nights = $("#nights").text();
-                // console.log(guests, nights)
-
-                $("#tb_roomName").text(formData.roomDetail.name)
-                $("#tb_roomType").text(formData.roomDetail.type)
-
-                var cost = nights > 0 ? formData.roomDetail.cost : 0;
-                var AddCost = nights > 0 ? (formData.roomDetail.perPerson * guests) * (nights -1) : 0;
-                // console.log('Cost ', cost);
-                // console.log('AddCost ', AddCost);
-                var totalCost = cost + AddCost;
-                if(nights > 0){
-                    $("#tb_roomCost").text(new Intl.NumberFormat().format(cost) + '.00')
-                    $("#tb_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
-                    $("#tb_roomOtherCosts").text(new Intl.NumberFormat().format(AddCost) + '.00')
-                    $("#tb_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + guests + ' guest(s) x '+ (nights - 1) + ' night(s)');
-                }else{
-                    $("#tb_roomCost").text('0.00')
-                    $("#tb_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
-                    $("#tb_roomOtherCosts").text('0.00');
-                    $("#tb_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + guests + ' guest(s) x 0 night(s)');
-                }
-                $("#tb_total").text(new Intl.NumberFormat().format(totalCost) + '.00')
-            }
-
-            const updateStep3 = () => {
-                $("#bi_roomName").text(formData.roomDetail.name + ' - ' + formData.roomDetail.type);
-                $("#bi_guests").text(formData.guests.total);
-                $("#bi_inDate").text(formData.inDate);
-                $("#bi_outDate").text(formData.outDate);
-                $("#gi_fname").text(formData.guestInfo.firstName);
-                $("#gi_lname").text(formData.guestInfo.lastName);
-                $("#gi_email").text(formData.guestInfo.email);
-                $("#gi_mobileNo").text(formData.guestInfo.mobileNo);
-                $("#gi_specialRequests").text(formData.guestInfo.specialRequests);
-                $("#gi_birthDate").text(formData.guestInfo.birthDate);
-                $("#gi_fromTua").text(formData.guestInfo.fromTua);
-
-                $("#ta_roomName").text(formData.roomDetail.name);
-                $("#ta_roomType").text(formData.roomDetail.type);
-                $("#ta_roomCost").text(formData.costs.firstNight);
-                $("#ta_roomOtherCosts").text(formData.costs.otherNights);
-                $("#ta_total").text(formData.costs.total);
-
-                if(formData.nights > 0){
-                    $("#ta_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
-                    $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
-                }else{
-                    $("#ta_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
-                    $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x 0 night(s)');
+                    // DATE EVENT
+                    calendar.addEvent({
+                        id: 'TEMPORARY',
+                        groupId: 'TEMPORARY',
+                        start: selectionInfo.startStr,
+                        end: selectionInfo.endStr,
+                        backgroundColor: 'blue',
+                    });
                 }
 
-                $("#tc_roomName").text(formData.roomDetail.name);
-                $("#tc_roomType").text(formData.roomDetail.type);
-                $("#tc_roomCost").text(formData.costs.firstNight);
-                $("#tc_roomOtherCosts").text(formData.costs.otherNights);
-                $("#tc_total").text(formData.costs.total);
-
-                if(formData.nights > 0){
-                    $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
-                    $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
-                }else{
-                    $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
-                    $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x 0 night(s)');
+                function formatDate(date) {
+                    return [
+                        date.getFullYear(),
+                        padTo2Digits(date.getMonth() + 1),
+                        padTo2Digits(date.getDate()),
+                    ].join('-');
                 }
-                const down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
-                $("#tc_downpayment").text(new Intl.NumberFormat().format(down) + '.00');
-            }
 
-            $( "#submitBtn" ).click(function(e) {
-                e.preventDefault();
+                function padTo2Digits(num) {
+                    return num.toString().padStart(2, '0');
+                }
 
-                let text = "Are you sure you want to submit this reservation?";
+                function validationFunction(stepperForm, activeStepContent) {
+                    const StepID = activeStepContent.querySelector('.id').value;
+                    // console.log('Active Step ID: ', StepID)
+                    // console.log('Active Step Content', activeStepContent)
 
-                if (confirm(text) == true) {
-                    $.post("/api/newBooking.php",{
-                        formData: formData
+                    if(StepID == 1){
+                        console.log('Validate 1');
+                        const strD = $('#inDate').val();
+                        const endD = $('#outDate').val();
+
+                        if( !strD || !endD ){
+                            alert('Please select a date.')
+                            return false;
+                        }
+
+                        if( ($('#guests').text()) > formData.roomDetail.capacity ){
+                            alert('The max allowed capacity is only ' + formData.roomDetail.capacity + ' !')
+                            return false;
+                        }
+
+                        $('.active').removeClass('wrong');
+
+                        formData.inDate = $('#inDate').val();
+                        formData.outDate = $('#outDate').val();
+                        formData.guests = {
+                            adults: $('#noAdults').val(),
+                            children: $('#noChildren').val(),
+                            total: $('#guests').text(),
+                        }
+                        formData.nights = $('#nights').text();
+                        formData.costs = {
+                            firstNight: $('#tb_roomCost').text(),
+                            otherNights: $('#tb_roomOtherCosts').text(),
+                            total: $('#tb_total').text(),
+                        }
+
+                        console.table('FormData |', formData)
+
+                        return true;
+
+                    } else if(StepID == 2){
+                        console.log('Validate 2');
+                        if( !(activeStepContent.querySelector('#fname').checkValidity()) || !(activeStepContent.querySelector('#lname').checkValidity()) ){
+                            alert('Enter your name')
+                            return false;
+                        }
+
+                        if( !activeStepContent.querySelector('#email').checkValidity() ){
+                            alert('Enter your valid email')
+                            return false;
+                        }
+
+                        if( !activeStepContent.querySelector('#mobileNo').checkValidity() ){
+                            alert('Enter your valid mobile number')
+                            return false;
+                        }else if(!(activeStepContent.querySelector('#mobileNo').value.length === 11)){
+                            alert('The mobile number should be 11 characters long')
+                            return false;
+                        }
+
+                        if( !activeStepContent.querySelector('#birthDate').checkValidity() ){
+                            alert('Enter your birth date')
+                            return false;
+                        }
+
+                        if( !$('input[name="fromTua"]:checked').val() ){
+                            alert('Please state if your from TUA or not')
+                            return false;
+                        }
+
+                        formData.guestInfo = {
+                            firstName: $('#fname').val(),
+                            lastName: $('#lname').val(),
+                            email: $('#email').val(),
+                            mobileNo: $('#mobileNo').val(),
+                            birthDate: $('#birthDate').val(),
+                            fromTua: $('input[name="fromTua"]:checked').val(),
+                            specialRequests: $('#specialRequest').val(),
+                        }
+
+                        console.table('FormData |', formData)
+
+                        updateStep3()
+
+                        return true;
+                    } else if(StepID == 3){
+                        console.log('Validate 3');
+                        return true;
+                    } else if(StepID == 4){
+                        console.log('Validate 4');
+                        return true;
+                    }
+                }
+
+                const updateNoGuests = () => {
+                    var adults = $("#noAdults").val();
+                    var children = $("#noChildren").val();
+                    var sum = parseInt(adults) + parseInt(children);
+                    $("#guests").text(sum);
+
+                    updateTotal();
+                }
+
+                const updateTotal = () => {
+                    console.log('Updating Total Breakdown', formData);
+                    var guests = $("#guests").text();
+                    var nights = $("#nights").text();
+                    // console.log(guests, nights)
+
+                    $("#tb_roomName").text(formData.roomDetail.name)
+                    $("#tb_roomType").text(formData.roomDetail.type)
+
+                    var cost = nights > 0 ? formData.roomDetail.cost : 0;
+                    var AddCost = nights > 0 ? (formData.roomDetail.perPerson * guests) * (nights -1) : 0;
+                    // console.log('Cost ', cost);
+                    // console.log('AddCost ', AddCost);
+                    var totalCost = cost + AddCost;
+                    if(nights > 0){
+                        $("#tb_roomCost").text(new Intl.NumberFormat().format(cost) + '.00')
+                        $("#tb_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
+                        $("#tb_roomOtherCosts").text(new Intl.NumberFormat().format(AddCost) + '.00')
+                        $("#tb_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + guests + ' guest(s) x '+ (nights - 1) + ' night(s)');
+                    }else{
+                        $("#tb_roomCost").text('0.00')
+                        $("#tb_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
+                        $("#tb_roomOtherCosts").text('0.00');
+                        $("#tb_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + guests + ' guest(s) x 0 night(s)');
+                    }
+                    $("#tb_total").text(new Intl.NumberFormat().format(totalCost) + '.00')
+                }
+
+                const updateStep3 = () => {
+                    $("#bi_roomName").text(formData.roomDetail.name + ' - ' + formData.roomDetail.type);
+                    $("#bi_guests").text(formData.guests.total);
+                    $("#bi_inDate").text(formData.inDate);
+                    $("#bi_outDate").text(formData.outDate);
+                    $("#gi_fname").text(formData.guestInfo.firstName);
+                    $("#gi_lname").text(formData.guestInfo.lastName);
+                    $("#gi_email").text(formData.guestInfo.email);
+                    $("#gi_mobileNo").text(formData.guestInfo.mobileNo);
+                    $("#gi_specialRequests").text(formData.guestInfo.specialRequests);
+                    $("#gi_birthDate").text(formData.guestInfo.birthDate);
+                    $("#gi_fromTua").text(formData.guestInfo.fromTua);
+
+                    $("#ta_roomName").text(formData.roomDetail.name);
+                    $("#ta_roomType").text(formData.roomDetail.type);
+                    $("#ta_roomCost").text(formData.costs.firstNight);
+                    $("#ta_roomOtherCosts").text(formData.costs.otherNights);
+                    $("#ta_total").text(formData.costs.total);
+
+                    if(formData.nights > 0){
+                        $("#ta_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
+                        $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
+                    }else{
+                        $("#ta_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
+                        $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x 0 night(s)');
+                    }
+
+                    $("#tc_roomName").text(formData.roomDetail.name);
+                    $("#tc_roomType").text(formData.roomDetail.type);
+                    $("#tc_roomCost").text(formData.costs.firstNight);
+                    $("#tc_roomOtherCosts").text(formData.costs.otherNights);
+                    $("#tc_total").text(formData.costs.total);
+
+                    if(formData.nights > 0){
+                        $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
+                        $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
+                    }else{
+                        $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
+                        $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x 0 night(s)');
+                    }
+                    const down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
+                    $("#tc_downpayment").text(new Intl.NumberFormat().format(down) + '.00');
+                }
+
+                const resetEvents = () => {
+                    const allEvents = calendar.getEvents()
+                    // console.log('All Events: ', allEvents);
+                    allEvents.forEach((event, i) => {
+                        // console.log('Event ' + i + ': ', event.groupId)
+                        if(event.groupId === 'Unavailable'){
+                            event.remove();
+                        }
+                    });
+                }
+
+                // EVENT HANDLERS
+                $( "#submitBtn" ).click(function(e) {
+                    e.preventDefault();
+
+                    let text = "Are you sure you want to submit this reservation?";
+
+                    if (confirm(text) == true) {
+                        $.post("/api/newBooking.php",{
+                            formData: formData
+                        }).done(function(data, status) {
+                            console.log('Status', status)
+                            console.log('Data', data)
+                            console.log('Submission Success')
+                            stepperInstance.nextStep();
+                            $("#transCode").text(data.transactionCode)
+                        }).fail(function() {
+                            alert( "Submission Error" );
+                            console.log('Submission Error')
+                        })
+                    }
+                });
+
+                $( "#finishBtn" ).click(function(e) {
+                    e.preventDefault();
+                    window.location.replace("/");
+                });
+
+                $('#room').on('change', function() {
+                    // alert( this.value );
+                    const val = this.value;
+                    var roomDetail;
+                    switch(val){
+                        case 'ES_Pahiyas':
+                            roomDetail = roomDetails[0]
+                            break;
+                        case 'JS_Harana':
+                            roomDetail = roomDetails[1]
+                            break;
+                        case 'JS_Imbayah':
+                            roomDetail = roomDetails[2]
+                            break;
+                        case 'DM_Pagdayao':
+                            roomDetail = roomDetails[3]
+                            break;
+                        case 'DM_Moriones':
+                            roomDetail = roomDetails[4]
+                            break;
+                    }
+                    // console.table(roomDetail);
+                    formData.roomDetail = roomDetail;
+                    updateAllReservations(roomDetail.id)
+
+                    $('#roomName').text(roomDetail.name)
+                    $('#roomType').text(roomDetail.type)
+                    $('#roomCapacity').text(roomDetail.capacity)
+                    $('#roomBed').text(roomDetail.bed)
+                    $('#roomCost').text(new Intl.NumberFormat().format(roomDetail.cost) + '.00')
+                    $("#roomImg").attr("src",roomDetail.img);
+                    $("#noAdults").attr("max",roomDetail.adults);
+                    $("#noChildren").attr("max",roomDetail.children);
+
+                    updateTotal();
+                });
+
+                // DATA FETCH
+                function updateAllReservations(num) {
+                    console.log('Room Code', formData.roomDetail.id);
+                    $.post("/api/getAllReservations.php", {
+                        roomCode: num
                     }).done(function(data, status) {
-                        console.log('Status', status)
-                        console.log('Data', data)
-                        console.log('Submission Success')
-                        stepperInstance.nextStep();
-                        $("#transCode").text(data.transactionCode)
+                        console.log('Retrieval Success')
+                        // console.log('Status', status)
+                        console.log('ALL RESERVATIONS', data)
+                        var reservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
+                        console.log('MERGED RESERVATIONS', reservations);
+                        allReservations = reservations
+
+                        resetEvents();
+
+                        allReservations.forEach( (reservation, i) =>{
+                            // console.log('Reservation ' + i + ': ', reservation);
+                            calendar.addEvent({
+                                id: reservation.booking.id,
+                                groupId: 'Unavailable',
+                                start: reservation.booking.inDate,
+                                end: reservation.booking.outDate,
+                                backgroundColor: 'red',
+                            });
+                        });
+
                     }).fail(function() {
-                        alert( "Submission Error" );
-                        console.log('Submission Error')
+                        alert( "Retrieval Error" );
+                        console.log('Retrieval Error')
                     })
                 }
-            });
 
-            $( "#finishBtn" ).click(function(e) {
-                e.preventDefault();
-                window.location.replace("/");
+                // CALL IT FIRST TIME
+                updateAllReservations(0)
             });
-
         </script>
     </body>
 </html>
