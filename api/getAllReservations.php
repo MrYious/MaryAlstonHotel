@@ -18,7 +18,7 @@
     }
 
     // ALL PENDING, CONFIRMED, RESCHEDULED
-    $sql = "SELECT * FROM booking_tbl WHERE bookingStatus='Confirmed'";
+    $sql = "SELECT * FROM booking_tbl WHERE bookingStatus='Confirmed' || bookingStatus='Pending' ";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
