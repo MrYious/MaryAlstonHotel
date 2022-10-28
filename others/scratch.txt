@@ -1,3 +1,14 @@
+Status
+    Pending
+    Confirmed
+    Rescheduled
+
+    Completed
+    Expired
+    Removed
+
+
+
 $(document).ready(function(){
     
 });

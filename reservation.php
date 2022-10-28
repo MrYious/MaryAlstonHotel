@@ -1,9 +1,3 @@
-<?php
-	// session_start();
-	// if(!isset($_SESSION['username']) && !isset($_SESSION['password'])){
-	// 	header('location:alston_main.html');
-	// }
-?>
 <html>
     <head>
         <title> Mary Alston Hotel </title>
@@ -38,6 +32,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3/main.min.css,npm/fullcalendar@5.11.3/main.min.css">
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+
+                // STATES
+                var allReservations;
+
 
                 console.log('DATE TODAY: ', formatDate(new Date()));
 
@@ -94,6 +92,7 @@
                     },
                     select: handleSelectDate,
                 });
+
                 calendar.render();
 
                 function handleSelectDate (selectionInfo ) {
@@ -146,8 +145,18 @@
                 // TODO
                 // Fetch all reservation then insert to calendar as events
                 function getAllEvents() {
-                    
+                    $.get("/api/getAllReservations.php")
+                    .done(function(data, status) {
+                        console.log('Retrieval Success')
+                        console.log('Status', status)
+                        console.log('ALL RESERVATIONS', data)
+                    }).fail(function() {
+                        alert( "Retrieval Error" );
+                        console.log('Retrieval Error')
+                    })
                 }
+
+                getAllEvents()
             });
         </script>
     </head>
