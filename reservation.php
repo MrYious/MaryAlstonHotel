@@ -788,7 +788,7 @@
                 }
 
                 const updateTotal = () => {
-                    console.log('Updating Total Breakdown', formData);
+                    // console.log('Updating Total Breakdown', formData);
                     var guests = $("#guests").text();
                     var nights = $("#nights").text();
                     // console.log(guests, nights)
@@ -963,7 +963,7 @@
                     $.post("/api/getAllReservations.php", {
                         roomCode: num
                     }).done(function(data, status) {
-                        console.log('Retrieval Success')
+                        // console.log('Retrieval Success')
                         // console.log('Status', status)
                         console.log('ALL RESERVATIONS', data)
                         var reservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
