@@ -58,7 +58,7 @@
                         <i class="bi bi-calendar-week"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Official Calendar</span>
                     </a>
-                    <a href="/admin/dashboard.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    <a href="/admin/today.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-hourglass"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Today</span>
                     </a>
@@ -131,11 +131,16 @@
 
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script type="text/javascript">
-            function dropdown() {
-                document.querySelector("#submenu").classList.toggle("hidden");
-                document.querySelector("#arrow").classList.toggle("rotate-0");
+            function dropdown1() {
+                document.querySelector("#submenu1").classList.toggle("hidden");
+                document.querySelector("#arrow1").classList.toggle("rotate-0");
             }
-            dropdown();
+            function dropdown2() {
+                document.querySelector("#submenu2").classList.toggle("hidden");
+                document.querySelector("#arrow2").classList.toggle("rotate-0");
+            }
+            dropdown1();
+            dropdown2();
 
             function openSidebar() {
                 document.querySelector(".sidebar").classList.toggle("hidden");
