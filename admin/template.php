@@ -42,7 +42,7 @@
         <div class="flex">
             <!-- NAV -->
             <div class="bg-gray-200 lg:w-[300px] shrink-0">
-                <div class="sidebar fixed top-0 bottom-0 left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-800">
+                <div class="sidebar fixed top-0 bottom-0 left-0 p-2 w-[300px] z-[2] overflow-y-auto text-center bg-gray-800">
                     <div class="text-gray-100 text-xl">
                         <div class="p-2.5 mt-1 flex justify-between items-center">
                             <h1 class="font-bold text-gray-200 text-[20px] ml-3">MARY ALSTON HOTEL</h1>
@@ -148,6 +148,9 @@
             function openSidebar() {
                 document.querySelector(".sidebar").classList.toggle("hidden");
             }
+        </script>
+        <script>
+
         </script>
     </body>
 </html>
