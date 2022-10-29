@@ -1,11 +1,10 @@
 <?php
 	session_start();
-    $dir = dirname(__DIR__);
-	include trim($dir,'\admin').'/api/authSession.php';
+	include dirname(__DIR__).'/api/authSession.php';
 ?>
 <html>
     <head>
-        <title> Monthly Reports </title>
+        <title> History | Declined </title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.tailwindcss.com"></script>

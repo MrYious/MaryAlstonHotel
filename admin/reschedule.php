@@ -58,6 +58,10 @@
                         <i class="bi bi-calendar-week"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Official Calendar</span>
                     </a>
+                    <a href="/admin/today.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                        <i class="bi bi-hourglass"></i>
+                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Today</span>
+                    </a>
                     <a href="/admin/reschedule.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-arrow-repeat"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Reschedule</span>
@@ -66,21 +70,37 @@
                         <i class="bi bi-calendar-plus"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Pending Reservations</span>
                     </a>
-                    <a href="/admin/history.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                    <div onclick="dropdown1()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-clock-history"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">History</span>
-                    </a>
-                    <div class="my-4 bg-gray-600 h-[1px]"></div>
-                    <div onclick="dropdown()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-bar-chart"></i>
                         <div class="flex justify-between w-full items-center">
-                            <span class="text-[15px] ml-4 text-gray-200 font-bold">Reports</span>
-                            <span class="text-sm rotate-180" id="arrow">
+                            <span class="text-[15px] ml-4 text-gray-200 font-bold">History</span>
+                            <span class="text-sm rotate-180" id="arrow1">
                                 <i class="bi bi-chevron-down"></i>
                             </span>
                         </div>
                     </div>
-                    <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu">
+                    <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu1">
+                        <a href="/admin/completed.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                            Completed
+                        </a>
+                        <a href="/admin/expired.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                            Expired
+                        </a>
+                        <a href="/admin/declined.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                            Declined
+                        </a>
+                    </div>
+                    <div class="my-4 bg-gray-600 h-[1px]"></div>
+                    <div onclick="dropdown2()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                        <i class="bi bi-bar-chart"></i>
+                        <div class="flex justify-between w-full items-center">
+                            <span class="text-[15px] ml-4 text-gray-200 font-bold">Reports</span>
+                            <span class="text-sm rotate-180" id="arrow2">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu2">
                         <a href="/admin/reports/monthly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
                             Monthly
                         </a>
@@ -111,11 +131,16 @@
 
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script type="text/javascript">
-            function dropdown() {
-                document.querySelector("#submenu").classList.toggle("hidden");
-                document.querySelector("#arrow").classList.toggle("rotate-0");
+            function dropdown1() {
+                document.querySelector("#submenu1").classList.toggle("hidden");
+                document.querySelector("#arrow1").classList.toggle("rotate-0");
             }
-            dropdown();
+            function dropdown2() {
+                document.querySelector("#submenu2").classList.toggle("hidden");
+                document.querySelector("#arrow2").classList.toggle("rotate-0");
+            }
+            dropdown1();
+            dropdown2();
 
             function openSidebar() {
                 document.querySelector(".sidebar").classList.toggle("hidden");
