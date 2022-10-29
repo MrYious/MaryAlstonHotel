@@ -3,12 +3,58 @@ Status
     Confirmed
     Rescheduled
 
-    Completed
-    Expired
-    Removed
 
+    Completed   - Fully Paid & Present  = Goes to HistoryTab
+    Expired     - Half Paid & Absent    = Goes to HistoryTab
+    Declined     - No payment After 2 days =
+    Refunded    -
 
-1: Check Reservation Information (All: Confirmed, Pending, Rescheduled)
-    Only present to Future
-    View booking and guest information
+(OFFICIAL CALENDAR)
+(HISTORY)
+1: Check Reservation Information
+    Current Ones: (Confirmed, Pending, Rescheduled)
+        Only present to Future
+        View booking and guest information
+    Past Ones: (Completed, Expired, Declined)
+(PENDING RESERVATION)
 2: Accept Pending Reservations
+    View Pending Reservations per Room
+    Add Payment
+    Confirm Reservation
+(RESCHEDULE)
+3: Reschedule Pending and Rescheduled Reservations (Calendar)
+4: 
+(REPORTS)
+5: Generate History Reports (Sales Report)
+
+====================================================================
+====================================================================
+
+USER view calendar with PENDING, CONFIRMED, RESCHEDULED
+USER places a Reservation on available date
+    Status: NULL => PENDING
+    Then USER pays and emails the receipt
+
+(MANAGE: Accept / Decline reservations)
+ADMIN views pending reservation             (Table, All Room)
+    if user pays
+        ADMIN clicks confirm payment, enter amount and submit
+    if user pays but not enough
+        ADMIN clicks decline and submit (return the money)
+    Status: PENDING => CONFIRMED
+    Status: PENDING => DECLINED
+
+(MANAGE: Today's reservations)
+ADMIN views confirmed reservations for today (Table, All Room)
+    if user checks in
+        ADMIN CLICKS check in
+    if user checks out
+        ADMIN CLICKS check out
+    if user pays
+        ADMIN CLICKS add payment
+    if paid and out,
+        ADMIN CLICKS completed
+
+(VIEW: Past's reservations)
+ADMIN views past reservations  (Table, All Room, Per type)
+    select [Completed, Expired, ]
