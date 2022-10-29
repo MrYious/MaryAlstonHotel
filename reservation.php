@@ -323,7 +323,7 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-col lg:flex-row gap-4">
-                                    <div class="flex flex-col gap-2 w-full lg:1/2 ">
+                                    <div class="flex flex-col gap-2 w-full lg:w-1/2 ">
                                         <div class="font-medium text-base lg:text-lg">Special Request</div>
                                         <div id="gi_specialRequests" class="text-sm lg:text-base  py-2 w-full font-bold ">
                                             None
