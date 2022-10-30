@@ -8,7 +8,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="js/jquery-3.6.1.min.js"></script>
+        <script src="../js/jquery-3.6.1.min.js"></script>
         <link rel="icon" href="/images/favicon.png" type = "image/png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
@@ -28,10 +28,14 @@
                 }
             }
         </script>
+
+        <!-- FULL CALENDAR -->
+        <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3,npm/fullcalendar@5.11.3/locales-all.min.js,npm/fullcalendar@5.11.3/locales-all.min.js,npm/fullcalendar@5.11.3/main.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3/main.min.css,npm/fullcalendar@5.11.3/main.min.css">
     </head>
     <body>
         <!-- Mobile Nav Button -->
-        <span class="fixed text-white text-4xl top-5 left-4 cursor-pointer" onclick="openSidebar()" >
+        <span class="fixed text-white text-4xl top-5 left-4 cursor-pointer z-[2]" onclick="openSidebar()" >
             <div class="p-1 bg-gray-900 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
@@ -42,7 +46,7 @@
         <div class="flex">
             <!-- NAV -->
             <div class="bg-gray-200 lg:w-[300px] shrink-0">
-                <div class="sidebar fixed top-0 bottom-0 left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-800">
+                <div class="sidebar fixed top-0 bottom-0 left-0 p-2 w-[300px] z-[2] overflow-y-auto text-center bg-gray-800">
                     <div class="text-gray-100 text-xl">
                         <div class="p-2.5 mt-1 flex justify-between items-center">
                             <h1 class="font-bold text-gray-200 text-[20px] ml-3">MARY ALSTON HOTEL</h1>
@@ -120,11 +124,223 @@
             </div>
             <!-- CONTENT -->
             <div class="w-full">
-                <section id="" class="flex justify-center items-center min-h-screen bg-gray-200">
-                    Section 1
+                <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
+                    Admin / Official Calendar
                 </section>
-                <section id="" class="flex justify-center items-center min-h-screen bg-gray-200">
-                    Section 2
+                <section class="flex flex-col p-7 justify-center items-center  bg-gray-200">
+                    <div class=" w-full md:w-[60%]">
+                        <div id='calendar' class="select-none"></div>
+                    </div>
+                    <div class=" w-full md:w-[60%] flex flex-wrap justify-around gap-2 lg:gap-7 bg-gray-300 py-3">
+                        <div class="flex gap-2 items-center">
+                            <div class="border-[1px] border-orange-400 bg-orange-400 w-3 h-3 rounded-full"></div>
+                            <div class="text-xs lg:text-sm">Pending </div>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <div class="border-[1px] border-green-600 bg-green-600 w-3 h-3 rounded-full"></div>
+                            <div class="text-xs lg:text-sm">Confirmed </div>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <div class="border-[1px] border-blue-500 bg-blue-500 w-3 h-3 rounded-full"></div>
+                            <div class="text-xs lg:text-sm">Rescheduled </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- TODO: ADD MORE FIELDS -->
+                <!-- DETAILS -->
+                <section class="flex flex-col p-7 bg-gray-200 gap-2">
+                    <!-- 1 -->
+                    <div class=" flex  justify-start items-center">
+                        <div class="border-2 border-black w-1/12"></div>
+                        <div class="text-lg lg:text-2xl font-semibold w-fit shrink-0 px-4">
+                            Booking Information
+                        </div>
+                        <div class="border-2 border-black w-full"></div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4 w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Check-in Date</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    09/30/2001
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Check-out Date</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    09/30/2001
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4  w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">No. of Night(s)</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    2
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Date Booked</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    09/30/2010
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4 w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">No. of Adult(s)</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    09/30/2001
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">No. of Children</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    09/30/2001
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4  w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Total no. of Guest(s)</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    2
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 2 -->
+                    <div class=" flex  justify-start items-center">
+                        <div class="border-2 border-black w-1/12"></div>
+                        <div class="text-lg lg:text-2xl font-semibold w-fit shrink-0 px-4">
+                            Room Information
+                        </div>
+                        <div class="border-2 border-black w-full"></div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4 w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Room Name</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    Pahiyas
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Room Type</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    Executive Suite
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4  w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Capacity</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    2
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Cost</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    1,800.00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 3 -->
+                    <div class=" flex  justify-start items-center">
+                        <div class="border-2 border-black w-1/12"></div>
+                        <div class="text-lg lg:text-2xl font-semibold w-fit shrink-0 px-4">
+                            Guest Information
+                        </div>
+                        <div class="border-2 border-black w-full"></div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4 w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">First Name</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">Mark Edison</div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Last Name</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">Rosario</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4  w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Email Address</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">rosariomark37@gmail.com</div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Contact Number</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">09322831860</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4 w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Birth Date</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">09/30/2001</div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">From TUA</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">Yes</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full">
+                                <div class="font-bold text-base lg:text-lg">Special Request</div>
+                                <div id="gi_specialRequests" class="text-sm lg:text-base  py-2 w-full ">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 4 -->
+                    <div class=" flex  justify-start items-center">
+                        <div class="border-2 border-black w-1/12"></div>
+                        <div class="text-lg lg:text-2xl font-semibold w-fit shrink-0 px-4">
+                            Transaction Information
+                        </div>
+                        <div class="border-2 border-black w-full"></div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4  w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Transaction Number:</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    635bf24bdd36d-41
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Status</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    Pending (To be Paid)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Required Down Payment</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    2,250.00
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Total Amount</div>
+                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                    4,500.00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
@@ -145,6 +361,119 @@
             function openSidebar() {
                 document.querySelector(".sidebar").classList.toggle("hidden");
             }
+        </script>
+        <script >
+            // CONSTANTS
+            const roomDetails = [
+                {
+                    id: 0,
+                    name: 'Pahiyas',
+                    type: 'Executive Suite',
+                    capacity: 2,
+                    bed: '(1) Double Bed',
+                    cost: 2500,
+                    img: 'gallery/pahiyas4.jpg',
+                    adults: 2,
+                    children: 1,
+                    perPerson: 1000
+                },
+                {
+                    id: 1,
+                    name: 'Harana',
+                    type: 'Junior  Suite',
+                    capacity: 2,
+                    bed: '(2) Single Beds',
+                    cost: 1800,
+                    img: 'gallery/harana3.jpg',
+                    adults: 2,
+                    children: 1,
+                    perPerson: 600
+                },
+                {
+                    id: 2,
+                    name: 'Imbayah',
+                    type: 'Junior  Suite',
+                    capacity: 2,
+                    bed: '(2) Single Beds',
+                    cost: 1800,
+                    img: 'gallery/imbayah2.jpg',
+                    adults: 2,
+                    children: 1,
+                    perPerson: 600
+                },
+                {
+                    id: 3,
+                    name: 'Pagdayao ',
+                    type: 'Dormitory',
+                    capacity: 5,
+                    bed: '(4) Single Beds',
+                    cost: 2800,
+                    img: 'gallery/pagdayao2.jpg',
+                    adults: 5,
+                    children: 4,
+                    perPerson: 500
+                },
+                {
+                    id: 4,
+                    name: 'Moriones ',
+                    type: 'Dormitory',
+                    capacity: 5,
+                    bed: '(4) Single Beds',
+                    cost: 2800,
+                    img: 'gallery/moriones2.jpg',
+                    adults: 5,
+                    children: 4,
+                    perPerson: 500
+                },
+            ]
+
+            // CALENDAR
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                selectable: true,
+                unselectAuto: false,
+                selectOverlap: false,
+                eventDisplay: 'background',
+                events: [
+                    {
+                        id: '0',
+                        groupId: 'Invalid',
+                        start: '2020-10-08',
+                        end: formatDate(new Date()),
+                        backgroundColor: '#241d1c', //black
+                    },
+                ],
+                selectOverlap: function(event) {
+
+                    // console.log('OVERLAP Event ', event)
+                    // console.log('OVERLAP Date ', event.start)
+                    // console.log('OVERLAP Event ID ', event.id)
+                    // console.log('OVERLAP Event Group ID ', event.groupId)
+
+                    if (event.groupId === 'Invalid' || event.groupId === 'Unavailable'){
+                        return false;
+                    }else{
+                        return true;
+                    }
+                },
+            });
+
+            calendar.render();
+
+            // FUNCTIONS
+            function formatDate(date) {
+                return [
+                    date.getFullYear(),
+                    padTo2Digits(date.getMonth() + 1),
+                    padTo2Digits(date.getDate()),
+                ].join('-');
+            }
+
+            function padTo2Digits(num) {
+                return num.toString().padStart(2, '0');
+            }
+
         </script>
     </body>
 </html>
