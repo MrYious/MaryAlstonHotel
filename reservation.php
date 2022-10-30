@@ -274,21 +274,21 @@
                                     <div class="flex gap-4  w-full lg:w-1/2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Room Name</div>
-                                            <div id="bi_roomName" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Pahiyas - Executive</div>
+                                            <div id="bi_roomName" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">No. of Guest(s)</div>
-                                            <div id="bi_guests" class="text-sm lg:text-base  py-2 w-full font-bold truncate">9</div>
+                                            <div id="bi_guests" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                     </div>
                                     <div class="flex gap-4 w-full lg:w-1/2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Check-in Date</div>
-                                            <div id="bi_inDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
+                                            <div id="bi_inDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Check-out Date</div>
-                                            <div id="bi_outDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
+                                            <div id="bi_outDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -304,42 +304,37 @@
                                     <div class="flex gap-4 w-full lg:w-1/2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">First Name</div>
-                                            <div id="gi_fname" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Mark Edison</div>
+                                            <div id="gi_fname" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Last Name</div>
-                                            <div id="gi_lname" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Rosario</div>
+                                            <div id="gi_lname" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                     </div>
                                     <div class="flex gap-4 w-full lg:w-1/2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Email Address</div>
-                                            <div id="gi_email" class="text-sm lg:text-base  py-2 w-full font-bold truncate">rosariomark37@gmail.com</div>
+                                            <div id="gi_email" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Contact Number</div>
-                                            <div id="gi_mobileNo" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09322831860</div>
+                                            <div id="gi_mobileNo" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex flex-col lg:flex-row gap-4">
                                     <div class="flex flex-col gap-2 w-full lg:w-1/2 ">
                                         <div class="font-medium text-base lg:text-lg">Special Request</div>
-                                        <div id="gi_specialRequests" class="text-sm lg:text-base  py-2 w-full font-bold ">
-                                            None
-                                        </div>
-                                        <!-- <div id="here" class="text-sm lg:text-base  py-2 w-full font-bold ">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, aut sapiente! Rem, eum sit. Iure recusandae quasi laboriosam eos a, voluptatum omnis totam obcaecati, animi sapiente perferendis sit. Consequuntur, unde sit nostrum blanditiis porro a!
-                                        </div> -->
+                                        <div id="gi_specialRequests" class="text-sm lg:text-base  py-2 w-full font-bold "></div>
                                     </div>
                                     <div class="flex gap-4 w-full lg:w-1/2 shrink-0 lg:pl-2">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Birth Date</div>
-                                            <div id="gi_birthDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate">09/30/2001</div>
+                                            <div id="gi_birthDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">From TUA</div>
-                                            <div id="gi_fromTua" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Yes</div>
+                                            <div id="gi_fromTua" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                     </div>
                                 </div>
