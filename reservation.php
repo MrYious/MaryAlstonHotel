@@ -277,7 +277,7 @@
                                             <div id="bi_roomName" class="text-sm lg:text-base  py-2 w-full font-bold truncate">Pahiyas - Executive</div>
                                         </div>
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                            <div class="font-medium text-base lg:text-lg">No. of Guests(s)</div>
+                                            <div class="font-medium text-base lg:text-lg">No. of Guest(s)</div>
                                             <div id="bi_guests" class="text-sm lg:text-base  py-2 w-full font-bold truncate">9</div>
                                         </div>
                                     </div>
