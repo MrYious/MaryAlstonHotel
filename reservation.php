@@ -407,15 +407,15 @@
                                 <div class="flex flex-col lg:flex-row gap-4">
                                     <div class="flex flex-col gap-2 w-full ">
                                         <div class="text-sm lg:text-base  py-2 w-full">
-                                            The guest has 48 hrs (2 days) to pay atleast 50% of the total amount of the booking as down payment to the reservation.
-                                            Failure to pay within alloted time allows the system to automatically remove the guest's reservation.
+                                            You have 48 hrs (2 days) to pay atleast 50% of the total amount of the booking as down payment to the reservation.
+                                            Failure to pay within alloted time allows the system to automatically remove your reservation from the official list.
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
-                                            The down payment must be paid via the given official payment channels below. The guest shall receive an email in a few minutes containing the booking and payment information.
-                                            The guest must reply to the email a valid proof of payment such as official receipts and any similar that is valid.
+                                            The down payment must be paid via the provided official payment channels below. You shall receive an email in a few minutes containing the booking and payment information.
+                                            The guest must reply to the email attaching a valid proof of payment such as official receipts and other similar valid proofs.
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
-                                            For important concerns, you can reach us via the following email: <b>hotelemail@gmail.com. </b> Save your transaction number for future reference.
+                                            For important concerns and issues, you can reach us via the following email: <b>hotelemail@gmail.com. </b> Also, save your transaction number for future reference.
                                         </div>
                                     </div>
                                 </div>
