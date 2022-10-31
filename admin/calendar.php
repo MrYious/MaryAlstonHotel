@@ -127,11 +127,22 @@
                 <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
                     Admin / Official Calendar
                 </section>
-                <section class="flex flex-col p-7 justify-center items-center  bg-gray-200">
-                    <div class=" w-full md:w-[60%]">
+                <section class="flex flex-col p-2 justify-center items-center  bg-gray-200 ">
+                    <div class=" w-full md:w-[55%] flex gap-5 p-2 items-center bg-gray-300">
+                        <div class="font-medium text-base lg:text-lg shrink-0">The Room: </div>
+                        <select name="room" id="room" class="inline outline-none w-full p-2 border-[1px] focus:border-blue-800 rounded border-black text-sm lg:text-base ">
+                            <option value="ES_Pahiyas">Pahiyas - Executive Suite</option>
+                            <option value="JS_Harana">Harana  - Junior Suite</option>
+                            <option value="JS_Imbayah">Imbayah  - Junior Suite</option>
+                            <option value="DM_Pagdayao">Pagdayao - Dormitory</option>
+                            <option value="DM_Moriones">Moriones - Dormitory</option>
+                        </select>
+                    </div>
+                    <div class="border-2 border-black w-full md:w-[55%]"></div>
+                    <div class=" w-full md:w-[55%] ">
                         <div id='calendar' class="select-none"></div>
                     </div>
-                    <div class=" w-full md:w-[60%] flex flex-wrap justify-around gap-2 lg:gap-7 bg-gray-300 py-3">
+                    <div class=" w-full md:w-[55%] flex flex-wrap justify-around gap-2 lg:gap-7 bg-gray-300 py-3">
                         <div class="flex gap-2 items-center">
                             <div class="border-[1px] border-orange-400 bg-orange-400 w-3 h-3 rounded-full"></div>
                             <div class="text-xs lg:text-sm">Pending </div>
@@ -146,7 +157,6 @@
                         </div>
                     </div>
                 </section>
-                <!-- TODO: ADD MORE FIELDS -->
                 <!-- DETAILS -->
                 <section class="flex flex-col p-7 bg-gray-200 gap-2">
                     <!-- 1 -->
@@ -162,13 +172,13 @@
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Check-in Date</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="inDate" class="text-sm lg:text-base  py-2 w-full ">
                                     09/30/2001
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Check-out Date</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="outDate" class="text-sm lg:text-base  py-2 w-full ">
                                     09/30/2001
                                 </div>
                             </div>
@@ -176,13 +186,13 @@
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">No. of Night(s)</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="nights" class="text-sm lg:text-base  py-2 w-full ">
                                     2
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Date Booked</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
                                     09/30/2010
                                 </div>
                             </div>
@@ -192,13 +202,13 @@
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">No. of Adult(s)</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="adults" class="text-sm lg:text-base  py-2 w-full ">
                                     09/30/2001
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">No. of Children</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="children" class="text-sm lg:text-base  py-2 w-full ">
                                     09/30/2001
                                 </div>
                             </div>
@@ -206,7 +216,7 @@
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Total no. of Guest(s)</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
                                     2
                                 </div>
                             </div>
@@ -225,13 +235,13 @@
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Room Name</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="roomName" class="text-sm lg:text-base  py-2 w-full ">
                                     Pahiyas
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Room Type</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="roomType" class="text-sm lg:text-base  py-2 w-full ">
                                     Executive Suite
                                 </div>
                             </div>
@@ -239,13 +249,13 @@
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Capacity</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="roomCapacity" class="text-sm lg:text-base  py-2 w-full ">
                                     2
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Cost</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="roomCost" class="text-sm lg:text-base  py-2 w-full ">
                                     1,800.00
                                 </div>
                             </div>
@@ -264,21 +274,21 @@
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">First Name</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">Mark Edison</div>
+                                <div id="firstName" class="text-sm lg:text-base  py-2 w-full ">Mark Edison</div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Last Name</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">Rosario</div>
+                                <div id="lastName" class="text-sm lg:text-base  py-2 w-full ">Rosario</div>
                             </div>
                         </div>
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Email Address</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">rosariomark37@gmail.com</div>
+                                <div id="email" class="text-sm lg:text-base  py-2 w-full ">rosariomark37@gmail.com</div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Contact Number</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">09322831860</div>
+                                <div id="mobileNo" class="text-sm lg:text-base  py-2 w-full ">09322831860</div>
                             </div>
                         </div>
                     </div>
@@ -286,17 +296,17 @@
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Birth Date</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">09/30/2001</div>
+                                <div id="birthDate" class="text-sm lg:text-base  py-2 w-full ">09/30/2001</div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">From TUA</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">Yes</div>
+                                <div id="fromTua" class="text-sm lg:text-base  py-2 w-full ">Yes</div>
                             </div>
                         </div>
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full">
                                 <div class="font-bold text-base lg:text-lg">Special Request</div>
-                                <div id="gi_specialRequests" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="specialRequests" class="text-sm lg:text-base  py-2 w-full ">
 
                                 </div>
                             </div>
@@ -315,13 +325,13 @@
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Transaction Number:</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="transCode" class="text-sm lg:text-base  py-2 w-full ">
                                     635bf24bdd36d-41
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Status</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="status" class="text-sm lg:text-base  py-2 w-full ">
                                     Pending (To be Paid)
                                 </div>
                             </div>
@@ -329,13 +339,13 @@
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Required Down Payment</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="downPayment" class="text-sm lg:text-base  py-2 w-full ">
                                     2,250.00
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Total Amount</div>
-                                <div id="sample" class="text-sm lg:text-base  py-2 w-full ">
+                                <div id="totalAmount" class="text-sm lg:text-base  py-2 w-full ">
                                     4,500.00
                                 </div>
                             </div>
@@ -363,6 +373,9 @@
             }
         </script>
         <script >
+            // STATES
+            var allReservations;
+
             // CONSTANTS
             const roomDetails = [
                 {
@@ -451,11 +464,38 @@
                     // console.log('OVERLAP Event ID ', event.id)
                     // console.log('OVERLAP Event Group ID ', event.groupId)
 
-                    if (event.groupId === 'Invalid' || event.groupId === 'Unavailable'){
-                        return false;
-                    }else{
-                        return true;
-                    }
+                    console.log('OVERLAP Event ID ', event.id);
+                    const selectedReservation = allReservations.find((reservation)=> {return reservation.booking.id === event.id} )
+                    console.log('Selected Reservation | Event : ', selectedReservation);
+
+                    $('#inDate').text(selectedReservation.booking.inDate);
+                    $('#outDate').text(selectedReservation.booking.outDate);
+                    $('#nights').text(selectedReservation.booking.nights);
+                    $('#dateBooked').text(selectedReservation.booking.createdAt);
+                    $('#adults').text(selectedReservation.booking.adult);
+                    $('#children').text(selectedReservation.booking.children);
+                    $('#guests').text(selectedReservation.booking.guests);
+
+                    $('#roomName').text(roomDetails[selectedReservation.booking.roomCode].name);
+                    $('#roomType').text(roomDetails[selectedReservation.booking.roomCode].type);
+                    $('#roomCapacity').text(roomDetails[selectedReservation.booking.roomCode].capacity);
+                    $("#roomCost").text(new Intl.NumberFormat().format(roomDetails[selectedReservation.booking.roomCode].cost) + '.00');
+
+                    $('#firstName').text(selectedReservation.guest.firstname);
+                    $('#lastName').text(selectedReservation.guest.lastname);
+                    $('#email').text(selectedReservation.guest.email);
+                    $('#mobileNo').text(selectedReservation.guest.mobileNo);
+                    $('#birthDate').text(selectedReservation.guest.birthdate);
+                    $('#fromTua').text(selectedReservation.guest.fromTua);
+                    $('#specialRequests').text(selectedReservation.booking.specialRequests);
+
+                    $('#transCode').text(selectedReservation.booking.transactionCode);
+                    $('#status').text(selectedReservation.booking.bookingStatus);
+                    const down = parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) / 2;
+                    $("#downPayment").text(new Intl.NumberFormat().format(down) + '.00');
+                    $('#totalAmount').text(selectedReservation.booking.costTotal);
+
+                    return true;
                 },
             });
 
@@ -474,6 +514,103 @@
                 return num.toString().padStart(2, '0');
             }
 
+            const resetEvents = () => {
+                const allEvents = calendar.getEvents()
+                // console.log('All Events: ', allEvents);
+                allEvents.forEach((event, i) => {
+                    // console.log('Event ' + i + ': ', event.groupId)
+                    event.remove();
+                });
+                calendar.unselect()
+
+                $('#inDate').text('');
+                $('#outDate').text('');
+                $('#nights').text('');
+                $('#dateBooked').text('');
+                $('#adults').text('');
+                $('#children').text('');
+                $('#guests').text('');
+
+                $('#roomName').text('');
+                $('#roomType').text('');
+                $('#roomCapacity').text('');
+                $('#roomCost').text('');
+
+                $('#firstName').text('');
+                $('#lastName').text('');
+                $('#email').text('');
+                $('#mobileNo').text('');
+                $('#birthDate').text('');
+                $('#fromTua').text('');
+                $('#specialRequests').text('');
+
+                $('#transCode').text('');
+                $('#status').text('');
+                $('#downPayment').text('');
+                $('#totalAmount').text('');
+            }
+
+            // EVENT HANDLERS
+            $('#room').on('change', function() {
+                // alert( this.value );
+                const val = this.value;
+                var roomDetail;
+                switch(val){
+                    case 'ES_Pahiyas':
+                        roomDetail = roomDetails[0]
+                        break;
+                    case 'JS_Harana':
+                        roomDetail = roomDetails[1]
+                        break;
+                    case 'JS_Imbayah':
+                        roomDetail = roomDetails[2]
+                        break;
+                    case 'DM_Pagdayao':
+                        roomDetail = roomDetails[3]
+                        break;
+                    case 'DM_Moriones':
+                        roomDetail = roomDetails[4]
+                        break;
+                }
+                // console.table(roomDetail);
+                updateAllReservations(roomDetail.id)
+            });
+
+            // DATA FETCH
+            function updateAllReservations(num) {
+                // console.log('Room Code', num);
+                $.post("/api/getAllReservations.php", {
+                    roomCode: num
+                }).done(function(data, status) {
+                    // console.log('Retrieval Success')
+                    // console.log('Status', status)
+                    console.log('ALL RESERVATIONS', data)
+                    var reservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
+                    console.log('MERGED RESERVATIONS', reservations);
+                    allReservations = reservations
+
+                    resetEvents();
+
+                    allReservations.forEach( (reservation, i) =>{
+                        // console.log('Reservation ' + i + ': ', reservation);
+                        calendar.addEvent({
+                            id: reservation.booking.id,
+                            groupId: reservation.booking.bookingStatus,
+                            start: reservation.booking.inDate,
+                            end: reservation.booking.outDate,
+                            backgroundColor: reservation.booking.bookingStatus === 'Pending' ? 'orange' :  reservation.booking.bookingStatus === 'Confirmed' ? 'green' : 'blue' ,
+                            classNames: 'cursor-pointer',
+                        });
+                    });
+
+                }).fail(function() {
+                    alert( "Retrieval Error" );
+                    console.log('Retrieval Error')
+                })
+            }
+
+            // CALL IT FIRST TIME
+            updateAllReservations(0)
         </script>
     </body>
 </html>
