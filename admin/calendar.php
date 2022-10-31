@@ -127,7 +127,7 @@
                 <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
                     Admin / Official Calendar
                 </section>
-                <section class="flex flex-col p-2 justify-center items-center  bg-gray-200 ">
+                <section class="flex flex-col p-2 justify-center items-center bg-gray-200">
                     <div class=" w-full md:w-[55%] flex gap-5 p-2 items-center bg-gray-300">
                         <div class="font-medium text-base lg:text-lg shrink-0">The Room: </div>
                         <select name="room" id="room" class="inline outline-none w-full p-2 border-[1px] focus:border-blue-800 rounded border-black text-sm lg:text-base ">

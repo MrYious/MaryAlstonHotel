@@ -123,10 +123,10 @@
                 <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
                     Admin / Template
                 </section>
-                <section class="flex p-7 justify-center items-center bg-gray-200">
+                <section class="flex flex-col p-7 justify-center items-center bg-gray-200">
                     Section 1
                 </section>
-                <section class="flex p-7 justify-center items-center bg-gray-200">
+                <section class="flex flex-col p-7 justify-center items-center bg-gray-200">
                     Section 2
                 </section>
             </div>
