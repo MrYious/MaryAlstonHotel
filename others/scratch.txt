@@ -9,6 +9,10 @@ Status
     Declined     - No payment After 2 days =
     Refunded    -
 
+Room
+    To Arrive
+    Arrived
+
 (OFFICIAL CALENDAR)
 (HISTORY)
 1: Check Reservation Information
