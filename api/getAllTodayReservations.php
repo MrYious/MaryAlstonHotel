@@ -1,5 +1,5 @@
 <?php
-    // ALL Reservations per Room
+    // ALL Reservations All Room
 	include 'dbConnection.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

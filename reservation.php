@@ -955,7 +955,7 @@
                 // DATA FETCH
                 function updateAllReservations(num) {
                     console.log('Room Code', formData.roomDetail.id);
-                    $.post("/api/getAllReservations.php", {
+                    $.post("/api/getAllReservationsPerRoom.php", {
                         roomCode: num
                     }).done(function(data, status) {
                         // console.log('Retrieval Success')
