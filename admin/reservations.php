@@ -138,12 +138,12 @@
                             <tr>
                                 <th>Room</th>
                                 <th>Transaction No.</th>
-                                <th>Check-In</th>
-                                <th>Check-Out</th>
-                                <th>Guests</th>
-                                <th>Nights</th>
-                                <th>Status</th>
-                                <th>Button</th>
+                                <th>Reserved Date</th>
+                                <th>Down</th>
+                                <th>Paid</th>
+                                <th>Timer</th>
+                                <th>Date & Time</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>
@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">Date Booked</div>
+                                <div class="font-bold text-base lg:text-lg">Date & Time Booked</div>
                                 <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
@@ -350,17 +350,17 @@
             // STATES
             var pendingReservations;
             var tableData = [
-                {
-                    bookingID: '1',
-                    transCode: "635aa0a23fe87-39",
-                    room: "Pahiyas",
-                    inDate: "10/10/2022",
-                    outDate: "10/12/2022",
-                    total: "",
-                    downPayment: "",
-                    hoursLeft: "",
-                    dateBooked: "",
-                }
+                // {
+                //     bookingID: '1',
+                //     transCode: "635aa0a23fe87-39",
+                //     room: "Pahiyas",
+                //     inDate: "10/10/2022",
+                //     outDate: "10/12/2022",
+                //     total: "",
+                //     downPayment: "",
+                //     hoursLeft: "",
+                //     dateTimeBooked: "",
+                // }
             ];
 
             // CONSTANTS
@@ -431,7 +431,7 @@
             var myTable = $('#myTable').DataTable({
                 paging: false,
                 ordering: true,
-                info: false,
+                info: true,
                 data: tableData,
                 select: 'single',
                 order: [[3, 'asc']],
@@ -451,50 +451,52 @@
                     {
                         data: 'inDate',
                         render: function (data, type, row, meta) {
-                            return `<span class='text-black'>${data}</span>`;
+                            return `<div class='flex flex-col items-center gap-1 text-black w-28'>
+                                <b>${row.inDate}</b>
+                                <div class=''>to</div>
+                                <b>${row.outDate}</b>
+                            </div>`;
                         }
                     },
                     {
-                        data: 'outDate',
+                        data: 'downPayment',
                         render: function (data, type, row, meta) {
                             return `<span class='text-black'>${data}</span>`;
                         }
                     },
                     {
-                        data: 'guests',
+                        data: 'paid',
                         render: function (data, type, row, meta) {
                             return `<span class='text-black'>${data}</span>`;
                         }
                     },
                     {
-                        data: 'nights',
+                        data: 'hoursLeft',
                         render: function (data, type, row, meta) {
                             return `<span class='text-black'>${data}</span>`;
                         }
                     },
                     {
-                        data: 'status',
+                        data: 'dateBooked',
                         render: function (data, type, row, meta) {
-                            return `<div class="${data === 'To Arrive' ? 'border-red-400 ' : 'border-green-500' } text-black border-b-2 text-center p-1 my-2">${data}</div>`
+                            return `<div class='flex flex-col items-center gap-1 text-black w-32'>
+                                <b>${row.dateBooked}</b>
+                                <b>${row.timeBooked}</b>
+                            </div>`;
                         }
                     },
                     {
-                        data: 'status',
+                        data: 'index',
                         render: function (data, type, row, meta) {
                             // console.log(data)
                             // console.log(type)
                             // console.log(row)
                             // console.log(meta)
-                            if(data === 'To Arrive'){
-                                return `<div class="flex flex-col gap-2">
-                                    <button id="btnIn" onclick="handleCheckIn('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-green-400 hover:bg-green-600 shadow-sm shadow-black">Check-In</button>
-                                </div>`;
-                            }else{
-                                return `<div class="flex flex-col gap-2">
-                                    <button id="btnPay" onclick="handleAddPayment('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-blue-400 hover:bg-blue-600 shadow-sm shadow-black">Payment</button>
-                                    <button id="btnOut" onclick="handleCheckOut('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-orange-400 hover:bg-orange-600 shadow-sm shadow-black">Check-Out</button>
-                                </div>`;
-                            }
+
+                            return `<div class="flex flex-col gap-2">
+                                <button id="btnPay" onclick="handleAddPayment('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-blue-400 hover:bg-blue-600 shadow-sm shadow-black">Payment</button>
+                                <button id="btnOut" onclick="handleCheckOut('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-orange-400 hover:bg-orange-600 shadow-sm shadow-black">Check-Out</button>
+                            </div>`;
                         }
                     },
                 ]
@@ -548,7 +550,7 @@
                 $('#inDate').text(selectedReservation.booking.inDate);
                 $('#outDate').text(selectedReservation.booking.outDate);
                 $('#nights').text(selectedReservation.booking.nights);
-                $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
+                $('#dateBooked').text(new Date(selectedReservation.booking.createdAt).toLocaleString());
                 $('#adults').text(selectedReservation.booking.adult);
                 $('#children').text(selectedReservation.booking.children);
                 $('#guests').text(selectedReservation.booking.guests);
@@ -574,13 +576,6 @@
 
             } );
 
-            const handleCheckIn = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
-
-                if (confirm(text) == true) {
-                    // DO HERE WHEN CHECK IN
-                }
-            }
 
             const handleAddPayment = (idx) => {
                 let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
@@ -618,6 +613,7 @@
 
                     // LOOP ARRAY AND INSERT TO TABLE DATA ARRAY
                     pendingReservations.forEach( (reservation, i) => {
+                        const down = parseInt(reservation.booking.costTotal.replaceAll(',', '')) / 2;
                         tableData[i] = {
                             index: i,
                             bookingID: reservation.booking.id,
@@ -625,9 +621,12 @@
                             room: roomDetails[reservation.booking.roomCode].name,
                             inDate: reservation.booking.inDate,
                             outDate: reservation.booking.outDate,
-                            guests: reservation.booking.guests,
-                            nights: reservation.booking.nights,
-                            status: reservation.booking.inTime ? "Arrived" : "To Arrive",
+                            total: reservation.booking.costTotal,
+                            downPayment: new Intl.NumberFormat().format(down) + '.00',
+                            paid: reservation.booking.amountPaid ? reservation.booking.amountPaid : '3,500.00',
+                            hoursLeft: "48" + " hrs",
+                            dateBooked: new Date(reservation.booking.createdAt).toLocaleDateString(),
+                            timeBooked: new Date(reservation.booking.createdAt).toLocaleTimeString(),
                             data: reservation
                         }
                         // console.log('Reservation ' + i + ': ', reservation);
