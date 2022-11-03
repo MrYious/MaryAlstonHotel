@@ -430,7 +430,7 @@
             var myTable = $('#myTable').DataTable({
                 paging: false,
                 ordering: true,
-                info: false,
+                info: true,
                 data: tableData,
                 select: 'single',
                 order: [[3, 'asc']],

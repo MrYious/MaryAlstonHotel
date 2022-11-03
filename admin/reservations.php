@@ -348,18 +348,19 @@
         </script>
         <script>
             // STATES
-            var todayReservations;
+            var pendingReservations;
             var tableData = [
-                // {
-                //     bookingID: '1',
-                //     transCode: "635aa0a23fe87-39",
-                //     room: "Pahiyas",
-                //     inDate: "10/10/2022",
-                //     outDate: "10/12/2022",
-                //     guests: "2",
-                //     nights: "2",
-                //     status: "To Arrive",
-                // }
+                {
+                    bookingID: '1',
+                    transCode: "635aa0a23fe87-39",
+                    room: "Pahiyas",
+                    inDate: "10/10/2022",
+                    outDate: "10/12/2022",
+                    total: "",
+                    downPayment: "",
+                    hoursLeft: "",
+                    dateBooked: "",
+                }
             ];
 
             // CONSTANTS
@@ -547,7 +548,7 @@
                 $('#inDate').text(selectedReservation.booking.inDate);
                 $('#outDate').text(selectedReservation.booking.outDate);
                 $('#nights').text(selectedReservation.booking.nights);
-                $('#dateBooked').text(selectedReservation.booking.createdAt);
+                $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
                 $('#adults').text(selectedReservation.booking.adult);
                 $('#children').text(selectedReservation.booking.children);
                 $('#guests').text(selectedReservation.booking.guests);
@@ -600,29 +601,14 @@
             // DATA FETCH
             function getAllTodayReservations() {
 
-                $.post("/api/getAllReservations.php")
-                .done(function(data, status) {
+                $.post("/api/getAllReservationsPerStatus.php",{
+                    bookingStatus: 'Pending'
+                }).done(function(data, status) {
                     // console.log('Retrieval Success')
                     // console.log('Status', status)
                     console.log('ALL RESERVATIONS', data)
-                    var allReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    console.log('MERGED RESERVATIONS', allReservations);
-
-                    const dateToday = formatDate(new Date());
-                    const dateToday1 = '2022-11-17';
-
-                    todayReservations = allReservations.filter( (reservation, i) =>{
-                        // console.log('Reservation ' + i + ': ', reservation);
-                        // console.log('Date Today ' + i + ': ', dateToday1);
-                        // console.log('InDate ' + i + ': ', reservation.booking.inDate);
-                        // console.log('OutDate ' + i + ': ', reservation.booking.outDate);
-                        // console.log('Check ' + i + ': ',  reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate );
-
-                        // console.log('============================================');
-                        return reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate;
-                    });
-
-                    console.log('TODAY RESERVATIONS', todayReservations);
+                    pendingReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
+                    console.log('MERGED RESERVATIONS', pendingReservations);
 
                     // CLEAR TABLE DATA ARRAY
                     // CLEAR TABLE
@@ -631,7 +617,7 @@
                     resetFields();
 
                     // LOOP ARRAY AND INSERT TO TABLE DATA ARRAY
-                    todayReservations.forEach( (reservation, i) => {
+                    pendingReservations.forEach( (reservation, i) => {
                         tableData[i] = {
                             index: i,
                             bookingID: reservation.booking.id,

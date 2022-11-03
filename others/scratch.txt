@@ -22,7 +22,6 @@ Room
     Past Ones: (Completed, Expired, Declined)
 (PENDING RESERVATION)
 2: Accept Pending Reservations
-    View Pending Reservations per Room
     Add Payment
     Confirm Reservation
 (RESCHEDULE)
