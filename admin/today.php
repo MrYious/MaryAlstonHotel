@@ -143,7 +143,7 @@
                                 <th>Guests</th>
                                 <th>Nights</th>
                                 <th>Status</th>
-                                <th>Button</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>
