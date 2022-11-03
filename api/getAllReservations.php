@@ -3,7 +3,6 @@
 	include 'dbConnection.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $roomCode = $_POST['roomCode'];
 
         header('Content-Type: application/json; charset=utf-8');
 
