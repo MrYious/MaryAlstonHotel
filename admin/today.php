@@ -547,7 +547,7 @@
                 $('#inDate').text(selectedReservation.booking.inDate);
                 $('#outDate').text(selectedReservation.booking.outDate);
                 $('#nights').text(selectedReservation.booking.nights);
-                $('#dateBooked').text(selectedReservation.booking.createdAt);
+                $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
                 $('#adults').text(selectedReservation.booking.adult);
                 $('#children').text(selectedReservation.booking.children);
                 $('#guests').text(selectedReservation.booking.guests);
