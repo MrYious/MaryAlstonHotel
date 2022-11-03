@@ -173,13 +173,11 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Check-in Date</div>
                                 <div id="inDate" class="text-sm lg:text-base  py-2 w-full ">
-                                    09/30/2001
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Check-out Date</div>
                                 <div id="outDate" class="text-sm lg:text-base  py-2 w-full ">
-                                    09/30/2001
                                 </div>
                             </div>
                         </div>
@@ -187,13 +185,11 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">No. of Night(s)</div>
                                 <div id="nights" class="text-sm lg:text-base  py-2 w-full ">
-                                    2
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Date Booked</div>
                                 <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
-                                    09/30/2010
                                 </div>
                             </div>
                         </div>
@@ -203,13 +199,11 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">No. of Adult(s)</div>
                                 <div id="adults" class="text-sm lg:text-base  py-2 w-full ">
-                                    09/30/2001
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">No. of Children</div>
                                 <div id="children" class="text-sm lg:text-base  py-2 w-full ">
-                                    09/30/2001
                                 </div>
                             </div>
                         </div>
@@ -217,7 +211,6 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Total no. of Guest(s)</div>
                                 <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
-                                    2
                                 </div>
                             </div>
                         </div>
@@ -236,13 +229,11 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Room Name</div>
                                 <div id="roomName" class="text-sm lg:text-base  py-2 w-full ">
-                                    Pahiyas
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Room Type</div>
                                 <div id="roomType" class="text-sm lg:text-base  py-2 w-full ">
-                                    Executive Suite
                                 </div>
                             </div>
                         </div>
@@ -250,13 +241,11 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Capacity</div>
                                 <div id="roomCapacity" class="text-sm lg:text-base  py-2 w-full ">
-                                    2
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Cost</div>
                                 <div id="roomCost" class="text-sm lg:text-base  py-2 w-full ">
-                                    1,800.00
                                 </div>
                             </div>
                         </div>
@@ -274,21 +263,21 @@
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">First Name</div>
-                                <div id="firstName" class="text-sm lg:text-base  py-2 w-full ">Mark Edison</div>
+                                <div id="firstName" class="text-sm lg:text-base  py-2 w-full "></div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Last Name</div>
-                                <div id="lastName" class="text-sm lg:text-base  py-2 w-full ">Rosario</div>
+                                <div id="lastName" class="text-sm lg:text-base  py-2 w-full "></div>
                             </div>
                         </div>
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Email Address</div>
-                                <div id="email" class="text-sm lg:text-base  py-2 w-full ">rosariomark37@gmail.com</div>
+                                <div id="email" class="text-sm lg:text-base  py-2 w-full "></div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Contact Number</div>
-                                <div id="mobileNo" class="text-sm lg:text-base  py-2 w-full ">09322831860</div>
+                                <div id="mobileNo" class="text-sm lg:text-base  py-2 w-full "></div>
                             </div>
                         </div>
                     </div>
@@ -296,18 +285,17 @@
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Birth Date</div>
-                                <div id="birthDate" class="text-sm lg:text-base  py-2 w-full ">09/30/2001</div>
+                                <div id="birthDate" class="text-sm lg:text-base  py-2 w-full "></div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">From TUA</div>
-                                <div id="fromTua" class="text-sm lg:text-base  py-2 w-full ">Yes</div>
+                                <div id="fromTua" class="text-sm lg:text-base  py-2 w-full "></div>
                             </div>
                         </div>
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full">
                                 <div class="font-bold text-base lg:text-lg">Special Request</div>
                                 <div id="specialRequests" class="text-sm lg:text-base  py-2 w-full ">
-
                                 </div>
                             </div>
                         </div>
@@ -326,13 +314,11 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Transaction Number:</div>
                                 <div id="transCode" class="text-sm lg:text-base  py-2 w-full ">
-                                    635bf24bdd36d-41
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Status</div>
                                 <div id="status" class="text-sm lg:text-base  py-2 w-full ">
-                                    Pending (To be Paid)
                                 </div>
                             </div>
                         </div>
@@ -340,13 +326,11 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Required Down Payment</div>
                                 <div id="downPayment" class="text-sm lg:text-base  py-2 w-full ">
-                                    2,250.00
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Total Amount</div>
                                 <div id="totalAmount" class="text-sm lg:text-base  py-2 w-full ">
-                                    4,500.00
                                 </div>
                             </div>
                         </div>
