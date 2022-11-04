@@ -48,7 +48,7 @@
             </div>
         </span>
 
-        <div class="flex">
+        <div class="flex overflow-x-hidden">
             <!-- NAV -->
             <div class="bg-gray-200 lg:w-[300px] shrink-0">
                 <div class="sidebar fixed top-0 bottom-0 left-0 p-2 w-[300px] z-[2] overflow-y-auto text-center bg-gray-800">

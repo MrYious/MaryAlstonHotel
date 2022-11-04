@@ -48,7 +48,7 @@
             </div>
         </span>
 
-        <div class="flex">
+        <div class="flex  overflow-x-hidden">
             <!-- NAV -->
             <div class="bg-gray-200 lg:w-[300px] shrink-0">
                 <div class="sidebar fixed top-0 bottom-0 left-0 p-2 w-[300px] z-[2] overflow-y-auto text-center bg-gray-800">
@@ -503,11 +503,6 @@
                     {
                         data: 'index',
                         render: function (data, type, row, meta) {
-                            // console.log(data)
-                            // console.log(type)
-                            // console.log(row)
-                            // console.log(meta)
-
                             return `<div class="flex flex-col gap-2">
                                 <button id="btnPay" onclick="handleAddPayment('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-blue-400 hover:bg-blue-600 shadow-sm shadow-black">Payment</button>
                                 <button id="btnOut" onclick="handleAccept('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-green-400 hover:bg-green-600 shadow-sm shadow-black">Accept</button>
