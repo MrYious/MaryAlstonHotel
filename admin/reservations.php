@@ -557,6 +557,8 @@
                 $('#status').text('');
                 $('#downPayment').text('');
                 $('#totalAmount').text('');
+                $('#amountPaid').text('');
+                $('#balance').text('');
             }
 
             // EVENT HANDLER

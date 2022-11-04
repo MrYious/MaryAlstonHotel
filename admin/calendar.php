@@ -536,6 +536,7 @@
 
                 $('#inDate').text('');
                 $('#outDate').text('');
+                $('#inTime').text('');
                 $('#nights').text('');
                 $('#dateBooked').text('');
                 $('#adults').text('');
@@ -559,6 +560,8 @@
                 $('#status').text('');
                 $('#downPayment').text('');
                 $('#totalAmount').text('');
+                $('#amountPaid').text('');
+                $('#balance').text('');
             }
 
             // EVENT HANDLERS
