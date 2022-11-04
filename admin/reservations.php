@@ -649,7 +649,8 @@
                             outDate: reservation.booking.outDate,
                             total: reservation.booking.costTotal,
                             downPayment: new Intl.NumberFormat().format(down) + '.00',
-                            paid: reservation.booking.amountPaid ? reservation.booking.amountPaid : '3,500.00',
+                            paid: reservation.booking.amountPaid ? reservation.booking.amountPaid : '0.00',
+                            // TODO EXPIRE HRS
                             hoursLeft: "48" + " hrs",
                             dateBooked: new Date(reservation.booking.createdAt).toLocaleDateString(),
                             timeBooked: new Date(reservation.booking.createdAt).toLocaleTimeString(),
