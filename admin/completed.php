@@ -594,23 +594,6 @@
 
             } );
 
-
-            const handleAddPayment = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
-
-                if (confirm(text) == true) {
-                    // DO HERE WHEN ADDING PAYMENT
-                }
-            }
-
-            const handleCheckOut = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
-
-                if (confirm(text) == true) {
-                    // DO HERE WHEN CHECK OUT
-                }
-            }
-
             // DATA FETCH
             function getAllCompletedReservations() {
 
