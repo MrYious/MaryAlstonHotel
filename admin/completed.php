@@ -140,10 +140,9 @@
                                 <th>Transaction No.</th>
                                 <th>Check-In</th>
                                 <th>Check-Out</th>
-                                <th>Guests</th>
-                                <th>Nights</th>
+                                <th>Amount Paid</th>
+                                <th>Total Amount</th>
                                 <th>Status</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>
@@ -178,8 +177,8 @@
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">No. of Night(s)</div>
-                                <div id="nights" class="text-sm lg:text-base  py-2 w-full ">
+                                <div class="font-bold text-base lg:text-lg">Check-out Time</div>
+                                <div id="outTime" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
                         </div>
@@ -204,6 +203,16 @@
                                 <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Nights</div>
+                                <div id="nights" class="text-sm lg:text-base  py-2 w-full ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 1 -->
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Date Booked</div>
                                 <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
@@ -369,7 +378,7 @@
         </script>
         <script>
             // STATES
-            var pendingReservations;
+            var completedReservations;
             var tableData = [
                 // {
                 //     bookingID: '1',
@@ -450,12 +459,12 @@
 
             // TABLE
             var myTable = $('#myTable').DataTable({
-                paging: false,
+                paging: true,
                 ordering: true,
                 info: true,
                 data: tableData,
                 select: 'single',
-                order: [[3, 'asc']],
+                order: [[3, 'desc']],
                 columns: [
                     {
                         data: 'room',
@@ -472,52 +481,31 @@
                     {
                         data: 'inDate',
                         render: function (data, type, row, meta) {
-                            return `<div class='flex flex-col items-center gap-1 text-black w-28'>
-                                <b>${row.inDate}</b>
-                                <div class=''>to</div>
-                                <b>${row.outDate}</b>
-                            </div>`;
+                            return `<span class='text-black'>${data}</span>`;
                         }
                     },
                     {
-                        data: 'downPayment',
+                        data: 'outDate',
                         render: function (data, type, row, meta) {
                             return `<span class='text-black'>${data}</span>`;
                         }
                     },
                     {
-                        data: 'paid',
+                        data: 'amountPaid',
                         render: function (data, type, row, meta) {
                             return `<span class='text-black'>${data}</span>`;
                         }
                     },
                     {
-                        data: 'hoursLeft',
+                        data: 'costTotal',
                         render: function (data, type, row, meta) {
                             return `<span class='text-black'>${data}</span>`;
                         }
                     },
                     {
-                        data: 'dateBooked',
+                        data: 'status',
                         render: function (data, type, row, meta) {
-                            return `<div class='flex flex-col items-center gap-1 text-black w-32'>
-                                <b>${row.dateBooked}</b>
-                                <b>${row.timeBooked}</b>
-                            </div>`;
-                        }
-                    },
-                    {
-                        data: 'index',
-                        render: function (data, type, row, meta) {
-                            // console.log(data)
-                            // console.log(type)
-                            // console.log(row)
-                            // console.log(meta)
-
-                            return `<div class="flex flex-col gap-2">
-                                <button id="btnPay" onclick="handleAddPayment('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-blue-400 hover:bg-blue-600 shadow-sm shadow-black">Payment</button>
-                                <button id="btnOut" onclick="handleCheckOut('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-orange-400 hover:bg-orange-600 shadow-sm shadow-black">Check-Out</button>
-                            </div>`;
+                            return `<div class="border-green-500 text-black border-b-2 text-center p-1 my-2">${data}</div>`
                         }
                     },
                 ]
@@ -540,6 +528,7 @@
                 $('#inDate').text('');
                 $('#outDate').text('');
                 $('#inTime').text('');
+                $('#outTime').text('');
                 $('#nights').text('');
                 $('#dateBooked').text('');
                 $('#adults').text('');
@@ -573,9 +562,10 @@
 
                 $('#inDate').text(selectedReservation.booking.inDate);
                 $('#outDate').text(selectedReservation.booking.outDate);
-                $('#inTime').text(selectedReservation.booking.inTime ? new Date(reservation.booking.inTime).toLocaleTimeString() : 'Not Yet');
+                $('#inTime').text(selectedReservation.booking.inTime ? new Date(reservation.booking.inTime).toLocaleTimeString() : 'N/A');
+                $('#outTime').text(selectedReservation.booking.outTime ? new Date(reservation.booking.outTime).toLocaleTimeString() : 'N/A');
                 $('#nights').text(selectedReservation.booking.nights);
-                $('#dateBooked').text(new Date(selectedReservation.booking.createdAt).toLocaleString());
+                $('#dateBooked').text(new Date(selectedReservation.booking.createdAt).toLocaleDateString());
                 $('#adults').text(selectedReservation.booking.adult);
                 $('#children').text(selectedReservation.booking.children);
                 $('#guests').text(selectedReservation.booking.guests);
@@ -622,16 +612,16 @@
             }
 
             // DATA FETCH
-            function getAllTodayReservations() {
+            function getAllCompletedReservations() {
 
                 $.post("/api/getAllReservationsPerStatus.php",{
-                    bookingStatus: 'Pending'
+                    bookingStatus: 'Completed'
                 }).done(function(data, status) {
                     // console.log('Retrieval Success')
                     // console.log('Status', status)
                     console.log('ALL RESERVATIONS', data)
-                    pendingReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    console.log('MERGED RESERVATIONS', pendingReservations);
+                    completedReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
+                    console.log('MERGED RESERVATIONS', completedReservations);
 
                     // CLEAR TABLE DATA ARRAY
                     // CLEAR TABLE
@@ -640,8 +630,7 @@
                     resetFields();
 
                     // LOOP ARRAY AND INSERT TO TABLE DATA ARRAY
-                    pendingReservations.forEach( (reservation, i) => {
-                        const down = parseInt(reservation.booking.costTotal.replaceAll(',', '')) / 2;
+                    completedReservations.forEach( (reservation, i) => {
                         tableData[i] = {
                             index: i,
                             bookingID: reservation.booking.id,
@@ -649,10 +638,11 @@
                             room: roomDetails[reservation.booking.roomCode].name,
                             inDate: reservation.booking.inDate,
                             outDate: reservation.booking.outDate,
-                            total: reservation.booking.costTotal,
-                            downPayment: new Intl.NumberFormat().format(down) + '.00',
-                            paid: reservation.booking.amountPaid ? reservation.booking.amountPaid : '3,500.00',
-                            hoursLeft: "48" + " hrs",
+                            guests: reservation.booking.guests,
+                            nights: reservation.booking.nights,
+                            status: reservation.booking.bookingStatus,
+                            amountPaid: reservation.booking.amountPaid ? reservation.booking.amountPaid : '0.00',
+                            costTotal: reservation.booking.costTotal,
                             dateBooked: new Date(reservation.booking.createdAt).toLocaleDateString(),
                             timeBooked: new Date(reservation.booking.createdAt).toLocaleTimeString(),
                             data: reservation
@@ -672,7 +662,7 @@
             }
 
             // CALL IT FIRST TIME
-            getAllTodayReservations();
+            getAllCompletedReservations();
         </script>
     </body>
 </html>
