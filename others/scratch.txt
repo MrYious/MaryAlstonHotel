@@ -48,15 +48,13 @@ ADMIN views pending reservation             (Table, All Room)
     Status: PENDING => DECLINED
 
 (MANAGE: Today's reservations)
-ADMIN views confirmed reservations for today (Table, All Room)
+ADMIN views confirmed, rescheduled reservations for today (Table, All Room)
     if user checks in
         ADMIN CLICKS check in
-    if user checks out
-        ADMIN CLICKS check out
     if user pays
         ADMIN CLICKS add payment
-    if paid and out,
-        ADMIN CLICKS completed
+    if user checks out
+        ADMIN CLICKS check out
 
 (VIEW: Past's reservations)
 ADMIN views past reservations  (Table, All Room, Per type)

@@ -325,6 +325,21 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 4 -->
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4  w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Amount Paid:</div>
+                                <div id="amountPaid" class="text-sm lg:text-base  py-2 w-full ">
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Remaining Balance</div>
+                                <div id="balance" class="text-sm lg:text-base  py-2 w-full ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
@@ -495,7 +510,8 @@
 
                             return `<div class="flex flex-col gap-2">
                                 <button id="btnPay" onclick="handleAddPayment('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-blue-400 hover:bg-blue-600 shadow-sm shadow-black">Payment</button>
-                                <button id="btnOut" onclick="handleCheckOut('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-orange-400 hover:bg-orange-600 shadow-sm shadow-black">Check-Out</button>
+                                <button id="btnOut" onclick="handleAccept('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-green-400 hover:bg-green-600 shadow-sm shadow-black">Accept</button>
+                                <button id="btnOut" onclick="handleDecline('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-orange-400 hover:bg-orange-600 shadow-sm shadow-black">Decline</button>
                             </div>`;
                         }
                     },
@@ -573,9 +589,11 @@
                 const down = parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) / 2;
                 $("#downPayment").text(new Intl.NumberFormat().format(down) + '.00');
                 $('#totalAmount').text(selectedReservation.booking.costTotal);
+                const balance = selectedReservation.booking.amountPaid ? parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) - parseInt(selectedReservation.booking.amountPaid.replaceAll(',', '')) : parseInt(selectedReservation.booking.costTotal.replaceAll(',', ''));
+                $('#amountPaid').text(selectedReservation.booking.amountPaid ? selectedReservation.booking.amountPaid : '0.00');
+                $('#balance').text(new Intl.NumberFormat().format(balance) + '.00');
 
             } );
-
 
             const handleAddPayment = (idx) => {
                 let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
@@ -585,7 +603,15 @@
                 }
             }
 
-            const handleCheckOut = (idx) => {
+            const handleAccept = (idx) => {
+                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
+
+                if (confirm(text) == true) {
+                    // DO HERE WHEN CHECK OUT
+                }
+            }
+
+            const handleDecline = (idx) => {
                 let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
 
                 if (confirm(text) == true) {

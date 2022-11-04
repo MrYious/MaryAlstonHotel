@@ -173,27 +173,28 @@
                         </div>
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Check-in Time</div>
+                                <div id="inTime" class="text-sm lg:text-base  py-2 w-full ">
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">No. of Night(s)</div>
                                 <div id="nights" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
-                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">Date Booked</div>
-                                <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
-                                </div>
-                            </div>
                         </div>
                     </div>
+                    <!-- 1 -->
                     <div class="flex flex-col lg:flex-row gap-4">
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">No. of Adult(s)</div>
-                                <div id="adults" class="text-sm lg:text-base  py-2 w-full ">
+                                <div class="font-bold text-base lg:text-lg">No. of Children</div>
+                                <div id="children" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">No. of Children</div>
-                                <div id="children" class="text-sm lg:text-base  py-2 w-full ">
+                                <div class="font-bold text-base lg:text-lg">No. of Adult(s)</div>
+                                <div id="adults" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
                         </div>
@@ -201,6 +202,11 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Total no. of Guest(s)</div>
                                 <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Date Booked</div>
+                                <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
                         </div>
@@ -321,6 +327,21 @@
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Total Amount</div>
                                 <div id="totalAmount" class="text-sm lg:text-base  py-2 w-full ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex gap-4  w-full lg:w-1/2">
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Amount Paid:</div>
+                                <div id="amountPaid" class="text-sm lg:text-base  py-2 w-full ">
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">Remaining Balance</div>
+                                <div id="balance" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
                         </div>
@@ -546,6 +567,7 @@
 
                 $('#inDate').text(selectedReservation.booking.inDate);
                 $('#outDate').text(selectedReservation.booking.outDate);
+                $('#inTime').text(selectedReservation.booking.inTime ? new Date(reservation.booking.inTime).toLocaleTimeString() : 'Not Yet');
                 $('#nights').text(selectedReservation.booking.nights);
                 $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
                 $('#adults').text(selectedReservation.booking.adult);
@@ -570,7 +592,9 @@
                 const down = parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) / 2;
                 $("#downPayment").text(new Intl.NumberFormat().format(down) + '.00');
                 $('#totalAmount').text(selectedReservation.booking.costTotal);
-
+                const balance = selectedReservation.booking.amountPaid ? parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) - parseInt(selectedReservation.booking.amountPaid.replaceAll(',', '')) : parseInt(selectedReservation.booking.costTotal.replaceAll(',', ''));
+                $('#amountPaid').text(selectedReservation.booking.amountPaid ? selectedReservation.booking.amountPaid : '0.00');
+                $('#balance').text(new Intl.NumberFormat().format(balance) + '.00');
             } );
 
             const handleCheckIn = (idx) => {
@@ -619,7 +643,7 @@
                         // console.log('Check ' + i + ': ',  reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate );
 
                         // console.log('============================================');
-                        return reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate;
+                        return reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
                     });
 
                     console.log('TODAY RESERVATIONS', todayReservations);
