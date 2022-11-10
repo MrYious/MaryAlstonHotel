@@ -571,7 +571,7 @@
 
                 $('#inDate').text(selectedReservation.booking.inDate);
                 $('#outDate').text(selectedReservation.booking.outDate);
-                $('#inTime').text(selectedReservation.booking.inTime ? new Date(reservation.booking.inTime).toLocaleTimeString() : 'Not Yet');
+                $('#inTime').text(selectedReservation.booking.inTime ? new Date(selectedReservation.booking.inTime).toLocaleTimeString() : 'Not Yet');
                 $('#nights').text(selectedReservation.booking.nights);
                 $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
                 $('#adults').text(selectedReservation.booking.adult);
@@ -602,26 +602,88 @@
             } );
 
             const handleCheckIn = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
+let text = `
+Do you confirm this action ?
 
+CHECK IN
+Transaction # : ${tableData[idx].transCode}
+Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname}
+`
                 if (confirm(text) == true) {
-                    // DO HERE WHEN CHECK IN
+                    $.post("/api/checkIn.php",{
+                        id: tableData[idx].bookingID,
+                        dateTime: new Date(),
+                    }).done(function(data, status) {
+                        getAllTodayReservations()
+                        alert('Check In Success')
+                    }).fail(function() {
+                        alert('Check In Failed')
+                    })
                 }
             }
 
             const handleAddPayment = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
+                const left = parseInt(tableData[idx].data.booking.costTotal.replaceAll(',', '')) - parseInt(tableData[idx].paid.replaceAll(',', ''));
+
+let text = `
+Do you confirm this action ?
+
+ADD PAYMENT
+Transaction # : ${tableData[idx].transCode}
+Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname}
+
+Required Down Payment: ${tableData[idx].data.booking.costTotal}
+Amount Paid:  ${tableData[idx].paid}
+Balance:  ${new Intl.NumberFormat().format(left) + '.00'}
+`
+
 
                 if (confirm(text) == true) {
                     // DO HERE WHEN ADDING PAYMENT
+                    let value = prompt('Enter amount\n(e.g. 1000)', 0);
+                    if(isNaN(value)){
+                        alert('Enter a valid number.')
+                    }else if(parseInt(value) === 0 || value === null || value === '' ){
+                        alert('It must be more than 0.')
+                    }else{
+
+                        const paid = parseInt(tableData[idx].paid.replaceAll(',', '')) + parseInt(value);
+
+                        $.post("/api/updatePayment.php",{
+                            id: tableData[idx].bookingID,
+                            paid: new Intl.NumberFormat().format(paid) + '.00',
+                        }).done(function(data, status) {
+                            getAllTodayReservations()
+                            alert('Payment successfully added.')
+                        }).fail(function() {
+                            alert('Payment was unsuccessful.')
+                        })
+                    }
                 }
             }
 
             const handleCheckOut = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
+                const left = parseInt(tableData[idx].data.booking.costTotal.replaceAll(',', '')) - parseInt(tableData[idx].paid.replaceAll(',', ''));
+                let text1 = 'The booking is not yet fully paid \n\nDo you still want to proceed?'
+let text2 = `
+Do you confirm this action ?
 
-                if (confirm(text) == true) {
-                    // DO HERE WHEN CHECK OUT
+CHECK OUT
+Transaction # : ${tableData[idx].transCode}
+Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname}
+`
+                if ( left <= 0 || confirm(text1) == true) {
+                    if(confirm(text2) == true){
+                        $.post("/api/checkOut.php",{
+                            id: tableData[idx].bookingID,
+                            dateTime: new Date(),
+                        }).done(function(data, status) {
+                            getAllTodayReservations()
+                            alert('Check Out Success')
+                        }).fail(function() {
+                            alert('Check Out Failed')
+                        })
+                    }
                 }
             }
 
@@ -670,6 +732,7 @@
                             guests: reservation.booking.guests,
                             nights: reservation.booking.nights,
                             status: reservation.booking.inTime ? "Arrived" : "To Arrive",
+                            paid: reservation.booking.amountPaid ? reservation.booking.amountPaid : '0.00',
                             data: reservation
                         }
                         // console.log('Reservation ' + i + ': ', reservation);

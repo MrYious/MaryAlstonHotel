@@ -7,7 +7,7 @@
 		$dateTime = $_POST['dateTime'];
 
         // QUERY
-		$sql = "UPDATE booking_tbl SET outTime='". $dateTime ."' WHERE id='". $id ."'";
+		$sql = "UPDATE booking_tbl SET outTime='". $dateTime ."', bookingStatus='Completed' WHERE id='". $id ."'";
         $conn->query($sql);
 
     }else{
