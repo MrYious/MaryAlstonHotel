@@ -59,3 +59,14 @@ ADMIN views confirmed, rescheduled reservations for today (Table, All Room)
 (VIEW: Past's reservations)
 ADMIN views past reservations  (Table, All Room, Per type)
     select [Completed, Expired, ]
+
+Pending
+    Accept
+    Decline
+        Status
+
+Today
+    Check In
+    Check Out
+        InTime
+        outTime
