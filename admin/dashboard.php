@@ -124,11 +124,30 @@
                 <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
                     Admin / Dashboard
                 </section>
-                <section class="flex flex-col p-7 justify-center items-center bg-gray-200">
-                    Section 1
-                </section>
-                <section class="flex flex-col p-7 justify-center items-center bg-gray-200">
-                    Section 2
+                <section class="flex flex-col lg:flex-row gap-5 p-7 bg-gray-200">
+                    <div class="flex flex-col gap-5 w-full lg:w-2/3">
+                        <div class="flex gap-5">
+                            <div class="w-[50%] bg-red-400 h-40">
+                                s
+                            </div>
+                            <div class="w-[50%] bg-red-400 h-40">
+                                s
+                            </div>
+                        </div>
+                        <div class="flex gap-5">
+                            <div class="w-[50%] bg-red-400 h-40">
+                                s
+                            </div>
+                            <div class="w-[50%] bg-red-400 h-40">
+                                s
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-5 w-full lg:w-1/3 bg-red-400">
+                        <div class="w-[50%] bg-red-400 h-52">
+                            s
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
