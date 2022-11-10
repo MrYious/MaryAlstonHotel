@@ -127,25 +127,39 @@
                 <section class="flex flex-col lg:flex-row gap-5 p-7 bg-gray-200">
                     <div class="flex flex-col gap-5 w-full lg:w-2/3">
                         <div class="flex gap-5">
-                            <div class="w-[50%] bg-red-400 h-40">
-                                s
+                            <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-blue-900 gap-2">
+                                <div >Reservations for the day</div>
+                                <div class="text-7xl">20</div>
+                                <div class="text-xs italic text-right">October 10, 2022</div>
                             </div>
-                            <div class="w-[50%] bg-red-400 h-40">
-                                s
+                            <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-green-900 gap-2">
+                                <div >Total Confirmed Reservations</div>
+                                <div class="text-7xl">20</div>
+                                <div class="text-xs italic text-right">Month of October</div>
                             </div>
                         </div>
                         <div class="flex gap-5">
-                            <div class="w-[50%] bg-red-400 h-40">
-                                s
+                            <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-orange-900 gap-2">
+                                <div >New Pending Reservations</div>
+                                <div class="text-7xl">20</div>
+                                <div class="text-xs italic text-right">October 10, 2022</div>
                             </div>
-                            <div class="w-[50%] bg-red-400 h-40">
-                                s
+                            <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-purple-900 gap-2">
+                                <div >Total Pending Reservations</div>
+                                <div class="text-7xl">20</div>
+                                <div class="text-xs italic text-right">Overall</div>
                             </div>
                         </div>
                     </div>
                     <div class="flex gap-5 w-full lg:w-1/3 bg-red-400">
-                        <div class="w-[50%] bg-red-400 h-52">
-                            s
+                        <div class="flex flex-col w-full bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-purple-900 gap-2">
+                            <div >Total Confirmed Reservations</div>
+                            <div class="text-6xl">20</div>
+                            <div >Total Confirmed Reservations</div>
+                            <div class="text-6xl">20</div>
+                            <div >Total Confirmed Reservations</div>
+                            <div class="text-6xl">20</div>
+                            <div class="text-xs italic text-right">Month of September</div>
                         </div>
                     </div>
                 </section>
