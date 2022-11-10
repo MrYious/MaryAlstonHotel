@@ -1,7 +1,7 @@
 <?php
 	include 'dbConnection.php';
 
-    header('Content-Type: application/json; charset=utf-8');
+    // header('Content-Type: application/json; charset=utf-8');
     $bookings = [];
     $dateToday = getdate()['year'].'-'.getdate()['mon'].'-'.getdate()['mday'];
     // ALL PENDING, CONFIRMED, RESCHEDULED
@@ -20,5 +20,5 @@
     // $response['bookings'] = $bookings;
     // echo json_encode($response);
     // echo count($bookings);
-    echo $dateToday;
+    // echo $dateToday;
 ?>

@@ -2,6 +2,7 @@
 	session_start();
     $dir = dirname(__DIR__);
 	include trim($dir,'\admin').'/api/authSession.php';
+	include trim($dir,'\admin').'/api/checkExpired.php';
 ?>
 <html>
     <head>

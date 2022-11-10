@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include dirname(__DIR__).'/api/authSession.php';
+	include dirname(__DIR__).'/api/checkExpired.php';
 ?>
 <html>
     <head>

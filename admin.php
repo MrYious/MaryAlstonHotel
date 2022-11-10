@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include 'api/checkExpired.php';
 ?>
 <html>
     <head>

@@ -1,3 +1,6 @@
+<?php
+	include 'api/checkExpired.php';
+?>
 <html>
     <head>
         <title> Mary Alston Hotel </title>
