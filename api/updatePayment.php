@@ -11,7 +11,7 @@
         $conn->query($sql);
 
     }else{
-		header('location:/admin/settings.php');
+		header('location:/');
     }
 
 ?>

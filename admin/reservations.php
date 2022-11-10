@@ -34,7 +34,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sl-1.4.0/datatables.min.css"/>
- 
+
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sl-1.4.0/datatables.min.js"></script>
@@ -594,15 +594,46 @@
             } );
 
             const handleAddPayment = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
+                const left = parseInt(tableData[idx].downPayment.replaceAll(',', '')) - parseInt(tableData[idx].paid.replaceAll(',', ''));
+
+                let text = `
+Do you confirm this action ?
+
+ADD PAYMENT
+Transaction # : ${tableData[idx].transCode}
+Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname}
+
+Required Down Payment: ${tableData[idx].downPayment}
+Amount Paid:  ${tableData[idx].paid}
+Balance:  ${new Intl.NumberFormat().format(left) + '.00'}
+                `
 
                 if (confirm(text) == true) {
                     // DO HERE WHEN ADDING PAYMENT
+                    let value = prompt('Enter amount\n(e.g. 1000)', 0);
+                    if(isNaN(value)){
+                        alert('Enter a valid number.')
+                    }else if(parseInt(value) === 0 || value === null || value === '' ){
+                        alert('It must be more than 0.')
+                    }else{
+
+                        const paid = parseInt(tableData[idx].paid.replaceAll(',', '')) + parseInt(value);
+
+                        $.post("/api/updatePayment.php",{
+                            id: tableData[idx].bookingID,
+                            paid: new Intl.NumberFormat().format(paid) + '.00',
+                        }).done(function(data, status) {
+                            getAllTodayReservations()
+                            alert('Payment successfully added.')
+                        }).fail(function() {
+                            alert('Payment was unsuccessful.')
+                        })
+                    }
                 }
             }
 
             const handleAccept = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
+                let text = "Do you confirm this action ? \n\nACCEPT RESERVATION \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname + "\nAmount Paid : " + tableData[idx].paid + "\nRequired Down Payment : " + tableData[idx].downPayment + "\nBalance : " + tableData[idx].paid;
 
                 if (confirm(text) == true) {
                     // DO HERE WHEN CHECK OUT
@@ -610,10 +641,11 @@
             }
 
             const handleDecline = (idx) => {
-                let text = "Do you confirm this action ? \n\nCHECK-IN \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
+                let text = "Do you confirm this action ? \n\nDECLINE RESERVATION \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
 
                 if (confirm(text) == true) {
                     // DO HERE WHEN CHECK OUT
+                    getAllTodayReservations()
                 }
             }
 
