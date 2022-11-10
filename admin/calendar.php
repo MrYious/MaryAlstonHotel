@@ -505,7 +505,7 @@
                     $('#totalAmount').text(selectedReservation.booking.costTotal);
                     const balance = selectedReservation.booking.amountPaid ? parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) - parseInt(selectedReservation.booking.amountPaid.replaceAll(',', '')) : parseInt(selectedReservation.booking.costTotal.replaceAll(',', ''));
                     $('#amountPaid').text(selectedReservation.booking.amountPaid ? selectedReservation.booking.amountPaid : '0.00');
-                    $('#balance').text(new Intl.NumberFormat().format(balance) + '.00');
+                    $('#balance').text(new Intl.NumberFormat().format(balance > 0 ? balance : 0) + '.00');
 
                     return true;
                 },

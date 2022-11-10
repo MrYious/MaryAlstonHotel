@@ -563,8 +563,8 @@
 
                 $('#inDate').text(selectedReservation.booking.inDate);
                 $('#outDate').text(selectedReservation.booking.outDate);
-                $('#inTime').text(selectedReservation.booking.inTime ? new Date(reservation.booking.inTime).toLocaleTimeString() : 'N/A');
-                $('#outTime').text(selectedReservation.booking.outTime ? new Date(reservation.booking.outTime).toLocaleTimeString() : 'N/A');
+                $('#inTime').text(selectedReservation.booking.inTime ? new Date(selectedReservation.booking.inTime).toLocaleTimeString() : 'N/A');
+                $('#outTime').text(selectedReservation.booking.outTime ? new Date(selectedReservation.booking.outTime).toLocaleTimeString() : 'N/A');
                 $('#nights').text(selectedReservation.booking.nights);
                 $('#dateBooked').text(new Date(selectedReservation.booking.createdAt).toLocaleDateString());
                 $('#adults').text(selectedReservation.booking.adult);
@@ -591,7 +591,7 @@
                 $('#totalAmount').text(selectedReservation.booking.costTotal);
                 const balance = selectedReservation.booking.amountPaid ? parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) - parseInt(selectedReservation.booking.amountPaid.replaceAll(',', '')) : parseInt(selectedReservation.booking.costTotal.replaceAll(',', ''));
                 $('#amountPaid').text(selectedReservation.booking.amountPaid ? selectedReservation.booking.amountPaid : '0.00');
-                $('#balance').text(new Intl.NumberFormat().format(balance) + '.00');
+                $('#balance').text(new Intl.NumberFormat().format(balance > 0 ? balance : 0) + '.00');
 
             } );
 

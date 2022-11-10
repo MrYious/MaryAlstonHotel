@@ -598,7 +598,7 @@
                 $('#totalAmount').text(selectedReservation.booking.costTotal);
                 const balance = selectedReservation.booking.amountPaid ? parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) - parseInt(selectedReservation.booking.amountPaid.replaceAll(',', '')) : parseInt(selectedReservation.booking.costTotal.replaceAll(',', ''));
                 $('#amountPaid').text(selectedReservation.booking.amountPaid ? selectedReservation.booking.amountPaid : '0.00');
-                $('#balance').text(new Intl.NumberFormat().format(balance) + '.00');
+                $('#balance').text(new Intl.NumberFormat().format(balance > 0 ? balance : 0) + '.00');
             } );
 
             const handleCheckIn = (idx) => {
@@ -634,7 +634,7 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
 
 Required Down Payment: ${tableData[idx].data.booking.costTotal}
 Amount Paid:  ${tableData[idx].paid}
-Balance:  ${new Intl.NumberFormat().format(left) + '.00'}
+Balance:  ${new Intl.NumberFormat().format(left > 0 ? left : 0) + '.00'}
 `
 
 

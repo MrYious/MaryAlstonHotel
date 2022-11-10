@@ -605,7 +605,7 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
 
 Required Down Payment: ${tableData[idx].downPayment}
 Amount Paid:  ${tableData[idx].paid}
-Balance:  ${new Intl.NumberFormat().format(left) + '.00'}
+Balance:  ${new Intl.NumberFormat().format(left > 0 ? left : 0) + '.00'}
 `
 
 
