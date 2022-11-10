@@ -39,7 +39,7 @@
             </div>
         </span>
 
-        <div class="flex">
+        <div class="flex min-h-screen">
             <!-- NAV -->
             <div class="bg-gray-200 lg:w-[300px] shrink-0">
                 <div class="sidebar fixed top-0 bottom-0 left-0 p-2 w-[300px] z-[2] overflow-y-auto text-center bg-gray-800">
@@ -123,11 +123,26 @@
                 <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
                     Admin / Settings
                 </section>
-                <section class="flex flex-col p-7 justify-center items-center bg-gray-200">
-                    Section 1
-                </section>
-                <section class="flex flex-col p-7 justify-center items-center bg-gray-200">
-                    Section 2
+                <section class="flex flex-col p-7 justify-start items-start bg-gray-200 h-full">
+                    <div class="flex flex-col w-[90%] md:w-[50%] lg:w-[40%] gap-5 p-8">
+                        <div class="flex flex-col gap-1">
+                            <div class=" text-3xl">Change Admin</div>
+                            <div class=" text-sm">Modify administrator's login credentials</div>
+                            <!-- ERROR MESSAGE -->
+                            <?php
+                                if (isset($_SESSION["errorMsg"])) {
+                                    echo '<div class="mt-2 bg-red-200 p-2 text-red-600 rounded">Failed: '. $_SESSION["errorMsg"] .'</div>';
+                                }
+                            ?>
+                        </div>
+                        <form action="/api/updateAdmin.php" method="POST" autocomplete="off"  class="flex-col flex gap-2">
+                            <input required type="password" autocomplete="off" name="oldPassword" placeholder="Current Password" class="p-2 mb-5 outline-none border-[1px] border-black" >
+                            <input required type="text" minlength="4" name="newUsername" placeholder="New Username" class="p-2 outline-none border-[1px] border-black" >
+                            <input required type="password" minlength="5" maxlength="15" name="newPassword" placeholder="New Password" class="p-2 outline-none border-[1px] border-black" >
+                            <input required type="password" minlength="5" maxlength="15" name="confirmNewPassword" placeholder="Confirm New Password" class="p-2 outline-none border-[1px] border-black" >
+                            <button type="submit" class="w-full text-white rounded font-bold py-2 bg-green-800 hover:bg-green-900 shadow-sm shadow-black mt-3">SAVE CHANGES</button>
+                        </form>
+                    </div>
                 </section>
             </div>
         </div>
