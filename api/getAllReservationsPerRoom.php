@@ -1,5 +1,6 @@
 <?php
     // ALL Reservations per Room
+    // Calendar
 	include 'dbConnection.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -1,5 +1,6 @@
 <?php
     // ALL Reservations per Room
+    // History
 	include 'dbConnection.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,7 +22,6 @@
             }
         }
 
-        // ALL PENDING, CONFIRMED, RESCHEDULED
         $sql = "SELECT * FROM booking_tbl WHERE bookingStatus='". $bookingStatus ."'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {

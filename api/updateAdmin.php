@@ -3,7 +3,7 @@
     session_start();
     unset($_SESSION['errorMsg']);
 
-
+    // Settings
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $oldUsername = $_SESSION['username'];
 		$oldPassword = $_POST['oldPassword'];

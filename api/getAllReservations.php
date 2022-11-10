@@ -1,5 +1,6 @@
 <?php
     // ALL Reservations All Room
+    // Pending Reservation
 	include 'dbConnection.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

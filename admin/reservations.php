@@ -596,7 +596,7 @@
             const handleAddPayment = (idx) => {
                 const left = parseInt(tableData[idx].downPayment.replaceAll(',', '')) - parseInt(tableData[idx].paid.replaceAll(',', ''));
 
-                let text = `
+let text = `
 Do you confirm this action ?
 
 ADD PAYMENT
@@ -606,7 +606,8 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
 Required Down Payment: ${tableData[idx].downPayment}
 Amount Paid:  ${tableData[idx].paid}
 Balance:  ${new Intl.NumberFormat().format(left) + '.00'}
-                `
+`
+
 
                 if (confirm(text) == true) {
                     // DO HERE WHEN ADDING PAYMENT
@@ -633,10 +634,27 @@ Balance:  ${new Intl.NumberFormat().format(left) + '.00'}
             }
 
             const handleAccept = (idx) => {
-                let text = "Do you confirm this action ? \n\nACCEPT RESERVATION \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname + "\nAmount Paid : " + tableData[idx].paid + "\nRequired Down Payment : " + tableData[idx].downPayment + "\nBalance : " + tableData[idx].paid;
+                const left = parseInt(tableData[idx].downPayment.replaceAll(',', '')) - parseInt(tableData[idx].paid.replaceAll(',', ''));
+                let text1 = 'Down Payment is not yet fully settled \n\nDo you still want to proceed?'
+let text2 = `
+Do you confirm this action ?
 
-                if (confirm(text) == true) {
-                    // DO HERE WHEN CHECK OUT
+ACCEPT RESERVATION
+Transaction # : ${tableData[idx].transCode}
+Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname}
+`
+                if ( left <= 0 || confirm(text1) == true) {
+                    if(confirm(text2) == true){
+                        $.post("/api/updateReservationStatus.php",{
+                            id: tableData[idx].bookingID,
+                            status: 'Confirmed',
+                        }).done(function(data, status) {
+                            getAllTodayReservations()
+                            alert('Successfully Accepted')
+                        }).fail(function() {
+                            alert('Action was unsuccessful.')
+                        })
+                    }
                 }
             }
 
