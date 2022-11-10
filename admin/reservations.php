@@ -659,11 +659,23 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
             }
 
             const handleDecline = (idx) => {
-                let text = "Do you confirm this action ? \n\nDECLINE RESERVATION \nTransaction # : " + tableData[idx].transCode + "\nGuest : " + tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname;
+let text = `
+Do you confirm this action ?
 
+DECLINE RESERVATION
+Transaction # : ${tableData[idx].transCode}
+Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname}
+`
                 if (confirm(text) == true) {
-                    // DO HERE WHEN CHECK OUT
-                    getAllTodayReservations()
+                    $.post("/api/updateReservationStatus.php",{
+                        id: tableData[idx].bookingID,
+                        status: 'Declined',
+                    }).done(function(data, status) {
+                        getAllTodayReservations()
+                        alert('Successfully Declined')
+                    }).fail(function() {
+                        alert('Action was unsuccessful.')
+                    })
                 }
             }
 
