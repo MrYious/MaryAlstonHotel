@@ -19,7 +19,7 @@
 		if(mysqli_num_rows($result) > 0){
 			while($row = mysqli_fetch_assoc($result)) {
 				if($username == $row['username'] && $encryptedPassword == $row['password']){
-					$_SESSION['username'] = 'test';
+					$_SESSION['username'] = $username;
 					$_SESSION['password'] = $encryptedPassword;
 					header('location: /admin/dashboard.php');
 				}else{
