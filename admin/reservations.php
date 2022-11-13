@@ -445,7 +445,7 @@
 
             // TABLE
             var myTable = $('#myTable').DataTable({
-                paging: false,
+                paging: true,
                 ordering: true,
                 info: true,
                 data: tableData,
@@ -635,7 +635,7 @@ Balance:  ${new Intl.NumberFormat().format(left > 0 ? left : 0) + '.00'}
 
             const handleAccept = (idx) => {
                 const left = parseInt(tableData[idx].downPayment.replaceAll(',', '')) - parseInt(tableData[idx].paid.replaceAll(',', ''));
-                let text1 = 'Down Payment is not yet fully settled \n\nDo you still want to proceed?'
+                let text1 = 'Down payment is not yet fully settled \n\nDo you still want to proceed?'
 let text2 = `
 Do you confirm this action ?
 
