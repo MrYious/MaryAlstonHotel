@@ -709,7 +709,7 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                         // console.log('Check ' + i + ': ',  reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate );
 
                         // console.log('============================================');
-                        return reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
+                        return reservation.booking.inDate <= dateToday && dateToday <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
                     });
 
                     console.log('TODAY RESERVATIONS', todayReservations);

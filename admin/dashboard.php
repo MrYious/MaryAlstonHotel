@@ -30,7 +30,7 @@
             }
         </script>
     </head>
-    <body>
+    <body class=" bg-gray-200">
         <!-- Mobile Nav Button -->
         <span class="fixed text-white text-4xl top-5 left-4 cursor-pointer z-[2]" onclick="openSidebar()" >
             <div class="p-1 bg-gray-900 rounded-md">
@@ -124,42 +124,42 @@
                 <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
                     Admin / Dashboard
                 </section>
-                <section class="flex flex-col lg:flex-row gap-5 p-7 bg-gray-200">
+                <section class="flex flex-col lg:flex-row gap-5 p-7 ">
                     <div class="flex flex-col gap-5 w-full lg:w-2/3">
                         <div class="flex gap-5">
                             <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-blue-900 gap-2">
-                                <div >Reservations for the day</div>
-                                <div class="text-7xl">20</div>
-                                <div class="text-xs italic text-right">October 10, 2022</div>
+                                <div > Ongoing Reservations for Today</div>
+                                <div id="1" class="text-7xl">20</div>
+                                <div id="2" class="text-xs italic text-right">October 10, 2022</div>
                             </div>
                             <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-green-900 gap-2">
                                 <div >Total Confirmed Reservations</div>
-                                <div class="text-7xl">20</div>
-                                <div class="text-xs italic text-right">Month of October</div>
+                                <div id="3" class="text-7xl">20</div>
+                                <div id="4" class="text-xs italic text-right">Month of October</div>
                             </div>
                         </div>
                         <div class="flex gap-5">
                             <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-orange-900 gap-2">
                                 <div >New Pending Reservations</div>
-                                <div class="text-7xl">20</div>
-                                <div class="text-xs italic text-right">October 10, 2022</div>
+                                <div id="5" class="text-7xl">20</div>
+                                <div id="6" class="text-xs italic text-right">October 10, 2022</div>
                             </div>
                             <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-purple-900 gap-2">
                                 <div >Total Pending Reservations</div>
-                                <div class="text-7xl">20</div>
-                                <div class="text-xs italic text-right">Overall</div>
+                                <div id="7" class="text-7xl">20</div>
+                                <div id="8" class="text-xs italic text-right">Overall</div>
                             </div>
                         </div>
                     </div>
                     <div class="flex gap-5 w-full lg:w-1/3 bg-red-400">
-                        <div class="flex flex-col w-full bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-purple-900 gap-2">
-                            <div >Total Confirmed Reservations</div>
-                            <div class="text-6xl">20</div>
-                            <div >Total Confirmed Reservations</div>
-                            <div class="text-6xl">20</div>
-                            <div >Total Confirmed Reservations</div>
-                            <div class="text-6xl">20</div>
-                            <div class="text-xs italic text-right">Month of September</div>
+                        <div class="flex flex-col justify-between w-full bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-purple-900 gap-2">
+                            <div >Total Completed Reservations</div>
+                            <div id="9" class="text-6xl"></div>
+                            <div >Total Sales</div>
+                            <div id="10" class="text-4xl"></div>
+                            <div >Most Booked Room</div>
+                            <div id="11" class="text-3xl"></div>
+                            <div id="12" class="text-xs italic text-right">Month of September</div>
                         </div>
                     </div>
                 </section>
@@ -181,6 +181,213 @@
 
             function openSidebar() {
                 document.querySelector(".sidebar").classList.toggle("hidden");
+            }
+        </script>
+        <script>
+
+            var stats = {
+                today: 0,
+                confirmedM: 0,
+                newPendingToday: 0,
+                totalPending: 0,
+                totalCompletedM: 0,
+                totalSalesML: 0,
+                mostBookedRoom: '',
+
+                dateToday: 0,
+                currentMonth: 0,
+                previousMonth: 0,
+            }
+
+            // DATA FETCH
+            function loadData() {
+                const monthNames = [
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
+                // CONSTANTS
+                const roomDetails = [
+                    {
+                        id: 0,
+                        name: 'Pahiyas',
+                        type: 'Executive Suite',
+                        capacity: 2,
+                        bed: '(1) Double Bed',
+                        cost: 2500,
+                        img: 'gallery/pahiyas4.jpg',
+                        adults: 2,
+                        children: 1,
+                        perPerson: 1000
+                    },
+                    {
+                        id: 1,
+                        name: 'Harana',
+                        type: 'Junior  Suite',
+                        capacity: 2,
+                        bed: '(2) Single Beds',
+                        cost: 1800,
+                        img: 'gallery/harana3.jpg',
+                        adults: 2,
+                        children: 1,
+                        perPerson: 600
+                    },
+                    {
+                        id: 2,
+                        name: 'Imbayah',
+                        type: 'Junior  Suite',
+                        capacity: 2,
+                        bed: '(2) Single Beds',
+                        cost: 1800,
+                        img: 'gallery/imbayah2.jpg',
+                        adults: 2,
+                        children: 1,
+                        perPerson: 600
+                    },
+                    {
+                        id: 3,
+                        name: 'Pagdayao',
+                        type: 'Dormitory',
+                        capacity: 5,
+                        bed: '(4) Single Beds',
+                        cost: 2800,
+                        img: 'gallery/pagdayao2.jpg',
+                        adults: 5,
+                        children: 4,
+                        perPerson: 500
+                    },
+                    {
+                        id: 4,
+                        name: 'Moriones ',
+                        type: 'Dormitory',
+                        capacity: 5,
+                        bed: '(4) Single Beds',
+                        cost: 2800,
+                        img: 'gallery/moriones2.jpg',
+                        adults: 5,
+                        children: 4,
+                        perPerson: 500
+                    },
+                ]
+
+                let date = new Date();
+
+                stats.dateToday = monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+                stats.currentMonth = monthNames[date.getMonth()];
+                stats.previousMonth = monthNames[date.getMonth()-1 ? date.getMonth()-1 : 11];
+
+                $.post("/api/getAll.php")
+                .done(function(data, status) {
+                    // console.log('ALL RESERVATIONS', data)
+                    var allReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
+                    console.log('ALL RESERVATIONS', allReservations);
+
+                    // CHANGE THESE
+                    const dateToday = formatDate(new Date());
+                    const dateToday1 = '2022-11-17';
+
+                    const todayReservations = allReservations.filter( (reservation, i) =>{
+                        return reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
+                    });
+                    console.log('TODAY RESERVATIONS', todayReservations);
+                    stats.today = todayReservations.length;
+
+                    const thisMonthConfirmedReservations = allReservations.filter( (reservation, i) =>{
+                        // console.log(new Date(reservation.booking.inDate).getMonth(), new Date().getMonth())
+                        return (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' ) && new Date(reservation.booking.inDate).getMonth() === new Date().getMonth();
+                    });
+                    console.log('CONFIRMED THIS MONTH RESERVATIONS', thisMonthConfirmedReservations);
+                    stats.confirmedM = thisMonthConfirmedReservations.length;
+
+                    const thisDayPendingReservations = allReservations.filter( (reservation, i) =>{
+                        return reservation.booking.bookingStatus === 'Pending' && new Date(reservation.booking.createdAt).toLocaleDateString() === new Date().toLocaleDateString();
+                    });
+                    console.log('NEW PENDING TODAY RESERVATIONS', thisDayPendingReservations);
+                    stats.newPendingToday = thisDayPendingReservations.length;
+
+                    const allPendingReservations = allReservations.filter( (reservation, i) =>{
+                        return reservation.booking.bookingStatus === 'Pending';
+                    });
+                    console.log('ALL PENDING RESERVATIONS', allPendingReservations);
+                    stats.totalPending = allPendingReservations.length;
+
+                    const allCompletedReservations = allReservations.filter( (reservation, i) =>{
+                        // console.log(new Date(reservation.booking.outDate).getMonth(), new Date().getMonth()-1 ? new Date().getMonth() - 1 : 11)
+                        return reservation.booking.bookingStatus === 'Completed' && new Date(reservation.booking.inDate).getMonth() === (new Date().getMonth()-1 ? new Date().getMonth()-1 : 11);
+                    });
+                    console.log('ALL COMPLETED RESERVATIONS', allCompletedReservations);
+                    stats.totalCompletedM = allCompletedReservations.length;
+
+                    var totalSales = 0;
+                    allCompletedReservations.forEach(reservation => {
+                        totalSales += parseInt(reservation.booking.costTotal.replaceAll(',', ''));
+                    });
+                    console.log('TOTAL SALES', totalSales);
+                    stats.totalSalesML = totalSales;
+
+                    var countRooms = [0,0,0,0,0]
+                    allCompletedReservations.forEach(reservation => {
+                        countRooms[parseInt(reservation.booking.roomCode)]++
+                    });
+                    var highestCount = Math.max(...countRooms)
+                    console.log('MOST BOOKED ROOM', countRooms, highestCount);
+
+                    countRooms.forEach((num,i) => {
+                        if(highestCount === num && highestCount !== 0)
+                            stats.mostBookedRoom += stats.mostBookedRoom ? ', ' + roomDetails[i].name : roomDetails[i].name;
+                    });
+
+                    console.log('STATS: ', stats);
+
+                    $('#1').text(stats.today);
+                    $('#2').text(stats.dateToday);
+
+                    $('#3').text(stats.confirmedM);
+                    $('#4').text('Month of ' + stats.currentMonth);
+
+                    $('#5').text(stats.newPendingToday);
+                    $('#6').text(stats.dateToday);
+
+                    $('#7').text(stats.totalPending);
+                    $('#8').text('Overall');
+
+                    $('#9').text(stats.totalCompletedM);
+                    $('#10').text('P '+ new Intl.NumberFormat().format(stats.totalSalesML) + '.00');
+                    $('#11').text(stats.mostBookedRoom ? stats.mostBookedRoom : 'N/A' );
+                    $('#12').text('Month of ' + stats.previousMonth);
+
+                }).fail(function() {
+                    alert( "Retrieval Error" );
+                    console.log('Retrieval Error')
+                })
+                // const stats = {
+                //     today: 0,
+                //     confirmedM: 0,
+                //     newPendingToday: 0,
+                //     totalPending: 0,
+                //     totalCompletedM: 0,
+                //     totalSalesML: 0,
+                //     mostBookedRoom: 'Pahiyas',
+
+                //     dateToday: 0,
+                //     currentMonth: 0,
+                //     previousMonth: 0,
+                // }
+            }
+
+            // CALL IT FIRST TIME
+            loadData();
+
+            // FUNCTIONS
+            function formatDate(date) {
+                return [
+                    date.getFullYear(),
+                    padTo2Digits(date.getMonth() + 1),
+                    padTo2Digits(date.getDate()),
+                ].join('-');
+            }
+
+            function padTo2Digits(num) {
+                return num.toString().padStart(2, '0');
             }
         </script>
     </body>
