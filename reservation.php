@@ -113,6 +113,9 @@
                             </div>
                             <!-- COLUMN 3 -->
                             <div class="flex flex-col w-full md:w-[35%] gap-4 p-3">
+                                <div class="text-sm">
+                                    Check-in Time starts at <b>2 PM</b> and Check-out Time is <b>12 PM</b>
+                                </div>
                                 <div class="flex flex-col gap-2">
                                     <div class="flex w-full gap-6 ">
                                         <!-- 1 -->
@@ -419,6 +422,9 @@
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
                                             For important concerns and issues, you can reach us via the following email: <b>hotelemail@gmail.com. </b> Also, save your transaction number for future reference.
+                                        </div>
+                                        <div class="text-sm lg:text-base  py-2 w-full  ">
+                                            The standard check-in time starts at <b>2 PM</b>, and the guests should already check-out before <b>12 PM</b> in the last day.
                                         </div>
                                     </div>
                                 </div>
