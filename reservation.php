@@ -33,6 +33,9 @@
         <!-- FULL CALENDAR -->
         <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3,npm/fullcalendar@5.11.3/locales-all.min.js,npm/fullcalendar@5.11.3/locales-all.min.js,npm/fullcalendar@5.11.3/main.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3/main.min.css,npm/fullcalendar@5.11.3/main.min.css">
+
+        <!-- HTML 2 PDF -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body>
         <!-- TITLE BAR -->
@@ -452,7 +455,7 @@
                                 </div>
                             </div>
                             <!-- 2ND COLUMN -->
-                            <div class="flex lg:w-1/4 w-full ">
+                            <div id="myColumn" class="flex lg:w-1/4 w-full ">
                                 <div class="flex flex-col gap-3 w-full">
                                     <div class=" flex  justify-start items-center">
                                         <div class="border-2 border-black w-full"></div>
@@ -494,6 +497,9 @@
                                         <b class="text-md shrink-0">Down Payment</b>
                                         <div class="text-right w-full "><b id='tc_downpayment' class="text-lg">1,250.00</b> PHP</div>
                                     </div>
+                                    <button id="generatePDF" class="bg-green-400 p-3 rounded-xl hover:bg-green-500 shadow-sm shadow-black">
+                                        Generate a copy in PDF
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -893,6 +899,7 @@
                             console.log('Data', data)
                             console.log('Submission Success')
                             stepperInstance.nextStep();
+                            formData.transCode = data.transactionCode;
                             $("#transCode").text(data.transactionCode)
                         }).fail(function() {
                             alert( "Submission Error" );
@@ -904,6 +911,214 @@
                 $( "#finishBtn" ).click(function(e) {
                     e.preventDefault();
                     window.location.replace("/");
+                });
+
+                $("#generatePDF").click(function(e) {
+                    e.preventDefault();
+                    console.log(formData);
+                    const date = new Date();
+                    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    let month = months[date.getMonth()];
+                    var down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
+                    down = new Intl.NumberFormat().format(down) + '.00';
+                    var element = `
+                        <p><span style="font-size:14px">Date:&nbsp;<strong>${month} ${date.getDate()}, ${date.getFullYear()}</strong></span></p>
+
+                        <p><span style="font-size:14px">Transaction Number:&nbsp;<strong>${formData.transCode}</strong></span></p>
+
+                        <p><span style="font-size:14px">&nbsp;<br />
+                        Good Day,&nbsp;<strong>${formData.guestInfo.firstName}&nbsp;</strong>!<br />
+                        <br />
+                        Thank you for booking with us today! This email contains information about your reservation and how to make it official by paying the required down payment.&nbsp;</span></p>
+                        <br />
+                        <p><span style="font-size:14px">You now have&nbsp;<strong>48 hrs (2 days)&nbsp;</strong>to pay atleast&nbsp;<strong>50%&nbsp;</strong>of the total amount of the booking as down payment to the reservation. Failure to pay within alloted time allows the system to automatically remove your reservation from the official list.</span></p>
+                        <br />
+                        <p><span style="font-size:14px">The down payment must be paid via the provided official payment channels below.&nbsp;<strong>You must reply to this email by attaching a valid proof of payment such as official receipts inorder to acknowledge your payment and for us to offically confirm your reservation.</strong><br />
+                        <br />
+                        Thank you for booking with us, we hope to hear from you again.</span></p>
+
+                        <p><span style="font-size:14px"><strong>Note:&nbsp;&nbsp;</strong>The standard check-in time starts at&nbsp;&nbsp;<strong>2 PM&nbsp;</strong>, and the guests should already check-out before&nbsp;&nbsp;<strong>12 PM&nbsp;</strong>&nbsp;in the last day.</span></p>
+
+                        <hr />
+
+                        <p>&nbsp;</p>
+                        <h3><span style="font-size:14px"><strong>Our Official Payment Channels:</strong></span></h3>
+
+                        <table border="0" style="width:467px">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:center; width:57px">&nbsp;</td>
+                                    <td style="width:109px">
+                                    <p style="text-align:center"><span style="font-size:12px"><strong>GCASH</strong></span></p>
+                                    </td>
+                                    <td style="width:82px">
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td style="width:190px">
+                                    <p style="text-align:center"><span style="font-size:12px"><strong>BANK ACCOUNT</strong></span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:57px">
+                                    <p style="text-align:center"><span style="font-size:12px"><strong>Name</strong></span></p>
+                                    </td>
+                                    <td style="width:109px">
+                                    <p style="text-align:center"><span style="font-size:12px">Juan dela Cruz</span></p>
+                                    </td>
+                                    <td style="width:82px">
+                                    <p style="text-align:center"><span style="font-size:12px"><strong>Name</strong></span></p>
+                                    </td>
+                                    <td style="width:190px">
+                                    <p style="text-align:center"><span style="font-size:12px">&nbsp;Juan dela Cruz</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:57px">
+                                    <p style="text-align:center"><span style="font-size:12px"><strong>Number</strong></span></p>
+                                    </td>
+                                    <td style="width:109px">
+                                    <p style="text-align:center"><span style="font-size:12px">09625245816</span></p>
+                                    </td>
+                                    <td style="width:82px">
+                                    <p style="text-align:center"><span style="font-size:12px"><strong>Number</strong></span></p>
+                                    </td>
+                                    <td style="width:190px">
+                                    <p style="text-align:center"><span style="font-size:12px">09625245816</span></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>&nbsp;</p>
+
+                        <h3><span style="font-size:14px"><strong>Guest Information:</strong></span></h3>
+
+                        <table border="0" style="width:329px">
+                            <tbody>
+                                <tr>
+                                    <td style="width:138px">
+                                    <p><span style="font-size:12px"><strong>Full Name</strong></span></p>
+                                    </td>
+                                    <td style="width:175px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.guestInfo.lastName}, ${formData.guestInfo.firstName}&nbsp;</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:138px">
+                                    <p><span style="font-size:12px"><strong>Email</strong></span></p>
+                                    </td>
+                                    <td style="width:175px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.guestInfo.email}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:138px">
+                                    <p><span style="font-size:12px"><strong>Contact Number</strong></span></p>
+                                    </td>
+                                    <td style="width:175px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.guestInfo.mobileNo}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:138px">
+                                    <p><span style="font-size:12px"><strong>Birth Date</strong></span></p>
+                                    </td>
+                                    <td style="width:175px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.guestInfo.birthDate}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:138px">
+                                    <p><span style="font-size:12px"><strong>From TUA</strong></span></p>
+                                    </td>
+                                    <td style="width:175px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.guestInfo.fromTua}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:138px">
+                                    <p><span style="font-size:12px"><strong>Special Requests</strong></span></p>
+                                    </td>
+                                    <td style="width:175px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.guestInfo.specialRequests}</span></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>&nbsp;</p>
+
+                        <h3><span style="font-size:14px"><strong>Booking Information:</strong></span></h3>
+
+                        <table border="0" style="width:359px">
+                            <tbody>
+                                <tr>
+                                    <td style="width:160px">
+                                    <p><span style="font-size:12px"><strong>Room Name</strong></span></p>
+                                    </td>
+                                    <td style="width:181px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.roomDetail.name + ' - ' + formData.roomDetail.type}&nbsp;</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:160px">
+                                    <p><span style="font-size:12px"><strong>Check-in Date</strong></span></p>
+                                    </td>
+                                    <td style="width:181px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.inDate}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:160px">
+                                    <p><span style="font-size:12px"><strong>Check-out Date</strong></span></p>
+                                    </td>
+                                    <td style="width:181px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.outDate}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:160px">
+                                    <p><span style="font-size:12px"><strong>Number of nights</strong></span></p>
+                                    </td>
+                                    <td style="width:181px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.nights}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:160px">
+                                    <p><span style="font-size:12px"><strong>Number of&nbsp;guests</strong></span></p>
+                                    </td>
+                                    <td style="width:181px">
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.guests.total}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:160px">
+                                    <p><span style="font-size:12px"><strong>Total Cost</strong></span></p>
+                                    </td>
+                                    <td style="width:181px">
+                                    <p style="text-align:center"><span style="font-size:12px">&nbsp;${formData.costs.total}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:160px">
+                                    <p><span style="font-size:12px"><strong>Required Down Payment</strong></span></p>
+                                    </td>
+                                    <td style="width:181px">
+                                    <p style="text-align:center"><span style="font-size:12px">&nbsp;${down}</span></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+                    var opt = {
+                        margin:       1,
+                        filename:     'Reservation.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 1 },
+                        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    };
+                    html2pdf().set(opt).from(element).save();
                 });
 
                 $('#room').on('change', function() {
