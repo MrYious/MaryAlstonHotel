@@ -450,7 +450,7 @@
                 info: true,
                 data: tableData,
                 select: 'single',
-                order: [[6, 'desc']],
+                order: [[5, 'asc']],
                 columns: [
                     {
                         data: 'room',
