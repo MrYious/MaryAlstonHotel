@@ -159,7 +159,7 @@
         </table>
         <p>
             <strong>
-                Booking Information:
+                Guest Information:
             </strong>
         </p>
         <table style='width: 422px; border-color: #0f0f0f;'>
@@ -228,7 +228,7 @@
         </table>
         <p>
             <strong>
-                Guest Information:
+                Booking Information:
             </strong>
         </p>
         <table style='width: 422px; border-color: #0f0f0f;'>
