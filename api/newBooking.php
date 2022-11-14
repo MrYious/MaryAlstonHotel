@@ -75,9 +75,7 @@
             $mail->SetFrom("maryalson.hotel@gmail.com", "Mary Alson Hotel");
             $mail->Subject = "Mary Alston Hotel Reservation - Transaction # ". $response['transactionCode'];
             // CHANGE
-            //  ". sample ."
-            $months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            $dateToday =  $months[date("M")] . " " . date('D') . ", " . date('Y') ;
+            $dateToday =  date("M") . " " . date('d') . ", " . date('Y') ;
             $parseTotal = str_replace(',', '', $data['costs']['total']);
             $down = ((int)$parseTotal) / 2;
 
