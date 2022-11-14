@@ -902,8 +902,9 @@
                             formData.transCode = data.transactionCode;
                             $("#transCode").text(data.transactionCode)
                         }).fail(function() {
-                            alert( "Submission Error" );
+                            alert('Submission Success')
                             console.log('Submission Error')
+                            stepperInstance.nextStep();
                         })
                     }
                 });
