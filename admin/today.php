@@ -694,9 +694,9 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                 .done(function(data, status) {
                     // console.log('Retrieval Success')
                     // console.log('Status', status)
-                    console.log('ALL RESERVATIONS', data)
+                    // console.log('ALL RESERVATIONS', data)
                     var allReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    console.log('MERGED RESERVATIONS', allReservations);
+                    // console.log('MERGED RESERVATIONS', allReservations);
 
                     const dateToday = formatDate(new Date());
                     const dateToday1 = '2022-11-17';
@@ -712,7 +712,7 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                         return reservation.booking.inDate <= dateToday && dateToday <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
                     });
 
-                    console.log('TODAY RESERVATIONS', todayReservations);
+                    // console.log('TODAY RESERVATIONS', todayReservations);
 
                     // CLEAR TABLE DATA ARRAY
                     // CLEAR TABLE
@@ -738,7 +738,7 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                         // console.log('Reservation ' + i + ': ', reservation);
                     });
 
-                    console.log('TODAY TABLE DATA', tableData);
+                    // console.log('TODAY TABLE DATA', tableData);
 
                     // LOAD TABLE DATA INTO TABLE
                     myTable.rows.add(tableData).draw(false);
