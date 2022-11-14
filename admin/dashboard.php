@@ -283,10 +283,10 @@
 
                     // CHANGE THESE
                     const dateToday = formatDate(new Date());
-                    const dateToday1 = '2022-11-17';
+                    // const dateToday1 = '2022-11-17';
 
                     const todayReservations = allReservations.filter( (reservation, i) =>{
-                        return reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
+                        return reservation.booking.inDate <= dateToday && dateToday <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
                     });
                     console.log('TODAY RESERVATIONS', todayReservations);
                     stats.today = todayReservations.length;
