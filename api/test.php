@@ -1,36 +1,3 @@
-<?php
-    header('Content-Type: application/json; charset=utf-8');
-    $response['message'] = '';
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
-
-    // require dirname(__DIR__).'/vendor/phpmailer/phpmailer/src/Exception.php';
-    // require dirname(__DIR__).'/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-    // require dirname(__DIR__).'/vendor/phpmailer/phpmailer/src/SMTP.php';
-    require_once dirname(__DIR__).'/vendor/autoload.php';
-
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    $mail->Mailer = "smtp";
-
-    $mail->SMTPDebug  = 1;
-    $mail->SMTPAuth   = TRUE;
-    $mail->SMTPSecure = "tls";
-    $mail->Port       = 587;
-    $mail->Host       = "smtp.gmail.com";
-    $mail->Username   = "maryalson.hotel@gmail.com";
-    $mail->Password   = "rwylvdyjpurorlgk";
-
-    // nnjqubeyzogzfgqs
-
-    $mail->IsHTML(true);
-    // CHANGE
-    $mail->AddAddress("rosariomark37@gmail.com", "Mark Rosario");
-    $mail->SetFrom("maryalson.hotel@gmail.com", "Mary Alson Hotel");
-    $mail->Subject = "Mary Alston Hotel Reservation - Transaction # 635a99771fbd3-37 ";
-    // CHANGE
-    $content = "
         <p>
             Date:
             <strong>
@@ -305,15 +272,3 @@
                 </tr>
             </tbody>
         </table>
-    ";
-
-    $mail->MsgHTML($content);
-    if(!$mail->Send()) {
-        $response['message'] = "Failed: Email not sent";
-        var_dump($mail);
-    } else {
-        $response['message'] = "Email sent successfully";
-    }
-
-    echo json_encode($response);
-?>
