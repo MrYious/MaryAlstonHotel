@@ -897,7 +897,7 @@
                         }).done(function(data, status) {
                             console.log('Status', status)
                             console.log('Data', data)
-                            console.log('Submission Success')
+                            alert('Submission Success')
                             stepperInstance.nextStep();
                             formData.transCode = data.transactionCode;
                             $("#transCode").text(data.transactionCode)
