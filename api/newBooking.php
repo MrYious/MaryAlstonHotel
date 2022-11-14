@@ -111,6 +111,9 @@
                     </strong>
                     to pay atleast
                     <strong>
+                        ". number_format($down).'.00, a' ."
+                    </strong>
+                    <strong>
                         50%
                     </strong>
                     of the total amount of the booking as down payment to the reservation. Failure to pay within alloted time allows the system to automatically remove your reservation from the official list.

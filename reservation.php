@@ -932,7 +932,7 @@
                         <br />
                         Thank you for booking with us today! This email contains information about your reservation and how to make it official by paying the required down payment.&nbsp;</span></p>
                         <br />
-                        <p><span style="font-size:14px">You now have&nbsp;<strong>48 hrs (2 days)&nbsp;</strong>to pay atleast&nbsp;<strong>50%&nbsp;</strong>of the total amount of the booking as down payment to the reservation. Failure to pay within alloted time allows the system to automatically remove your reservation from the official list.</span></p>
+                        <p><span style="font-size:14px">You now have&nbsp;<strong>48 hrs (2 days)&nbsp;</strong>to pay atleast&nbsp;<strong>${down + ', a '}</strong><strong>50%&nbsp;</strong>of the total amount of the booking as down payment to the reservation. Failure to pay within alloted time allows the system to automatically remove your reservation from the official list.</span></p>
                         <br />
                         <p><span style="font-size:14px">The down payment must be paid via the provided official payment channels below.&nbsp;<strong>You must reply to our email by attaching a valid proof of payment such as official receipts inorder to acknowledge your payment and for us to offically confirm your reservation.</strong><br />
                         <br />
