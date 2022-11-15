@@ -23,7 +23,7 @@
         }
 
         // ALL PENDING, CONFIRMED, RESCHEDULED
-        $sql = "SELECT * FROM booking_tbl WHERE roomCode='". $roomCode ."' && inTime IS NULL && (bookingStatus='Confirmed' || bookingStatus='Rescheduled')  ";
+        $sql = "SELECT * FROM booking_tbl WHERE roomCode='". $roomCode ."' && (bookingStatus='Confirmed' || bookingStatus='Rescheduled')  ";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
