@@ -478,7 +478,7 @@
 
                     $('#inDate').text(selectedReservation.booking.inDate);
                     $('#outDate').text(selectedReservation.booking.outDate);
-                    $('#inTime').text(selectedReservation.booking.inTime ? new Date(reservation.booking.inTime).toLocaleTimeString() : 'Not Yet');
+                    $('#inTime').text(selectedReservation.booking.inTime ? new Date(selectedReservation.booking.inTime).toLocaleTimeString() : 'Not Yet');
                     $('#nights').text(selectedReservation.booking.nights);
                     $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
                     $('#adults').text(selectedReservation.booking.adult);
