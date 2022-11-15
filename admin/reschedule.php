@@ -145,6 +145,10 @@
                             <div id='toCalendar' class="select-none"></div>
                             <div class=" w-full flex flex-wrap justify-around gap-2 lg:gap-7 bg-gray-300 py-3">
                                 <div class="flex gap-2 items-center">
+                                    <div class="border-[1px] border-red-600 bg-red-600 w-3 h-3 rounded-full"></div>
+                                    <div class="text-xs lg:text-sm">Unavailable </div>
+                                </div>
+                                <div class="flex gap-2 items-center">
                                     <div class="border-[1px] border-green-600 bg-green-600 w-3 h-3 rounded-full"></div>
                                     <div class="text-xs lg:text-sm">Confirmed </div>
                                 </div>
@@ -160,7 +164,7 @@
                                     <div class="text-xs lg:text-sm">Available </div>
                                 </div>
                                 <div class="flex gap-2 items-center">
-                                    <div class="border-[1px] border-green-600 bg-green-600 w-3 h-3 rounded-full"></div>
+                                    <div class="border-[1px] border-red-600 bg-red-600 w-3 h-3 rounded-full"></div>
                                     <div class="text-xs lg:text-sm">Unavailable </div>
                                 </div>
                                 <div class="flex gap-2 items-center">
@@ -371,33 +375,37 @@
                 events: [
                 ],
                 selectOverlap: function(event) {
-                    console.log('OVERLAP Event ID ', event.id);
-                    selectedReservation = allReservations.find((reservation)=> {return reservation.booking.id === event.id} )
-                    console.log('Selected Reservation | Event : ', selectedReservation);
-                    // console.log('Selected Reservation bookDate | Event : ', selectedReservation.booking.createdAt);
-                    // console.log('Selected Reservation bookDate | Event : ', formatDate(new Date(selectedReservation.booking.createdAt)));
+                    if(event.groupId !== 'UNAVAILABLE'){
+                        console.log('OVERLAP Event ID ', event.id);
+                        selectedReservation = allReservations.find((reservation)=> {return reservation.booking.id === event.id} )
+                        console.log('Selected Reservation | Event : ', selectedReservation);
+                        // console.log('Selected Reservation bookDate | Event : ', selectedReservation.booking.createdAt);
+                        // console.log('Selected Reservation bookDate | Event : ', formatDate(new Date(selectedReservation.booking.createdAt)));
 
-                    $('#inDate').text(selectedReservation.booking.inDate);
-                    $('#outDate').text(selectedReservation.booking.outDate);
-                    $('#nights').text(selectedReservation.booking.nights);
-                    $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
-                    $('#guests').text(selectedReservation.booking.guests);
-                    $('#roomName').text(roomDetails[selectedReservation.booking.roomCode].name);
-                    $('#firstName').text(selectedReservation.guest.firstname);
-                    $('#lastName').text(selectedReservation.guest.lastname);
-                    $('#transCode').text(selectedReservation.booking.transactionCode);
-                    $('#totalAmount').text(selectedReservation.booking.costTotal);
+                        $('#inDate').text(selectedReservation.booking.inDate);
+                        $('#outDate').text(selectedReservation.booking.outDate);
+                        $('#nights').text(selectedReservation.booking.nights);
+                        $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
+                        $('#guests').text(selectedReservation.booking.guests);
+                        $('#roomName').text(roomDetails[selectedReservation.booking.roomCode].name);
+                        $('#firstName').text(selectedReservation.guest.firstname);
+                        $('#lastName').text(selectedReservation.guest.lastname);
+                        $('#transCode').text(selectedReservation.booking.transactionCode);
+                        $('#totalAmount').text(selectedReservation.booking.costTotal);
 
-                    $('#inDateNew').text('');
-                    $('#outDateNew').text('');
-                    $('#newNights').text('');
+                        $('#inDateNew').text('');
+                        $('#outDateNew').text('');
+                        $('#newNights').text('');
 
-                    calendar2.unselect();
-                    const tempEvent = calendar2.getEventById('TEMPORARY');
-                    if(tempEvent){
-                        tempEvent.remove();
+                        calendar2.unselect();
+                        const tempEvent = calendar2.getEventById('TEMPORARY');
+                        if(tempEvent){
+                            tempEvent.remove();
+                        }
+                        return true;
+                    } else {
+                        return false;
                     }
-                    return true;
                 },
             });
             // CALENDAR2
@@ -608,20 +616,31 @@
 
                     resetEvents();
                     allReservations.forEach( (reservation, i) =>{
-                        calendar1.addEvent({
-                            id: reservation.booking.id,
-                            groupId: reservation.booking.bookingStatus,
-                            start: reservation.booking.inDate,
-                            end: reservation.booking.outDate,
-                            backgroundColor: reservation.booking.bookingStatus === 'Confirmed' ? 'green' : 'blue' ,
-                            classNames: 'cursor-pointer',
-                        });
+                        if(reservation.booking.inTime){
+                            calendar1.addEvent({
+                                id: reservation.booking.id,
+                                groupId: 'UNAVAILABLE',
+                                start: reservation.booking.inDate,
+                                end: reservation.booking.outDate,
+                                backgroundColor: 'red' ,
+                                classNames: 'cursor-pointer',
+                            });
+                        } else {
+                            calendar1.addEvent({
+                                id: reservation.booking.id,
+                                groupId: reservation.booking.bookingStatus,
+                                start: reservation.booking.inDate,
+                                end: reservation.booking.outDate,
+                                backgroundColor: reservation.booking.bookingStatus === 'Confirmed' ? 'green' : 'blue' ,
+                                classNames: 'cursor-pointer',
+                            });
+                        }
                         calendar2.addEvent({
                             id: reservation.booking.id,
                             groupId: reservation.booking.bookingStatus,
                             start: reservation.booking.inDate,
                             end: reservation.booking.outDate,
-                            backgroundColor: 'green',
+                            backgroundColor: 'red',
                         });
                     });
 
