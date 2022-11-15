@@ -29,6 +29,10 @@
                 }
             }
         </script>
+
+        <!-- FULL CALENDAR -->
+        <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3,npm/fullcalendar@5.11.3/locales-all.min.js,npm/fullcalendar@5.11.3/locales-all.min.js,npm/fullcalendar@5.11.3/main.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.11.3/main.min.css,npm/fullcalendar@5.11.3/main.min.css">
     </head>
     <body>
         <!-- Mobile Nav Button -->
@@ -124,11 +128,148 @@
                 <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
                     Admin / Reschedule
                 </section>
-                <section class="flex flex-col p-7 justify-center items-center bg-gray-200">
-                    Section 1
-                </section>
-                <section class="flex flex-col p-7 justify-center items-center bg-gray-200">
-                    Section 2
+                <section class="flex flex-col p-7 bg-gray-200">
+                    <div class="w-full flex gap-5 p-2 items-center bg-gray-300">
+                        <div class="font-medium text-base lg:text-lg shrink-0">The Room: </div>
+                        <select id="room" class="inline outline-none w-full p-2 border-[1px] focus:border-blue-800 rounded border-black text-sm lg:text-base ">
+                            <option value="ES_Pahiyas">Pahiyas - Executive Suite</option>
+                            <option value="JS_Harana">Harana  - Junior Suite</option>
+                            <option value="JS_Imbayah">Imbayah  - Junior Suite</option>
+                            <option value="DM_Pagdayao">Pagdayao - Dormitory</option>
+                            <option value="DM_Moriones">Moriones - Dormitory</option>
+                        </select>
+                    </div>
+                    <div class="border-2 border-black w-full"></div>
+                    <div class="flex flex-col md:flex-row">
+                        <div class=" w-full md:w-[55%] ">
+                            <div id='toCalendar' class="select-none"></div>
+                            <div class=" w-full flex flex-wrap justify-around gap-2 lg:gap-7 bg-gray-300 py-3">
+                                <div class="flex gap-2 items-center">
+                                    <div class="border-[1px] border-green-600 bg-green-600 w-3 h-3 rounded-full"></div>
+                                    <div class="text-xs lg:text-sm">Confirmed </div>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <div class="border-[1px] border-blue-500 bg-blue-500 w-3 h-3 rounded-full"></div>
+                                    <div class="text-xs lg:text-sm">Rescheduled </div>
+                                </div>
+                            </div>
+                            <div id='fromCalendar' class="select-none"></div>
+                            <div class=" w-full flex flex-wrap justify-around gap-2 lg:gap-7 bg-gray-300 py-3">
+                                <div class="flex gap-2 items-center">
+                                    <div class="border-[1px] border-green-900 bg-transparent w-3 h-3 rounded-full"></div>
+                                    <div class="text-xs lg:text-sm">Available </div>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <div class="border-[1px] border-green-600 bg-green-600 w-3 h-3 rounded-full"></div>
+                                    <div class="text-xs lg:text-sm">Unavailable </div>
+                                </div>
+                                <div class="flex gap-2 items-center">
+                                    <div class="border-[1px] border-blue-500 bg-blue-500 w-3 h-3 rounded-full"></div>
+                                    <div class="text-xs lg:text-sm">Selected </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-4 p-2 w-full md:w-[45%] p-4">
+                            <!-- 1 -->
+                            <div class=" flex  justify-start items-center">
+                                <div class="border-2 border-black w-6/12"></div>
+                                <div class="text-xl lg:text-2xl font-semibold w-fit shrink-0 px-4">
+                                    Information
+                                </div>
+                                <div class="border-2 border-black w-6/12"></div>
+                            </div>
+                            <div class="flex gap-4 w-full">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Transaction Number</div>
+                                    <div id="transCode" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Date Booked</div>
+                                    <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 w-full">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Check-in Date</div>
+                                    <div id="inDate" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Check-out Date</div>
+                                    <div id="outDate" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 w-full">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">First Name</div>
+                                    <div id="firstName" class="text-sm lg:text-base  py-2 w-full "></div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Last Name</div>
+                                    <div id="lastName" class="text-sm lg:text-base  py-2 w-full "></div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 w-full">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">No. of Guest(s)</div>
+                                    <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">No. of Night(s)</div>
+                                    <div id="nights" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 w-full">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Room Name</div>
+                                    <div id="roomName" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Total Amount</div>
+                                    <div id="totalAmount" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 2 -->
+                            <div class=" flex  justify-start items-center">
+                                <div class="border-2 border-black w-6/12"></div>
+                                <div class="text-xl lg:text-2xl font-semibold w-fit shrink-0 px-4">
+                                    Reschedule Information
+                                </div>
+                                <div class="border-2 border-black w-6/12"></div>
+                            </div>
+                            <div class="flex gap-4 w-full">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">New Check-in Date</div>
+                                    <div id="inDateNew" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">New Check-out Date</div>
+                                    <div id="outDateNew" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 w-full">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Nights</div>
+                                    <div id="newNights" class="text-sm lg:text-base  py-2 w-full ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <button id="reschedule" class="py-2 px-5 bg-green-300 rounded hover:bg-green-400 w-full shadow-sm shadow-black">
+                                    RESCHEDULE BOOKING
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
@@ -149,6 +290,349 @@
             function openSidebar() {
                 document.querySelector(".sidebar").classList.toggle("hidden");
             }
+        </script>
+        <script>
+            // STATE
+            var selectedReservation;
+
+
+            // CONSTANTS
+            const roomDetails = [
+                {
+                    id: 0,
+                    name: 'Pahiyas',
+                    type: 'Executive Suite',
+                    capacity: 2,
+                    bed: '(1) Double Bed',
+                    cost: 2500,
+                    img: 'gallery/pahiyas4.jpg',
+                    adults: 2,
+                    children: 1,
+                    perPerson: 1000
+                },
+                {
+                    id: 1,
+                    name: 'Harana',
+                    type: 'Junior  Suite',
+                    capacity: 2,
+                    bed: '(2) Single Beds',
+                    cost: 1800,
+                    img: 'gallery/harana3.jpg',
+                    adults: 2,
+                    children: 1,
+                    perPerson: 600
+                },
+                {
+                    id: 2,
+                    name: 'Imbayah',
+                    type: 'Junior  Suite',
+                    capacity: 2,
+                    bed: '(2) Single Beds',
+                    cost: 1800,
+                    img: 'gallery/imbayah2.jpg',
+                    adults: 2,
+                    children: 1,
+                    perPerson: 600
+                },
+                {
+                    id: 3,
+                    name: 'Pagdayao ',
+                    type: 'Dormitory',
+                    capacity: 5,
+                    bed: '(4) Single Beds',
+                    cost: 2800,
+                    img: 'gallery/pagdayao2.jpg',
+                    adults: 5,
+                    children: 4,
+                    perPerson: 500
+                },
+                {
+                    id: 4,
+                    name: 'Moriones ',
+                    type: 'Dormitory',
+                    capacity: 5,
+                    bed: '(4) Single Beds',
+                    cost: 2800,
+                    img: 'gallery/moriones2.jpg',
+                    adults: 5,
+                    children: 4,
+                    perPerson: 500
+                },
+            ]
+
+            // CALENDAR1
+            var calendarEl1 = document.getElementById('toCalendar');
+            var calendar1 = new FullCalendar.Calendar(calendarEl1, {
+                initialView: 'dayGridMonth',
+                selectable: true,
+                unselectAuto: false,
+                selectOverlap: false,
+                eventDisplay: 'background',
+                events: [
+                ],
+                selectOverlap: function(event) {
+                    console.log('OVERLAP Event ID ', event.id);
+                    selectedReservation = allReservations.find((reservation)=> {return reservation.booking.id === event.id} )
+                    console.log('Selected Reservation | Event : ', selectedReservation);
+                    // console.log('Selected Reservation bookDate | Event : ', selectedReservation.booking.createdAt);
+                    // console.log('Selected Reservation bookDate | Event : ', formatDate(new Date(selectedReservation.booking.createdAt)));
+
+                    $('#inDate').text(selectedReservation.booking.inDate);
+                    $('#outDate').text(selectedReservation.booking.outDate);
+                    $('#nights').text(selectedReservation.booking.nights);
+                    $('#dateBooked').text(formatDate(new Date(selectedReservation.booking.createdAt)));
+                    $('#guests').text(selectedReservation.booking.guests);
+                    $('#roomName').text(roomDetails[selectedReservation.booking.roomCode].name);
+                    $('#firstName').text(selectedReservation.guest.firstname);
+                    $('#lastName').text(selectedReservation.guest.lastname);
+                    $('#transCode').text(selectedReservation.booking.transactionCode);
+                    $('#totalAmount').text(selectedReservation.booking.costTotal);
+
+                    $('#inDateNew').text('');
+                    $('#outDateNew').text('');
+                    $('#newNights').text('');
+
+                    calendar2.unselect();
+                    const tempEvent = calendar2.getEventById('TEMPORARY');
+                    if(tempEvent){
+                        tempEvent.remove();
+                    }
+                    return true;
+                },
+            });
+            // CALENDAR2
+            var calendarEl2 = document.getElementById('fromCalendar');
+            var calendar2 = new FullCalendar.Calendar(calendarEl2, {
+                initialView: 'dayGridMonth',
+                selectable: true,
+                unselectAuto: false,
+                selectOverlap: false,
+                eventDisplay: 'background',
+                events: [
+                    {
+                        id: '0',
+                        groupId: 'Invalid',
+                        start: '2020-10-08',
+                        end: formatDate(new Date()),
+                        backgroundColor: '#241d1c', //black
+                    },
+                ],
+                selectOverlap: function(event) {
+                    if( event.groupId === 'Invalid' || !selectedReservation){
+                        return false;
+                    }else {
+                        if(selectedReservation.booking.id === event.id || event.groupId === 'TEMPORARY'){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+                },
+                selectAllow: function (selectInfo) {
+                    // Delete previously selected dates made as temporary events
+                    if(!selectedReservation){
+                        return false;
+                    } else {
+                        let start = new Date(selectInfo.startStr);
+                        let end = new Date(selectInfo.endStr);
+
+                        let difference = start.getTime() - end.getTime();
+                        let TotalNights = Math.abs(Math.ceil(difference / (1000 * 3600 * 24)));
+                        // console.log(TotalNights, selectedReservation.booking.nights, TotalNights <= selectedReservation.booking.nights );
+
+                        $('#inDateNew').text('');
+                        $('#outDateNew').text('');
+                        $('#newNights').text('');
+                        if(TotalNights <= selectedReservation.booking.nights ){
+                            const tempEvent = calendar2.getEventById('TEMPORARY');
+                            if(tempEvent){
+                                tempEvent.remove();
+                            }
+                            return true;
+                        }else{
+                            return false;
+                        }
+                    }
+                },
+                select: handleSelectDate,
+            });
+            calendar1.render();
+            calendar2.render();
+
+            // FUNCTIONS
+            function handleSelectDate (selectionInfo ) {
+                let start = new Date(selectionInfo.startStr);
+                let end = new Date(selectionInfo.endStr);
+
+                let difference = start.getTime() - end.getTime();
+                let TotalNights = Math.abs(Math.ceil(difference / (1000 * 3600 * 24)));
+
+                $('#inDateNew').text(selectionInfo.startStr);
+                $('#outDateNew').text(selectionInfo.endStr);
+                $('#newNights').text(TotalNights);
+
+                // DATE EVENT
+                calendar2.addEvent({
+                    id: 'TEMPORARY',
+                    groupId: 'TEMPORARY',
+                    start: selectionInfo.startStr,
+                    end: selectionInfo.endStr,
+                    backgroundColor: 'blue',
+                });
+            }
+
+            function formatDate(date) {
+                return [
+                    date.getFullYear(),
+                    padTo2Digits(date.getMonth() + 1),
+                    padTo2Digits(date.getDate()),
+                ].join('-');
+            }
+
+            function padTo2Digits(num) {
+                return num.toString().padStart(2, '0');
+            }
+
+            const resetEvents = () => {
+
+                const allEvents1 = calendar1.getEvents()
+                allEvents1.forEach((event, i) => {
+                    event.remove();
+                });
+                calendar1.unselect()
+                const allEvents2 = calendar2.getEvents()
+                allEvents2.forEach((event, i) => {
+                    event.remove();
+                });
+                calendar2.unselect()
+
+                $('#inDate').text('');
+                $('#outDate').text('');
+                $('#nights').text('');
+                $('#dateBooked').text('');
+                $('#guests').text('');
+
+                $('#roomName').text('');
+                $('#firstName').text('');
+                $('#lastName').text('');
+                $('#transCode').text('');
+                $('#totalAmount').text('');
+
+                $('#inDateNew').text('');
+                $('#outDateNew').text('');
+                $('#newNights').text('');
+
+                calendar2.addEvent({
+                    id: '0',
+                    groupId: 'Invalid',
+                    start: '2020-10-08',
+                    end: formatDate(new Date()),
+                    backgroundColor: '#241d1c', //black
+                });
+            }
+
+            // EVENT HANDLERS
+            $('#room').on('change', function() {
+                // alert( this.value );
+                const val = this.value;
+                var roomDetail;
+                switch(val){
+                    case 'ES_Pahiyas':
+                        roomDetail = roomDetails[0]
+                        break;
+                    case 'JS_Harana':
+                        roomDetail = roomDetails[1]
+                        break;
+                    case 'JS_Imbayah':
+                        roomDetail = roomDetails[2]
+                        break;
+                    case 'DM_Pagdayao':
+                        roomDetail = roomDetails[3]
+                        break;
+                    case 'DM_Moriones':
+                        roomDetail = roomDetails[4]
+                        break;
+                }
+                // console.table(roomDetail);
+                updateAllReservations(roomDetail.id)
+            });
+
+            $( "#reschedule" ).click(function(e) {
+                e.preventDefault();
+                const newIn = $('#inDateNew').text();
+                const newOut = $('#outDateNew').text();
+                const newNights = $('#newNights').text();
+                console.log(newIn, newOut, newNights, selectedReservation.booking.id);
+
+                if((!newIn) || (!newOut) || (!newNights)){
+                    alert('Select a date first and then select a new date');
+                }else if(selectedReservation.booking.nights !== newNights){
+                    if(confirm('The number of nights is lower than the original count\nDo you still want to proceed?')){
+                        $.post("/api/resched.php",{
+                            id: selectedReservation.booking.id,
+                            newIn: newIn,
+                            newOut: newOut,
+                        }).done(function(data, status) {
+                            updateAllReservations(selectedReservation.booking.roomCode)
+                            alert('Reschedule success')
+                        }).fail(function() {
+                            alert('Reschedule failed')
+                        })
+                    }
+                }else {
+                    if(confirm('Do you confirm the reschedule?')){
+                        $.post("/api/resched.php",{
+                            id: selectedReservation.booking.id,
+                            newIn: newIn,
+                            newOut: newOut,
+                        }).done(function(data, status) {
+                            updateAllReservations(selectedReservation.booking.roomCode)
+                            alert('Reschedule success')
+                        }).fail(function() {
+                            alert('Reschedule failed')
+                        })
+                    }
+                }
+            });
+
+
+            // DATA FETCH
+            function updateAllReservations(num) {
+                $.post("/api/getAllConfirmedReservationsPerRoom.php", {
+                    roomCode: num
+                }).done(function(data, status) {
+                    console.log('ALL RESERVATIONS', data)
+                    var reservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
+                    console.log('MERGED RESERVATIONS', reservations);
+                    allReservations = reservations
+
+                    resetEvents();
+                    allReservations.forEach( (reservation, i) =>{
+                        calendar1.addEvent({
+                            id: reservation.booking.id,
+                            groupId: reservation.booking.bookingStatus,
+                            start: reservation.booking.inDate,
+                            end: reservation.booking.outDate,
+                            backgroundColor: reservation.booking.bookingStatus === 'Confirmed' ? 'green' : 'blue' ,
+                            classNames: 'cursor-pointer',
+                        });
+                        calendar2.addEvent({
+                            id: reservation.booking.id,
+                            groupId: reservation.booking.bookingStatus,
+                            start: reservation.booking.inDate,
+                            end: reservation.booking.outDate,
+                            backgroundColor: 'green',
+                        });
+                    });
+
+                }).fail(function() {
+                    alert( "Retrieval Error" );
+                    console.log('Retrieval Error')
+                })
+            }
+
+            // CALL IT FIRST TIME
+            updateAllReservations(0)
         </script>
     </body>
 </html>
