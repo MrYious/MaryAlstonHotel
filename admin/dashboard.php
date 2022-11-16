@@ -359,19 +359,6 @@
                     alert( "Retrieval Error" );
                     console.log('Retrieval Error')
                 })
-                // const stats = {
-                //     today: 0,
-                //     confirmedM: 0,
-                //     newPendingToday: 0,
-                //     totalPending: 0,
-                //     totalCompletedM: 0,
-                //     totalSalesML: 0,
-                //     mostBookedRoom: 'Pahiyas',
-
-                //     dateToday: 0,
-                //     currentMonth: 0,
-                //     previousMonth: 0,
-                // }
             }
 
             // CALL IT FIRST TIME
