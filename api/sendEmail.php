@@ -19,11 +19,10 @@
     $mail->SMTPSecure = "tls";
     $mail->Port       = 587;
     $mail->Host       = "smtp.gmail.com";
-    $mail->Username   = "maryalson.hotel@gmail.com";
-    $mail->Password   = "rwylvdyjpurorlgk";
+    // $mail->Username   = "maryalson.hotel@gmail.com";
+    // $mail->Password   = "";
 
-    // nnjqubeyzogzfgqs
-
+    // 
     $mail->IsHTML(true);
     // CHANGE
     $mail->AddAddress("rosariomark37@gmail.com", "Mark Rosario");
@@ -307,13 +306,13 @@
         </table>
     ";
 
-    $mail->MsgHTML($content);
-    if(!$mail->Send()) {
-        $response['message'] = "Failed: Email not sent";
-        var_dump($mail);
-    } else {
-        $response['message'] = "Email sent successfully";
-    }
+    // $mail->MsgHTML($content);
+    // if(!$mail->Send()) {
+    //     $response['message'] = "Failed: Email not sent";
+    //     var_dump($mail);
+    // } else {
+    //     $response['message'] = "Email sent successfully";
+    // }
 
     echo json_encode($response);
 ?>

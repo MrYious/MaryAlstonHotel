@@ -1,6 +1,9 @@
 <?php
 	include 'dbConnection.php';
 
+    $EMAIL = 'maryalstonhall@gmail.com';
+    $KEY = 'yxxikbrvmqxcwqui';
+
     $response['message'] = '';
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
@@ -66,8 +69,8 @@
             $mail->SMTPSecure = "tls";
             $mail->Port       = 587;
             $mail->Host       = "smtp.gmail.com";
-            $mail->Username   = "maryalson.hotel@gmail.com";
-            $mail->Password   = "rwylvdyjpurorlgk";
+            $mail->Username   = $EMAIL;
+            $mail->Password   = $KEY;
 
             $mail->IsHTML(true);
             // CHANGE
@@ -359,12 +362,12 @@
                 </table>
             ";
             $mail->MsgHTML($content);
-            if(!$mail->Send()) {
-                $response['message'] = "Failed: Email not sent";
-                // var_dump($mail);
-            } else {
-                $response['message'] = "Email sent successfully";
-            }
+            // if(!$mail->Send()) {
+            //     $response['message'] = "Failed: Email not sent";
+            //     var_dump($mail);
+            // } else {
+            //     $response['message'] = "Email sent successfully";
+            // }
 
             echo json_encode($response);
 
