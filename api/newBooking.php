@@ -362,12 +362,12 @@
                 </table>
             ";
             $mail->MsgHTML($content);
-            // if(!$mail->Send()) {
-            //     $response['message'] = "Failed: Email not sent";
-            //     var_dump($mail);
-            // } else {
-            //     $response['message'] = "Email sent successfully";
-            // }
+            if(!$mail->Send()) {
+                $response['message'] = "Failed: Email not sent";
+                var_dump($mail);
+            } else {
+                $response['message'] = "Email sent successfully";
+            }
 
             echo json_encode($response);
 
