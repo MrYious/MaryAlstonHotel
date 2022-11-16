@@ -74,3 +74,7 @@ Today
 GMAIL ACCOUNT
 maryalstonhotel@gmail.com
 qawsedrftgy
+
+
+logo - reservation, monthly, yearly pdf
+payment channels - reservation pdf, newBooking email,

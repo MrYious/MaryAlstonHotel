@@ -76,3 +76,4 @@ vendor/phpmailer/phpmailer/src/PHPMailer.php
 vendor/phpmailer/phpmailer/src/POP3.php
 vendor/phpmailer/phpmailer/src/SMTP.php
 api/newBooking.php
+others/scratch.txt
