@@ -2,7 +2,6 @@
 	include 'dbConnection.php';
 
     $EMAIL = 'maryalstonhall@gmail.com';
-    $KEY = 'yxxikbrvmqxcwqui';
 
     $response['message'] = '';
     use PHPMailer\PHPMailer\PHPMailer;
