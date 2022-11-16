@@ -424,7 +424,7 @@
                                             The guest must reply to the email attaching a valid proof of payment such as official receipts and other similar valid proofs.
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
-                                            For important concerns and issues, you can reach us via the following email: <b>hotelemail@gmail.com. </b> Also, save your transaction number for future reference.
+                                            For important concerns and issues, you can reach us via the following email: <b>maryalstonhall@gmail.com. </b> Also, save your transaction number for future reference.
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
                                             The standard check-in time starts at <b>2 PM</b>, and the guests should already check-out before <b>12 PM</b> in the last day.
