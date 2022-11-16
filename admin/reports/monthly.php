@@ -127,17 +127,90 @@
                 <section class="flex py-7 px-20 lg:px-7 bg-gray-300">
                     Admin / Monthly Sales Report
                 </section>
-                <section>
+                <!-- <section>
                     <div class="flex justify-around items-center">
                         <img src="/logo.jpg" alt="logo" width="100px" height="100px">
                         <div class="text-center">
                             <div class="font-bold">TRINITY UNIVERSITY OF ASIA</div>
                             <div class="font-bold">MARY ALSTON HALL</div>
-                            <div>Room Reservation</div>
+                            <div>Monthly Sales Report</div>
                         </div>
                         <img src="/logo.jpg" alt="logo" width="100px" height="100px">
                     </div>
-                </section>
+                    <div class="p-3">
+                        <div>
+                            Monthly Sales Report for <b>November 2022</b>
+                        </div>
+                        <div>
+                            Date: <b>November 16, 2022</b>
+                        </div>
+                    </div>
+                    <div class="flex flex-col p-2 gap-2">
+                        <div class="text-md font-bold">Pahiyas - Executive Suite</div>
+                        <table class="table-auto border border-black text-center">
+                            <tr class="py-2 h-12">
+                                <th>Transaction #</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Nights</th>
+                                <th>Guests</th>
+                                <th>Total Cost</th>
+                                <th>Amount Paid</th>
+                            </tr>
+                            <tr class="border border-black h-8">
+                                <td>63723580207fa-1</td>
+                                <td>2022-11-15</td>
+                                <td>2022-11-19</td>
+                                <td>5</td>
+                                <td>2</td>
+                                <td>8,500.00</td>
+                                <td>8,500.00</td>
+                            </tr>
+                            <tr class="border border-black h-8 font-bold">
+                                <td class=""></td>
+                                <td class=""></td>
+                                <td class=""></td>
+                                <td class=""></td>
+                                <td class=""></td>
+                                <td class="text-right">Sales:</td>
+                                <td>9,900.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="flex flex-col p-2 gap-2 w-1/2">
+                        <div class="text-md font-bold">Total Sales</div>
+                        <table class="table-auto border border-black text-center">
+                            <tr class="py-2 h-12">
+                                <th>Room Name</th>
+                                <th>Sales</th>
+                            </tr>
+                            <tr class="border border-black h-8">
+                                <td>Pahiyas - Executive Suite</td>
+                                <td>9,900.00</td>
+                            </tr>
+                            <tr class="border border-black h-8">
+                                <td>Harana  - Junior Suite</td>
+                                <td>9,900.00</td>
+                            </tr>
+                            <tr class="border border-black h-8">
+                                <td>Imbayah  - Junior Suite</td>
+                                <td>9,900.00</td>
+                            </tr>
+                            <tr class="border border-black h-8">
+                                <td>Pagdayao - Dormitory</td>
+                                <td>9,900.00</td>
+                            </tr>
+                            <tr class="border border-black h-8">
+                                <td>Moriones - Dormitory</td>
+                                <td>9,900.00</td>
+                            </tr>
+                            <tr class="border border-black h-8 font-bold">
+                                <td class="text-right">Total Sales:</td>
+                                <td>9,900.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section> -->
                 <section class="flex flex-col p-7 bg-gray-200 gap-10">
                     <div class="text-lg">Generate and View the Monthly Sales Report</div>
                     <div class="flex flex-col items-start gap-5">
@@ -257,10 +330,10 @@
 
                     selectedReservations = allReservations.filter( (reservation, i) =>{
                         let thisDate = new Date(reservation.booking.inDate);
-                        console.log(thisDate.getFullYear(), year, thisDate.getMonth(), month);
+                        // console.log(thisDate.getFullYear(), year, thisDate.getMonth(), month);
                         return thisDate.getFullYear() === parseInt(year) && thisDate.getMonth() === parseInt(month) && reservation.booking.bookingStatus === 'Completed';
                     });
-                    console.log('SelectedReservations', selectedReservations);
+                    // console.log('SelectedReservations', selectedReservations);
 
                     $("#records").text(selectedReservations.length);
                     var totalSales = 0;
@@ -268,7 +341,7 @@
                         let sale = parseInt(reservation.booking.amountPaid.replaceAll(',', ''));
                         totalSales += sale;
                     });
-                    console.log('Total Sales', totalSales);
+                    // console.log('Total Sales', totalSales);
 
                     $("#sales").text('P ' + new Intl.NumberFormat().format(totalSales) + '.00');
                 }
@@ -281,26 +354,321 @@
                 }else if(!selectedReservations || selectedReservations.length === 0){
                     alert('There are no records')
                 }else{
-                    alert('Processing...')
-                    var element = `
+                    // alert('Processing...')
+                    const pdfData = {
+                        pahiyasSales: 0,
+                        haranaSales: 0,
+                        imbayahSales: 0,
+                        pagdayaoSales: 0,
+                        morionesSales: 0,
+                        totalSales: 0,
+                        pahiyasReservation: [],
+                        haranaReservation: [],
+                        imbayahReservation: [],
+                        pagdayaoReservation: [],
+                        morionesReservation: [],
+                    }
+
+                    pdfData.pahiyasReservation = selectedReservations.filter((reservation, i) =>{
+                        let sale = parseInt(reservation.booking.amountPaid.replaceAll(',', ''));
+                        if(parseInt(reservation.booking.roomCode) === 0){
+                            pdfData.pahiyasSales += sale;
+                            return true;
+                        }
+                        return false;
+                    })
+
+                    pdfData.haranaReservation = selectedReservations.filter((reservation, i) =>{
+                        let sale = parseInt(reservation.booking.amountPaid.replaceAll(',', ''));
+                        if(parseInt(reservation.booking.roomCode) === 1){
+                            pdfData.haranaSales += sale;
+                            return true;
+                        }
+                        return false;
+                    })
+
+                    pdfData.imbayahReservation = selectedReservations.filter((reservation, i) =>{
+                        let sale = parseInt(reservation.booking.amountPaid.replaceAll(',', ''));
+                        if(parseInt(reservation.booking.roomCode) === 2){
+                            pdfData.imbayahSales += sale;
+                            return true;
+                        }
+                        return false;
+                    })
+
+                    pdfData.pagdayaoReservation = selectedReservations.filter((reservation, i) =>{
+                        let sale = parseInt(reservation.booking.amountPaid.replaceAll(',', ''));
+                        if(parseInt(reservation.booking.roomCode) === 3){
+                            pdfData.pagdayaoSales += sale;
+                            return true;
+                        }
+                        return false;
+                    })
+
+                    pdfData.morionesReservation = selectedReservations.filter((reservation, i) =>{
+                        let sale = parseInt(reservation.booking.amountPaid.replaceAll(',', ''));
+                        if(parseInt(reservation.booking.roomCode) === 4){
+                            pdfData.morionesSales += sale;
+                            return true;
+                        }
+                        return false;
+                    })
+
+                    pdfData.totalSales = pdfData.pahiyasSales + pdfData.haranaSales + pdfData.imbayahSales + pdfData.pagdayaoSales + pdfData.morionesSales;
+
+                    console.log('Data: ', pdfData);
+
+                    var pahiyas = `
+                        <div class="flex flex-col p-2 gap-2">
+                            <div class="text-md font-bold">Pahiyas - Executive Suite</div>
+                            <table class="table-auto border border-black text-center">
+                                <tr class="py-2 h-12">
+                                    <th>Transaction #</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th>Nights</th>
+                                    <th>Guests</th>
+                                    <th>Total Cost</th>
+                                    <th>Amount Paid</th>
+                                </tr>
+                                ${
+                                    pdfData.pahiyasReservation.map((reservation) => `<tr class="border border-black h-8">
+                                        <td>${reservation.booking.transactionCode}</td>
+                                        <td>${reservation.booking.inDate}</td>
+                                        <td>${reservation.booking.outDate}</td>
+                                        <td>${reservation.booking.nights}</td>
+                                        <td>${reservation.booking.guests}</td>
+                                        <td>${reservation.booking.costTotal}</td>
+                                        <td>${reservation.booking.amountPaid}</td>
+                                    </tr>`)
+                                }
+                                <tr class="border border-black h-8 font-bold">
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class="text-right">Sales:</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.pahiyasSales) + '.00'}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    `;
+
+                    var harana = `
+                        <div class="flex flex-col p-2 gap-2">
+                            <div class="text-md font-bold">Harana  - Junior Suite</div>
+                            <table class="table-auto border border-black text-center">
+                                <tr class="py-2 h-12">
+                                    <th>Transaction #</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th>Nights</th>
+                                    <th>Guests</th>
+                                    <th>Total Cost</th>
+                                    <th>Amount Paid</th>
+                                </tr>
+                                ${
+                                    pdfData.haranaReservation.map((reservation) => `<tr class="border border-black h-8">
+                                        <td>${reservation.booking.transactionCode}</td>
+                                        <td>${reservation.booking.inDate}</td>
+                                        <td>${reservation.booking.outDate}</td>
+                                        <td>${reservation.booking.nights}</td>
+                                        <td>${reservation.booking.guests}</td>
+                                        <td>${reservation.booking.costTotal}</td>
+                                        <td>${reservation.booking.amountPaid}</td>
+                                    </tr>`)
+                                }
+                                <tr class="border border-black h-8 font-bold">
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class="text-right">Sales:</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.haranaSales) + '.00'}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    `;
+
+                    var imbayah = `
+                        <div class="flex flex-col p-2 gap-2">
+                            <div class="text-md font-bold">Imbayah  - Junior Suite</div>
+                            <table class="table-auto border border-black text-center">
+                                <tr class="py-2 h-12">
+                                    <th>Transaction #</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th>Nights</th>
+                                    <th>Guests</th>
+                                    <th>Total Cost</th>
+                                    <th>Amount Paid</th>
+                                </tr>
+                                ${
+                                    pdfData.imbayahReservation.map((reservation) => `<tr class="border border-black h-8">
+                                        <td>${reservation.booking.transactionCode}</td>
+                                        <td>${reservation.booking.inDate}</td>
+                                        <td>${reservation.booking.outDate}</td>
+                                        <td>${reservation.booking.nights}</td>
+                                        <td>${reservation.booking.guests}</td>
+                                        <td>${reservation.booking.costTotal}</td>
+                                        <td>${reservation.booking.amountPaid}</td>
+                                    </tr>`)
+                                }
+                                <tr class="border border-black h-8 font-bold">
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class="text-right">Sales:</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.imbayahSales) + '.00'}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    `;
+
+                    var pagdayao = `
+                        <div class="flex flex-col p-2 gap-2">
+                            <div class="text-md font-bold">Pagdayao - Dormitory</div>
+                            <table class="table-auto border border-black text-center">
+                                <tr class="py-2 h-12">
+                                    <th>Transaction #</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th>Nights</th>
+                                    <th>Guests</th>
+                                    <th>Total Cost</th>
+                                    <th>Amount Paid</th>
+                                </tr>
+                                ${
+                                    pdfData.pagdayaoReservation.map((reservation) => `<tr class="border border-black h-8">
+                                        <td>${reservation.booking.transactionCode}</td>
+                                        <td>${reservation.booking.inDate}</td>
+                                        <td>${reservation.booking.outDate}</td>
+                                        <td>${reservation.booking.nights}</td>
+                                        <td>${reservation.booking.guests}</td>
+                                        <td>${reservation.booking.costTotal}</td>
+                                        <td>${reservation.booking.amountPaid}</td>
+                                    </tr>`)
+                                }
+                                <tr class="border border-black h-8 font-bold">
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class="text-right">Sales:</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.pagdayaoSales) + '.00'}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    `;
+
+                    var moriones = `
+                        <div class="flex flex-col p-2 gap-2">
+                            <div class="text-md font-bold">Moriones - Dormitory</div>
+                            <table class="table-auto border border-black text-center">
+                                <tr class="py-2 h-12">
+                                    <th>Transaction #</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th>Nights</th>
+                                    <th>Guests</th>
+                                    <th>Total Cost</th>
+                                    <th>Amount Paid</th>
+                                </tr>
+                                ${
+                                    pdfData.morionesReservation.map((reservation) => `<tr class="border border-black h-8">
+                                        <td>${reservation.booking.transactionCode}</td>
+                                        <td>${reservation.booking.inDate}</td>
+                                        <td>${reservation.booking.outDate}</td>
+                                        <td>${reservation.booking.nights}</td>
+                                        <td>${reservation.booking.guests}</td>
+                                        <td>${reservation.booking.costTotal}</td>
+                                        <td>${reservation.booking.amountPaid}</td>
+                                    </tr>`)
+                                }
+                                <tr class="border border-black h-8 font-bold">
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class=""></td>
+                                    <td class="text-right">Sales:</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.morionesSales) + '.00'}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    `;
+
+                    var combinedElement = `
                         <div class="flex justify-around items-center">
                             <img src="/logo.jpg" alt="logo" width="100px" height="100px">
                             <div class="text-center">
-                                <div>TRINITY UNIVERSITY OF ASIA</div>
-                                <div>MARY ALSTON HALL</div>
-                                <div>Room Reservation</div>
+                                <div class="font-bold">TRINITY UNIVERSITY OF ASIA</div>
+                                <div class="font-bold">MARY ALSTON HALL</div>
+                                <div>Monthly Sales Report</div>
                             </div>
                             <img src="/logo.jpg" alt="logo" width="100px" height="100px">
                         </div>
+                        <div class="p-3">
+                            <div>
+                                Monthly Sales Report for <b>${months[month] + ' ' + year}</b>
+                            </div>
+                            <div>
+                                Date: <b>${new Date().toLocaleDateString()}</b>
+                            </div>
+                        </div>
+                        ${pahiyas}
+                        ${harana}
+                        ${imbayah}
+                        ${pagdayao}
+                        ${moriones}
+                        <div class="flex flex-col p-2 gap-2 w-1/2">
+                            <div class="text-md font-bold">Total Sales</div>
+                            <table class="table-auto border border-black text-center">
+                                <tr class="py-2 h-12">
+                                    <th>Room Name</th>
+                                    <th>Sales</th>
+                                </tr>
+                                <tr class="border border-black h-8">
+                                    <td>Pahiyas - Executive Suite</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.pahiyasSales) + '.00'}</td>
+                                </tr>
+                                <tr class="border border-black h-8">
+                                    <td>Harana  - Junior Suite</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.haranaSales) + '.00'}</td>
+                                </tr>
+                                <tr class="border border-black h-8">
+                                    <td>Imbayah  - Junior Suite</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.imbayahSales) + '.00'}</td>
+                                </tr>
+                                <tr class="border border-black h-8">
+                                    <td>Pagdayao - Dormitory</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.pagdayaoSales) + '.00'}</td>
+                                </tr>
+                                <tr class="border border-black h-8">
+                                    <td>Moriones - Dormitory</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.morionesSales) + '.00'}</td>
+                                </tr>
+                                <tr class="border border-black h-8 font-bold">
+                                    <td class="text-right">Total Sales:</td>
+                                    <td>${new Intl.NumberFormat().format(pdfData.totalSales) + '.00'}</td>
+                                </tr>
+                            </table>
+                        </div>
                     `;
+
                     var opt = {
-                        margin:       1,
+                        margin:       0.5,
                         filename:     'Monthly Report - '+ months[month] + ' ' + year + '.pdf',
                         image:        { type: 'jpeg', quality: 0.98 },
                         html2canvas:  { scale: 2 },
                         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
                     };
-                    html2pdf().set(opt).from(element).save();
+                    html2pdf().set(opt).from(combinedElement).save();
                 }
             })
 
@@ -326,7 +694,7 @@
                     allReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
                     console.log('ALL RESERVATIONS', allReservations);
 
-                    var startYear = 2020;
+                    var startYear = 2022;
                     var currentYear = new Date().getFullYear();
                     let years = []
                     while ( startYear <= currentYear ) {
