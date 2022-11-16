@@ -168,6 +168,10 @@
                                     <div class="text-xs lg:text-sm">Unavailable </div>
                                 </div>
                                 <div class="flex gap-2 items-center">
+                                    <div class="border-[1px] border-gray-600 bg-gray-600 w-3 h-3 rounded-full"></div>
+                                    <div class="text-xs lg:text-sm">Invalid </div>
+                                </div>
+                                <div class="flex gap-2 items-center">
                                     <div class="border-[1px] border-blue-500 bg-blue-500 w-3 h-3 rounded-full"></div>
                                     <div class="text-xs lg:text-sm">Selected </div>
                                 </div>
