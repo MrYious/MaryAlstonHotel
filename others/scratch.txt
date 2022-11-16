@@ -77,3 +77,4 @@ maryalstonhotel@gmail.com
 
 logo - reservation, monthly, yearly pdf
 payment channels - reservation pdf, newBooking email,
+remove console.log
