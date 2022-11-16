@@ -955,46 +955,62 @@
                         <p>&nbsp;</p>
                         <h3><span style="font-size:14px"><strong>Our Official Payment Channels:</strong></span></h3>
 
-                        <table border="0" style="width:467px">
+                        <table style="width: 571.422px;" border="0">
                             <tbody>
                                 <tr>
-                                    <td style="text-align:center; width:57px">&nbsp;</td>
-                                    <td style="width:109px">
-                                    <p style="text-align:center"><span style="font-size:12px"><strong>GCASH</strong></span></p>
+                                    <td style="text-align: center; width: 75px;">&nbsp;</td>
+                                    <td style="width: 136px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>GCASH</strong></span></p>
                                     </td>
-                                    <td style="width:82px">
-                                    <p style="text-align:center">&nbsp;</p>
+                                    <td style="width: 92px;">
+                                        <p style="text-align: center;">&nbsp;</p>
                                     </td>
-                                    <td style="width:190px">
-                                    <p style="text-align:center"><span style="font-size:12px"><strong>BANK ACCOUNT</strong></span></p>
+                                    <td style="width: 174px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>BANK ACCOUNT</strong></span></p>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td style="width:57px">
-                                    <p style="text-align:center"><span style="font-size:12px"><strong>Name</strong></span></p>
-                                    </td>
-                                    <td style="width:109px">
-                                    <p style="text-align:center"><span style="font-size:12px">Juan dela Cruz</span></p>
-                                    </td>
-                                    <td style="width:82px">
-                                    <p style="text-align:center"><span style="font-size:12px"><strong>Name</strong></span></p>
-                                    </td>
-                                    <td style="width:190px">
-                                    <p style="text-align:center"><span style="font-size:12px">&nbsp;Juan dela Cruz</span></p>
+                                    <td style="width: 95px;">&nbsp;</td>
+                                    <td style="width: 283.422px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>BANK ACCOUNT</strong></span></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:57px">
-                                    <p style="text-align:center"><span style="font-size:12px"><strong>Number</strong></span></p>
+                                    <td style="width: 75px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>Name</strong></span></p>
                                     </td>
-                                    <td style="width:109px">
-                                    <p style="text-align:center"><span style="font-size:12px">09625245816</span></p>
+                                    <td style="width: 136px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;">Juan dela Cruz</span></p>
                                     </td>
-                                    <td style="width:82px">
-                                    <p style="text-align:center"><span style="font-size:12px"><strong>Number</strong></span></p>
+                                    <td style="width: 92px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>Name</strong></span></p>
                                     </td>
-                                    <td style="width:190px">
-                                    <p style="text-align:center"><span style="font-size:12px">09625245816</span></p>
+                                    <td style="width: 174px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;">&nbsp;Juan dela Cruz</span></p>
+                                    </td>
+                                    <td style="width: 95px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>Name</strong></span></p>
+                                    </td>
+                                    <td style="width: 283.422px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;">Juan dela Cruz</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 75px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>Number</strong></span></p>
+                                    </td>
+                                    <td style="width: 136px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;">09625245816</span></p>
+                                    </td>
+                                    <td style="width: 92px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>Number</strong></span></p>
+                                    </td>
+                                    <td style="width: 174px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;">09625245816</span></p>
+                                    </td>
+                                    <td style="width: 95px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>Number</strong></span></p>
+                                    </td>
+                                    <td style="width: 283.422px;">
+                                        <p style="text-align: center;"><span style="font-size: 12px;">09625245816</span></p>
                                     </td>
                                 </tr>
                             </tbody>
