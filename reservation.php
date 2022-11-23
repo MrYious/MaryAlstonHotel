@@ -1,9 +1,6 @@
 <?php
 	include 'api/checkExpired.php';
 ?>
-<!-- FIX HEADER TITLE IN PDF GENERATE -->
-<!-- FIX HEADER TITLE IN REPORTS PDF GENERATE -->
-<!-- CREATE DYNAMIC PAYMENT CHANNELS -->
 <html>
     <head>
         <title> Mary Alston Hotel </title>
@@ -443,16 +440,21 @@
                                     <div class="border-2 border-black w-full"></div>
                                 </div>
                                 <div class="flex flex-col lg:flex-row gap-4">
-                                    <div class="flex gap-8  w-full lg:w-2/3">
-                                        <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                            <div class="font-bold text-base lg:text-lg">GCASH</div>
-                                            <div id="here" class="text-sm lg:text-base py-1 w-full truncate">Name: Juan dela Cruz</div>
-                                            <div id="here" class="text-sm lg:text-base py-1 w-full  truncate">Number: 09366845621</div>
+                                    <div class="flex flex-wrap lg:justify-around w-full gap-8">
+                                        <div class="flex flex-col gap-2 w-[46%] lg:w-[30%]">
+                                            <div id="type1" class="font-bold text-base lg:text-lg">GCASH</div>
+                                            <div id="name1" class="text-sm lg:text-base py-1 w-full truncate">Name: Juan dela Cruz</div>
+                                            <div id="number1" class="text-sm lg:text-base py-1 w-full  truncate">Number: 09366845621</div>
                                         </div>
-                                        <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                            <div class="font-bold text-base lg:text-lg">BANK ACCOUNT</div>
-                                            <div id="here" class="text-sm lg:text-base py-1 w-full  truncate">Name: Juan dela Cruz</div>
-                                            <div id="here" class="text-sm lg:text-base py-1 w-full  truncate">Number: 09366845621</div>
+                                        <div class="flex flex-col gap-2 w-[46%] lg:w-[30%]">
+                                            <div id="type2" class="font-bold text-base lg:text-lg">BANK ACCOUNT</div>
+                                            <div id="name2" class="text-sm lg:text-base py-1 w-full  truncate">Name: Juan dela Cruz</div>
+                                            <div id="number2" class="text-sm lg:text-base py-1 w-full  truncate">Number: 09366845621</div>
+                                        </div>
+                                        <div class="flex flex-col gap-2 w-[46%] lg:w-[30%]">
+                                            <div id="type3" class="font-bold text-base lg:text-lg">BANK ACCOUNT</div>
+                                            <div id="name3" class="text-sm lg:text-base py-1 w-full  truncate">Name: Juan dela Cruz</div>
+                                            <div id="number3" class="text-sm lg:text-base py-1 w-full  truncate">Number: 09366845621</div>
                                         </div>
                                     </div>
                                 </div>
@@ -535,6 +537,10 @@
                         perPerson: 1000
                     },
                 };
+
+                var channel1 = {name: '', number: '', type: ''}
+                var channel2 = {name: '', number: '', type: ''}
+                var channel3 = {name: '', number: '', type: ''}
 
                 // CONSTANTS
                 const roomDetails = [
@@ -896,7 +902,10 @@
 
                     if (confirm(text) == true) {
                         $.post("/api/newBooking.php",{
-                            formData: formData
+                            formData: formData,
+                            channel1,
+                            channel2,
+                            channel3
                         }).done(function(data, status) {
                             console.log('Status', status)
                             console.log('Data', data)
@@ -961,17 +970,17 @@
                                 <tr>
                                     <td style="text-align: center; width: 75px;">&nbsp;</td>
                                     <td style="width: 136px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>GCASH</strong></span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>${channel1.type}</strong></span></p>
                                     </td>
                                     <td style="width: 92px;">
                                         <p style="text-align: center;">&nbsp;</p>
                                     </td>
                                     <td style="width: 174px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>BANK ACCOUNT</strong></span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>${channel2.type}</strong></span></p>
                                     </td>
                                     <td style="width: 95px;">&nbsp;</td>
                                     <td style="width: 283.422px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>BANK ACCOUNT</strong></span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;"><strong>${channel3.type}</strong></span></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -979,19 +988,19 @@
                                         <p style="text-align: center;"><span style="font-size: 12px;"><strong>Name</strong></span></p>
                                     </td>
                                     <td style="width: 136px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;">Juan dela Cruz</span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;">${channel1.name}</span></p>
                                     </td>
                                     <td style="width: 92px;">
                                         <p style="text-align: center;"><span style="font-size: 12px;"><strong>Name</strong></span></p>
                                     </td>
                                     <td style="width: 174px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;">&nbsp;Juan dela Cruz</span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;">${channel2.name}</span></p>
                                     </td>
                                     <td style="width: 95px;">
                                         <p style="text-align: center;"><span style="font-size: 12px;"><strong>Name</strong></span></p>
                                     </td>
                                     <td style="width: 283.422px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;">Juan dela Cruz</span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;">${channel3.name}</span></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -999,19 +1008,19 @@
                                         <p style="text-align: center;"><span style="font-size: 12px;"><strong>Number</strong></span></p>
                                     </td>
                                     <td style="width: 136px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;">09625245816</span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;">${channel1.number}</span></p>
                                     </td>
                                     <td style="width: 92px;">
                                         <p style="text-align: center;"><span style="font-size: 12px;"><strong>Number</strong></span></p>
                                     </td>
                                     <td style="width: 174px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;">09625245816</span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;">${channel2.number}</span></p>
                                     </td>
                                     <td style="width: 95px;">
                                         <p style="text-align: center;"><span style="font-size: 12px;"><strong>Number</strong></span></p>
                                     </td>
                                     <td style="width: 283.422px;">
-                                        <p style="text-align: center;"><span style="font-size: 12px;">09625245816</span></p>
+                                        <p style="text-align: center;"><span style="font-size: 12px;">${channel3.number}</span></p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -1233,6 +1242,29 @@
                     }).fail(function() {
                         alert( "Retrieval Error" );
                         console.log('Retrieval Error')
+                    })
+
+                    $.post("/api/getPaymentChannels.php")
+                    .done(function(data, status) {
+                        var channels = data.channels[0];
+                        channel1 = JSON.parse(channels.channel1);
+                        channel2 = JSON.parse(channels.channel2);
+                        channel3 = JSON.parse(channels.channel3);
+                        console.log(channel1, channel2, channel3);
+
+                        $('#type1').text(channel1.type);
+                        $('#type2').text(channel2.type);
+                        $('#type3').text(channel3.type);
+
+                        $('#name1').text('Name: ' + channel1.name);
+                        $('#name2').text('Name: ' + channel2.name);
+                        $('#name3').text('Name: ' + channel3.name);
+
+                        $('#number1').text('Number: ' + channel1.number);
+                        $('#number2').text('Number: ' + channel2.number);
+                        $('#number3').text('Number: ' + channel3.number);
+                    }).fail(function() {
+
                     })
                 }
 

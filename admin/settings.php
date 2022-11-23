@@ -125,7 +125,7 @@
                     Admin / Settings
                 </section>
                 <section class="flex flex-col p-7 justify-start items-start bg-gray-200 h-full">
-                    <div class="flex flex-col w-[90%] md:w-[50%] lg:w-[40%] gap-5 p-8">
+                    <div class="flex flex-col w-[90%] md:w-[70%] lg:w-[50%] gap-5 p-8">
                         <div class="flex flex-col gap-1">
                             <div class=" text-3xl">Change Admin</div>
                             <div class=" text-sm">Modify administrator's login credentials</div>
@@ -143,6 +143,31 @@
                             <input required type="password" minlength="5" maxlength="15" name="confirmNewPassword" placeholder="Confirm New Password" class="p-2 outline-none border-[1px] border-black" >
                             <button type="submit" class="w-full text-white rounded font-bold py-2 bg-green-800 hover:bg-green-900 shadow-sm shadow-black mt-3">SAVE CHANGES</button>
                         </form>
+                        <div class="flex flex-col gap-1">
+                            <div class=" text-3xl">Update Payment Channels</div>
+                            <div class=" text-sm">Modify the official payment channels to be seen by the guests</div>
+                        </div>
+                        <form autocomplete="off"  class="flex gap-5">
+                            <div class="flex flex-col gap-2">
+                                <div>Payment Channel 1</div>
+                                <input type="text" id="type1" placeholder="Type" class="p-2 outline-none border-[1px] border-black" >
+                                <input type="text" id="name1" placeholder="Name" class="p-2 outline-none border-[1px] border-black" >
+                                <input type="text" id="number1" placeholder="Number" class="p-2 outline-none border-[1px] border-black" >
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div>Payment Channel 2</div>
+                                <input type="text" id="type2" placeholder="Type" class="p-2 outline-none border-[1px] border-black" >
+                                <input type="text" id="name2" placeholder="Name" class="p-2 outline-none border-[1px] border-black" >
+                                <input type="text" id="number2" placeholder="Number" class="p-2 outline-none border-[1px] border-black" >
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div>Payment Channel 3</div>
+                                <input type="text" id="type3" placeholder="Type" class="p-2 outline-none border-[1px] border-black" >
+                                <input type="text" id="name3" placeholder="Name" class="p-2 outline-none border-[1px] border-black" >
+                                <input type="text" id="number3" placeholder="Number" class="p-2 outline-none border-[1px] border-black" >
+                            </div>
+                        </form>
+                        <button id="updatePaymentChannels" type="submit" class="w-full text-white rounded font-bold py-2 bg-green-800 hover:bg-green-900 shadow-sm shadow-black mt-3">SAVE CHANGES</button>
                     </div>
                 </section>
             </div>
@@ -164,6 +189,64 @@
             function openSidebar() {
                 document.querySelector(".sidebar").classList.toggle("hidden");
             }
+        </script>
+        <script>
+            $(document).ready(function () {
+            var channel1 = {name: '', number: '', type: ''}
+            var channel2 = {name: '', number: '', type: ''}
+            var channel3 = {name: '', number: '', type: ''}
+
+            $.post("/api/getPaymentChannels.php")
+            .done(function(data, status) {
+                var channels = data.channels[0];
+                channel1 = JSON.parse(channels.channel1);
+                channel2 = JSON.parse(channels.channel2);
+                channel3 = JSON.parse(channels.channel3);
+
+                $('#type1').val(channel1.type);
+                $('#type2').val(channel2.type);
+                $('#type3').val(channel3.type);
+
+                $('#name1').val(channel1.name);
+                $('#name2').val(channel2.name);
+                $('#name3').val(channel3.name);
+
+                $('#number1').val(channel1.number);
+                $('#number2').val(channel2.number);
+                $('#number3').val(channel3.number);
+            }).fail(function() {
+
+            })
+
+            $( "#updatePaymentChannels" ).click(function(e) {
+                e.preventDefault();
+                channel1 = {
+                    name: $('#name1').val(),
+                    number: $('#number1').val(),
+                    type: $('#type1').val(),
+                }
+                channel2 = {
+                    name: $('#name2').val(),
+                    number: $('#number2').val(),
+                    type: $('#type2').val(),
+                }
+                channel3 = {
+                    name: $('#name3').val(),
+                    number: $('#number3').val(),
+                    type: $('#type3').val(),
+                }
+                // console.log(channel1, channel2, channel3);
+                $.post("/api/updatePaymentChannels.php",{
+                    channel1: JSON.stringify(channel1),
+                    channel2: JSON.stringify(channel2),
+                    channel3: JSON.stringify(channel3),
+                }).done(function(data, status) {
+                    alert('Updated Successfully')
+                }).fail(function() {
+                    alert('Update was unsuccessful.')
+                })
+            });
+        });
         </script>
     </body>
 </html>
