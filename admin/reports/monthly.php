@@ -604,14 +604,12 @@
                     `;
 
                     var combinedElement = `
-                        <div class="flex justify-around items-center">
-                            <img src="/logo.jpg" alt="logo" width="100px" height="100px">
+                        <div class="flex justify-center items-center">
                             <div class="text-center">
                                 <div class="font-bold">TRINITY UNIVERSITY OF ASIA</div>
                                 <div class="font-bold">MARY ALSTON HALL</div>
                                 <div>Monthly Sales Report</div>
                             </div>
-                            <img src="/logo.jpg" alt="logo" width="100px" height="100px">
                         </div>
                         <div class="p-3">
                             <div>

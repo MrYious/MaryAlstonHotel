@@ -1,6 +1,9 @@
 <?php
 	include 'api/checkExpired.php';
 ?>
+<!-- FIX HEADER TITLE IN PDF GENERATE -->
+<!-- FIX HEADER TITLE IN REPORTS PDF GENERATE -->
+<!-- CREATE DYNAMIC PAYMENT CHANNELS -->
 <html>
     <head>
         <title> Mary Alston Hotel </title>
@@ -923,14 +926,12 @@
                     var down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
                     down = new Intl.NumberFormat().format(down) + '.00';
                     var element = `
-                        <div class="flex justify-around items-center">
-                            <img src="/logo.jpg" alt="logo" width="100px" height="100px">
+                        <div class="flex justify-center items-center">
                             <div class="text-center">
                                 <div class="font-bold">TRINITY UNIVERSITY OF ASIA</div>
                                 <div class="font-bold">MARY ALSTON HALL</div>
                                 <div>Room Reservation</div>
                             </div>
-                            <img src="/logo.jpg" alt="logo" width="100px" height="100px">
                         </div>
                         <p><span style="font-size:14px">&nbsp;<br />
                         <p><span style="font-size:14px">Date:&nbsp;<strong>${month} ${date.getDate()}, ${date.getFullYear()}</strong></span></p>
