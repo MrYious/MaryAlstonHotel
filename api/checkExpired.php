@@ -6,7 +6,7 @@
 
     $dateToday = getdate()['year'].'-'.getdate()['mon'].'-'.getdate()['mday'];
     // ALL PENDING, CONFIRMED, RESCHEDULED
-    $sql = "SELECT * FROM booking_tbl WHERE (inTime IS null AND outDate <= '".$dateToday."' ) AND (bookingStatus='Confirmed' || bookingStatus='Pending' || bookingStatus='Rescheduled')  ";
+    $sql = "SELECT * FROM booking_tbl WHERE (outDate < '".$dateToday."' ) AND (bookingStatus='Confirmed' || bookingStatus='Pending' || bookingStatus='Rescheduled')  ";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
