@@ -519,7 +519,6 @@
         <script src="https://unpkg.com/materialize-stepper@3.1.0/dist/js/mstepper.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                console.log('DATE TODAY: ', formatDate(new Date()));
 
                 // STATES
                 var allReservations;
@@ -624,13 +623,6 @@
                         },
                     ],
                     selectOverlap: function(event) {
-                        // Utilize these by preventing the user to select invalid and unavailable dates presented as events.
-                        // Allow temporary made events to be selected or #Remove temporary event before selecting new
-
-                        // console.log('OVERLAP Event ', event)
-                        // console.log('OVERLAP Date ', event.start)
-                        // console.log('OVERLAP Event ID ', event.id)
-                        // console.log('OVERLAP Event Group ID ', event.groupId)
 
                         if (event.groupId === 'Invalid' || event.groupId === 'Unavailable'){
                             return false;
@@ -639,13 +631,7 @@
                         }
                     },
                     selectAllow: function (selectInfo) {
-                        // Delete previously selected dates made as temporary events
-
-                        // console.log('SelectAllow ', selectInfo)
-                        console.log('ALL Events ', calendar.getEvents())
-                        // console.log('ALL Events Sources', calendar.getEventSources())
                         const tempEvent = calendar.getEventById('TEMPORARY');
-                        console.log('Event TEMPORARY : ', tempEvent)
                         if(tempEvent){
                             tempEvent.remove();
                         }
@@ -670,8 +656,6 @@
 
                     // WILL NOT PROCEED WHEN AN OVERLAPPING EVENT IS HIT AND FALSE
 
-                    // console.log('Selected Date');
-                    // console.log(selectionInfo);
                     $('#inDate').val(selectionInfo.startStr);
                     $('#outDate').val(selectionInfo.endStr);
 
@@ -679,16 +663,11 @@
                     let end = new Date(selectionInfo.endStr);
 
                     let difference = start.getTime() - end.getTime();
-                    // console.log(difference);
 
                     let TotalNights = Math.abs(Math.ceil(difference / (1000 * 3600 * 24)));
-                    // console.log(TotalNights + ' night');
                     $('#nights').text(TotalNights);
 
                     updateTotal();
-
-                    console.log('Start Date: ', selectionInfo.startStr);
-                    console.log('End Date: ', selectionInfo.endStr);
 
                     // DATE EVENT
                     calendar.addEvent({
@@ -714,11 +693,8 @@
 
                 function validationFunction(stepperForm, activeStepContent) {
                     const StepID = activeStepContent.querySelector('.id').value;
-                    // console.log('Active Step ID: ', StepID)
-                    // console.log('Active Step Content', activeStepContent)
 
                     if(StepID == 1){
-                        console.log('Validate 1');
                         const strD = $('#inDate').val();
                         const endD = $('#outDate').val();
 
@@ -753,7 +729,6 @@
                         return true;
 
                     } else if(StepID == 2){
-                        console.log('Validate 2');
                         if( !(activeStepContent.querySelector('#fname').checkValidity()) || !(activeStepContent.querySelector('#lname').checkValidity()) ){
                             alert('Enter your name')
                             return false;
@@ -798,27 +773,21 @@
 
                         return true;
                     } else if(StepID == 3){
-                        console.log('Validate 3');
                         return true;
                     } else if(StepID == 4){
-                        console.log('Validate 4');
                         return true;
                     }
                 }
 
                 const updateTotal = () => {
-                    // console.log('Updating Total Breakdown', formData);
                     var guests = $("#guests").text();
                     var nights = $("#nights").text();
-                    // console.log(guests, nights)
 
                     $("#tb_roomName").text(formData.roomDetail.name)
                     $("#tb_roomType").text(formData.roomDetail.type)
 
                     var cost = nights > 0 ? formData.roomDetail.cost : 0;
                     var AddCost = nights > 0 ? (formData.roomDetail.perPerson * guests) * (nights -1) : 0;
-                    // console.log('Cost ', cost);
-                    // console.log('AddCost ', AddCost);
                     var totalCost = cost + AddCost;
                     if(nights > 0){
                         $("#tb_roomCost").text(new Intl.NumberFormat().format(cost) + '.00')
@@ -880,9 +849,7 @@
 
                 const resetEvents = () => {
                     const allEvents = calendar.getEvents()
-                    // console.log('All Events: ', allEvents);
                     allEvents.forEach((event, i) => {
-                        // console.log('Event ' + i + ': ', event.groupId)
                         if(event.groupId === 'Unavailable' || event.groupId === 'TEMPORARY'){
                             event.remove();
                         }
@@ -907,15 +874,12 @@
                             channel2,
                             channel3
                         }).done(function(data, status) {
-                            console.log('Status', status)
-                            console.log('Data', data)
                             alert('Submission Success')
                             stepperInstance.nextStep();
                             formData.transCode = data.transactionCode;
                             $("#transCode").text(data.transactionCode)
                         }).fail(function() {
                             alert('Submission Success')
-                            console.log('Submission Error')
                             stepperInstance.nextStep();
                         })
                     }
@@ -928,7 +892,6 @@
 
                 $("#generatePDF").click(function(e) {
                     e.preventDefault();
-                    console.log(formData);
                     const date = new Date();
                     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     let month = months[date.getMonth()];
@@ -1215,21 +1178,15 @@
 
                 // DATA FETCH
                 function updateAllReservations(num) {
-                    console.log('Room Code', formData.roomDetail.id);
                     $.post("/api/getAllReservationsPerRoom.php", {
                         roomCode: num
                     }).done(function(data, status) {
-                        // console.log('Retrieval Success')
-                        // console.log('Status', status)
-                        console.log('ALL RESERVATIONS', data)
                         var reservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                        console.log('MERGED RESERVATIONS', reservations);
                         allReservations = reservations
 
                         resetEvents();
 
                         allReservations.forEach( (reservation, i) =>{
-                            // console.log('Reservation ' + i + ': ', reservation);
                             calendar.addEvent({
                                 id: reservation.booking.id,
                                 groupId: 'Unavailable',
@@ -1241,7 +1198,6 @@
 
                     }).fail(function() {
                         alert( "Retrieval Error" );
-                        console.log('Retrieval Error')
                     })
 
                     $.post("/api/getPaymentChannels.php")
@@ -1250,7 +1206,6 @@
                         channel1 = JSON.parse(channels.channel1);
                         channel2 = JSON.parse(channels.channel2);
                         channel3 = JSON.parse(channels.channel3);
-                        console.log(channel1, channel2, channel3);
 
                         $('#type1').text(channel1.type);
                         $('#type2').text(channel2.type);
