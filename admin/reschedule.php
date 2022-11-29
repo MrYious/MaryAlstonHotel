@@ -380,11 +380,7 @@
                 ],
                 selectOverlap: function(event) {
                     if(event.groupId !== 'UNAVAILABLE'){
-                        console.log('OVERLAP Event ID ', event.id);
                         selectedReservation = allReservations.find((reservation)=> {return reservation.booking.id === event.id} )
-                        console.log('Selected Reservation | Event : ', selectedReservation);
-                        // console.log('Selected Reservation bookDate | Event : ', selectedReservation.booking.createdAt);
-                        // console.log('Selected Reservation bookDate | Event : ', formatDate(new Date(selectedReservation.booking.createdAt)));
 
                         $('#inDate').text(selectedReservation.booking.inDate);
                         $('#outDate').text(selectedReservation.booking.outDate);
@@ -450,7 +446,6 @@
 
                         let difference = start.getTime() - end.getTime();
                         let TotalNights = Math.abs(Math.ceil(difference / (1000 * 3600 * 24)));
-                        // console.log(TotalNights, selectedReservation.booking.nights, TotalNights <= selectedReservation.booking.nights );
 
                         $('#inDateNew').text('');
                         $('#outDateNew').text('');
@@ -574,7 +569,6 @@
                 const newIn = $('#inDateNew').text();
                 const newOut = $('#outDateNew').text();
                 const newNights = $('#newNights').text();
-                console.log(newIn, newOut, newNights, selectedReservation.booking.id);
 
                 if((!newIn) || (!newOut) || (!newNights)){
                     alert('Select a date first and then select a new date');
@@ -613,9 +607,7 @@
                 $.post("/api/getAllConfirmedReservationsPerRoom.php", {
                     roomCode: num
                 }).done(function(data, status) {
-                    console.log('ALL RESERVATIONS', data)
                     var reservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    console.log('MERGED RESERVATIONS', reservations);
                     allReservations = reservations
 
                     resetEvents();
@@ -650,7 +642,6 @@
 
                 }).fail(function() {
                     alert( "Retrieval Error" );
-                    console.log('Retrieval Error')
                 })
             }
 

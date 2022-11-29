@@ -691,11 +691,7 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                 $.post("/api/getAllReservationsPerStatus.php",{
                     bookingStatus: 'Pending'
                 }).done(function(data, status) {
-                    // console.log('Retrieval Success')
-                    // console.log('Status', status)
-                    // console.log('ALL RESERVATIONS', data)
                     pendingReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    // console.log('MERGED RESERVATIONS', pendingReservations);
 
                     // CLEAR TABLE DATA ARRAY
                     // CLEAR TABLE
@@ -715,10 +711,7 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                         const down = parseInt(reservation.booking.costTotal.replaceAll(',', '')) / 2;
                         const bookingDate = new Date(reservation.booking.createdAt);
                         const expirationDate = bookingDate.addDays(2);
-                        // console.log(expirationDate);
-                        // console.log(new Date());
                         const hrsLeft = diff_hours(expirationDate, new Date())
-                        // console.log(hrsLeft);
                         tableData[i] = {
                             index: i,
                             bookingID: reservation.booking.id,
@@ -735,17 +728,14 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                             timeBooked: new Date(reservation.booking.createdAt).toLocaleTimeString(),
                             data: reservation
                         }
-                        // console.log('Reservation ' + i + ': ', reservation);
                     });
 
-                    // console.log('TODAY TABLE DATA', tableData);
 
                     // LOAD TABLE DATA INTO TABLE
                     myTable.rows.add(tableData).draw(false);
 
                 }).fail(function() {
                     alert( "Retrieval Error" );
-                    console.log('Retrieval Error')
                 })
             }
 

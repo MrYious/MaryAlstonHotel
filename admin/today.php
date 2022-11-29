@@ -502,10 +502,6 @@
                     {
                         data: 'status',
                         render: function (data, type, row, meta) {
-                            // console.log(data)
-                            // console.log(type)
-                            // console.log(row)
-                            // console.log(meta)
                             if(data === 'To Arrive'){
                                 return `<div class="flex flex-col gap-2">
                                     <button id="btnIn" onclick="handleCheckIn('${row.index}')" class="text-black border-[10x] rounded-full border-black w-28 py-2 bg-green-400 hover:bg-green-600 shadow-sm shadow-black">Check-In</button>
@@ -692,27 +688,14 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
 
                 $.post("/api/getAllReservations.php")
                 .done(function(data, status) {
-                    // console.log('Retrieval Success')
-                    // console.log('Status', status)
-                    // console.log('ALL RESERVATIONS', data)
                     var allReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    // console.log('MERGED RESERVATIONS', allReservations);
 
                     const dateToday = formatDate(new Date());
                     const dateToday1 = '2022-11-17';
 
                     todayReservations = allReservations.filter( (reservation, i) =>{
-                        // console.log('Reservation ' + i + ': ', reservation);
-                        // console.log('Date Today ' + i + ': ', dateToday1);
-                        // console.log('InDate ' + i + ': ', reservation.booking.inDate);
-                        // console.log('OutDate ' + i + ': ', reservation.booking.outDate);
-                        // console.log('Check ' + i + ': ',  reservation.booking.inDate <= dateToday1 && dateToday1 <= reservation.booking.outDate );
-
-                        // console.log('============================================');
                         return reservation.booking.inDate <= dateToday && dateToday <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
                     });
-
-                    // console.log('TODAY RESERVATIONS', todayReservations);
 
                     // CLEAR TABLE DATA ARRAY
                     // CLEAR TABLE
@@ -735,17 +718,14 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                             paid: reservation.booking.amountPaid ? reservation.booking.amountPaid : '0.00',
                             data: reservation
                         }
-                        // console.log('Reservation ' + i + ': ', reservation);
                     });
 
-                    // console.log('TODAY TABLE DATA', tableData);
 
                     // LOAD TABLE DATA INTO TABLE
                     myTable.rows.add(tableData).draw(false);
 
                 }).fail(function() {
                     alert( "Retrieval Error" );
-                    console.log('Retrieval Error')
                 })
             }
 

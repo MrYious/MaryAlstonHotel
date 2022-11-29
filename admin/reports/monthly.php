@@ -33,7 +33,7 @@
         <!-- HTML 2 PDF -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
-    <body>
+    <body class="  bg-gray-200">
         <!-- Mobile Nav Button -->
         <span class="fixed text-white text-4xl top-5 left-4 cursor-pointer z-[2]" onclick="openSidebar()" >
             <div class="p-1 bg-gray-900 rounded-md">
@@ -211,7 +211,7 @@
                         </table>
                     </div>
                 </section> -->
-                <section class="flex flex-col p-7 bg-gray-200 gap-10">
+                <section class="flex flex-col p-7 gap-10">
                     <div class="text-lg">Generate and View the Monthly Sales Report</div>
                     <div class="flex flex-col items-start gap-5">
                         <div class="flex flex-col gap-2 w-60">
@@ -330,10 +330,8 @@
 
                     selectedReservations = allReservations.filter( (reservation, i) =>{
                         let thisDate = new Date(reservation.booking.inDate);
-                        // console.log(thisDate.getFullYear(), year, thisDate.getMonth(), month);
                         return thisDate.getFullYear() === parseInt(year) && thisDate.getMonth() === parseInt(month) && reservation.booking.bookingStatus === 'Completed';
                     });
-                    // console.log('SelectedReservations', selectedReservations);
 
                     $("#records").text(selectedReservations.length);
                     var totalSales = 0;
@@ -341,7 +339,6 @@
                         let sale = parseInt(reservation.booking.amountPaid.replaceAll(',', ''));
                         totalSales += sale;
                     });
-                    // console.log('Total Sales', totalSales);
 
                     $("#sales").text('P ' + new Intl.NumberFormat().format(totalSales) + '.00');
                 }
@@ -415,8 +412,6 @@
                     })
 
                     pdfData.totalSales = pdfData.pahiyasSales + pdfData.haranaSales + pdfData.imbayahSales + pdfData.pagdayaoSales + pdfData.morionesSales;
-
-                    console.log('Data: ', pdfData);
 
                     var pahiyas = `
                         <div class="flex flex-col p-2 gap-2">
@@ -688,9 +683,7 @@
 
                 $.post("/api/getAll.php")
                 .done(function(data, status) {
-                    // console.log('ALL RESERVATIONS', data)
                     allReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    console.log('ALL RESERVATIONS', allReservations);
 
                     var startYear = 2022;
                     var currentYear = new Date().getFullYear();
@@ -702,14 +695,12 @@
                         return b - a;
                     });
 
-                    console.log(startYear, currentYear, years);
 
                     years.forEach(year => {
                         $('#year').append($('<option>').val(year).text(year))
                     });
                 }).fail(function() {
                     alert( "Retrieval Error" );
-                    console.log('Retrieval Error')
                 })
 
             }

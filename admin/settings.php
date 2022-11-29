@@ -235,7 +235,6 @@
                     number: $('#number3').val(),
                     type: $('#type3').val(),
                 }
-                // console.log(channel1, channel2, channel3);
                 $.post("/api/updatePaymentChannels.php",{
                     channel1: JSON.stringify(channel1),
                     channel2: JSON.stringify(channel2),

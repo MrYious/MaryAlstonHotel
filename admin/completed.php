@@ -600,11 +600,7 @@
                 $.post("/api/getAllReservationsPerStatus.php",{
                     bookingStatus: 'Completed'
                 }).done(function(data, status) {
-                    // console.log('Retrieval Success')
-                    // console.log('Status', status)
-                    console.log('ALL RESERVATIONS', data)
                     completedReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    console.log('MERGED RESERVATIONS', completedReservations);
 
                     // CLEAR TABLE DATA ARRAY
                     // CLEAR TABLE
@@ -630,17 +626,13 @@
                             timeBooked: new Date(reservation.booking.createdAt).toLocaleTimeString(),
                             data: reservation
                         }
-                        // console.log('Reservation ' + i + ': ', reservation);
                     });
-
-                    console.log('TODAY TABLE DATA', tableData);
 
                     // LOAD TABLE DATA INTO TABLE
                     myTable.rows.add(tableData).draw(false);
 
                 }).fail(function() {
                     alert( "Retrieval Error" );
-                    console.log('Retrieval Error')
                 })
             }
 

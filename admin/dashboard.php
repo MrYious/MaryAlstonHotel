@@ -277,9 +277,7 @@
 
                 $.post("/api/getAll.php")
                 .done(function(data, status) {
-                    // console.log('ALL RESERVATIONS', data)
                     var allReservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
-                    console.log('ALL RESERVATIONS', allReservations);
 
                     // CHANGE THESE
                     const dateToday = formatDate(new Date());
@@ -288,40 +286,32 @@
                     const todayReservations = allReservations.filter( (reservation, i) =>{
                         return reservation.booking.inDate <= dateToday && dateToday <= reservation.booking.outDate && (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' );
                     });
-                    console.log('TODAY RESERVATIONS', todayReservations);
                     stats.today = todayReservations.length;
 
                     const thisMonthConfirmedReservations = allReservations.filter( (reservation, i) =>{
-                        // console.log(new Date(reservation.booking.inDate).getMonth(), new Date().getMonth())
                         return (reservation.booking.bookingStatus === 'Confirmed' || reservation.booking.bookingStatus === 'Rescheduled' ) && new Date(reservation.booking.inDate).getMonth() === new Date().getMonth();
                     });
-                    console.log('CONFIRMED THIS MONTH RESERVATIONS', thisMonthConfirmedReservations);
                     stats.confirmedM = thisMonthConfirmedReservations.length;
 
                     const thisDayPendingReservations = allReservations.filter( (reservation, i) =>{
                         return reservation.booking.bookingStatus === 'Pending' && new Date(reservation.booking.createdAt).toLocaleDateString() === new Date().toLocaleDateString();
                     });
-                    console.log('NEW PENDING TODAY RESERVATIONS', thisDayPendingReservations);
                     stats.newPendingToday = thisDayPendingReservations.length;
 
                     const allPendingReservations = allReservations.filter( (reservation, i) =>{
                         return reservation.booking.bookingStatus === 'Pending';
                     });
-                    console.log('ALL PENDING RESERVATIONS', allPendingReservations);
                     stats.totalPending = allPendingReservations.length;
 
                     const allCompletedReservations = allReservations.filter( (reservation, i) =>{
-                        // console.log(new Date(reservation.booking.outDate).getMonth(), new Date().getMonth()-1 ? new Date().getMonth() - 1 : 11)
                         return reservation.booking.bookingStatus === 'Completed' && new Date(reservation.booking.inDate).getMonth() === (new Date().getMonth()-1 ? new Date().getMonth()-1 : 11);
                     });
-                    console.log('ALL COMPLETED RESERVATIONS', allCompletedReservations);
                     stats.totalCompletedM = allCompletedReservations.length;
 
                     var totalSales = 0;
                     allCompletedReservations.forEach(reservation => {
                         totalSales += parseInt(reservation.booking.costTotal.replaceAll(',', ''));
                     });
-                    console.log('TOTAL SALES', totalSales);
                     stats.totalSalesML = totalSales;
 
                     var countRooms = [0,0,0,0,0]
@@ -329,14 +319,12 @@
                         countRooms[parseInt(reservation.booking.roomCode)]++
                     });
                     var highestCount = Math.max(...countRooms)
-                    console.log('MOST BOOKED ROOM', countRooms, highestCount);
 
                     countRooms.forEach((num,i) => {
                         if(highestCount === num && highestCount !== 0)
                             stats.mostBookedRoom += stats.mostBookedRoom ? ', ' + roomDetails[i].name : roomDetails[i].name;
                     });
 
-                    console.log('STATS: ', stats);
 
                     $('#1').text(stats.today);
                     $('#2').text(stats.dateToday);
@@ -357,7 +345,6 @@
 
                 }).fail(function() {
                     alert( "Retrieval Error" );
-                    console.log('Retrieval Error')
                 })
             }
 
