@@ -42,7 +42,6 @@
 				}
 			}
 		}else{
-			echo 'Error '.$conn->error;
             $_SESSION['errorMsg'] = 'Incorrect password';
             header('location:/admin/settings.php');
 		}

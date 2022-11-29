@@ -9,7 +9,6 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$encryptedPassword = md5($password);
-		echo '<b>'. $encryptedPassword .'</b>';
 
 		// QUERY
 		$sql = "SELECT * FROM `admin_tbl` WHERE `username` = '". $username ."'";
@@ -28,7 +27,6 @@
 				}
 			}
 		}else{
-			echo 'Error '.$conn->error;
 			$_SESSION['errorMsg'] = 'Incorrect username and password';
 			header('location:/admin.php');
 		}

@@ -33,10 +33,6 @@
             $bookingDate->add(new DateInterval('P2D'));
             $expirationDate = $bookingDate->format('Y-m-d H:i:s');
 
-            // echo $dateToday;
-            // echo "<br>";
-            // echo $expirationDate;
-            // echo "<br>";
             // TRUE => EXPIRED
             // FALSE => GOODS
             if(!($expirationDate > $dateToday)){
@@ -45,9 +41,3 @@
             }
         }
     }
-
-    // $response['bookings'] = $bookings;
-    // echo json_encode($response);
-    // echo count($bookings);
-    // echo $dateToday;
-?>
