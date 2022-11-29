@@ -717,7 +717,7 @@
                 // STEPPER
                 var stepper = document.querySelector('.stepper');
                 var stepperInstance = new MStepper(stepper, {
-                    firstActive: 2,
+                    firstActive: 0,
                     validationFunction: validationFunction,
                     stepTitleNavigation: false,
                 })
