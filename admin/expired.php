@@ -144,6 +144,7 @@
                                 <th>Date Booked</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
+                                <th>Guest</th>
                             </tr>
                         </thead>
                     </table>
@@ -509,6 +510,18 @@
                             return `<div class="border-red-500 text-black border-b-2 text-center p-1 my-2">${data}</div>`
                         }
                     },
+                    {
+                        data: 'index',
+                        render: function (data, type, row, meta) {
+                            if(row.data.guest){
+                                return `<span class='flex items-center justify-center '>
+                                    <i onclick="handleDelete('${row.index}')" class="p-1 bg-red-400 rounded-sm cursor-pointer shadow-sm shadow-black text-white font-bold text-2xl hover:bg-red-500 bi bi-x"></i>
+                                </span>`;
+                            } else {
+                                return `<span></span>`;
+                            }
+                        }
+                    },
                 ]
             });
 
@@ -576,13 +589,13 @@
                 $('#roomCapacity').text(roomDetails[selectedReservation.booking.roomCode].capacity);
                 $("#roomCost").text(new Intl.NumberFormat().format(roomDetails[selectedReservation.booking.roomCode].cost) + '.00');
 
-                $('#firstName').text(selectedReservation.guest.firstname);
-                $('#lastName').text(selectedReservation.guest.lastname);
-                $('#email').text(selectedReservation.guest.email);
-                $('#mobileNo').text(selectedReservation.guest.mobileNo);
-                $('#birthDate').text(selectedReservation.guest.birthdate);
-                $('#fromTua').text(selectedReservation.guest.fromTua);
-                $('#specialRequests').text(selectedReservation.booking.specialRequests);
+                $('#firstName').text(selectedReservation.guest ? selectedReservation.guest.firstname : '');
+                $('#lastName').text(selectedReservation.guest ? selectedReservation.guest.lastname : '');
+                $('#email').text(selectedReservation.guest ? selectedReservation.guest.email : '');
+                $('#mobileNo').text(selectedReservation.guest ? selectedReservation.guest.mobileNo : '');
+                $('#birthDate').text(selectedReservation.guest ? selectedReservation.guest.birthdate : '');
+                $('#fromTua').text(selectedReservation.guest ? selectedReservation.guest.fromTua : '');
+                $('#specialRequests').text(selectedReservation.guest ? selectedReservation.booking.specialRequests : '');
 
                 $('#transCode').text(selectedReservation.booking.transactionCode);
                 $('#status').text(selectedReservation.booking.bookingStatus);
@@ -594,6 +607,27 @@
                 $('#balance').text(new Intl.NumberFormat().format(balance > 0 ? balance : 0) + '.00');
 
             } );
+            
+            const handleDelete = (idx) => {
+
+let text = `
+Do you confirm this action ?
+
+DELETE GUEST INFORMATION
+Transaction # : ${tableData[idx].transCode}
+Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest.firstname}
+`
+
+                if (confirm(text) == true) {
+                    console.log(tableData[idx].data.guest.id);
+                    $.post("/api/deleteGuestInfo.php",{
+                        id: tableData[idx].data.guest.id,
+                    }).done(function(data, status) {
+                        getAllExpiredReservations()
+                    }).fail(function() {
+                    })
+                }
+            }
 
             // DATA FETCH
             function getAllExpiredReservations() {
