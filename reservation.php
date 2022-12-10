@@ -64,13 +64,158 @@
                     <span class="font-bold text-2xl">Privacy Policy</span>
                     <span class="closePrivacy cursor-pointer">❌</span>
                 </div>
-                <div class="flex flex-col gap-4 p-5 h-[400px] overflow-auto">
+                <div class="flex flex-col gap-4 p-5 h-[400px] overflow-auto text-justify">
                     <div class="font-semibold">Mary Alston Hotel's Privacy Policy</div>
                     <div>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni tempore in sint distinctio blanditiis. Accusamus nostrum, sed magnam quae rerum nulla! Illo deserunt, dignissimos ut aut commodi blanditiis. Ex ab odit incidunt consectetur maiores culpa, adipisci molestias, ipsa laborum deserunt voluptates nihil nesciunt. Quam voluptates consequatur modi porro unde illum fugiat atque dicta, eius ut voluptatibus ipsam iure. Ad dicta perspiciatis excepturi reprehenderit eaque fugit sapiente ullam et! Commodi facere neque nesciunt reiciendis fugiat assumenda alias, esse aut obcaecati molestias impedit corporis quod quibusdam necessitatibus ipsa harum eaque laborum doloremque a autem voluptatibus ducimus unde, praesentium aliquid! Cupiditate, temporibus impedit.
+                        MARY ALSTON HOTEL is dedicated to protecting your personal information. You have the right
+                        to have your personal data protected as a hotel guest or visitor to our website. Personal Data is
+                        information that identifies you personally, either alone or in combination with other information
+                        we have (e.g. your name, contact number, e-mail address, among others). We are committed to
+                        complying with the Philippines' Data Privacy Act of 2012 ("DPA"), its Implementing Rules and
+                        Regulations ("IRR"), and other relevant government regulations and issuances to ensure that
+                        your right to privacy is protected in the course of our transactions and when we process your
+                        Personal Data.
                     </div>
                     <div>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni tempore in sint distinctio blanditiis. Accusamus nostrum, sed magnam quae rerum nulla! Illo deserunt, dignissimos ut aut commodi blanditiis. Ex ab odit incidunt consectetur maiores culpa, adipisci molestias, ipsa laborum deserunt voluptates nihil nesciunt. Quam voluptates consequatur modi porro unde illum fugiat atque dicta, eius ut voluptatibus ipsam iure. Ad dicta perspiciatis excepturi reprehenderit eaque fugit sapiente ullam et! Commodi facere neque nesciunt reiciendis fugiat assumenda alias, esse aut obcaecati molestias impedit corporis quod quibusdam necessitatibus ipsa harum eaque laborum doloremque a autem voluptatibus ducimus unde, praesentium aliquid! Cupiditate, temporibus impedit.
+                        It is necessary that you read and comprehend this Privacy Notice, which explains how and why
+                        we collect your personal data, what we do with it, how long we keep it, who we share it with, and
+                        how it is protected.
+                    </div>
+                    <div class="font-semibold">Consent</div>
+                    <div>
+                        By using our website or giving us with your Personal Data, you are granting us permission to
+                        collect, use, and process your Personal Data, and you have agreed to the rules and practices
+                        mentioned in this Privacy Notice.
+                    </div>
+                    <div>
+                        If you do not agree to the collection, use, and processing of your Personal Data, please do not
+                        use our website and/or contact us if you have any privacy concerns.
+                    </div>
+                    <div>
+                        This Privacy Notice is subject to change at any time. Please review this Privacy Notice on a
+                        regularly to keep yourself informed of any changes in the processing of your Personal Data.
+                    </div>
+                    <div class="font-semibold">Contact Details</div>
+                    <div>
+                        In compliance with the Data Privacy Act of 2012, the hotel serves as the Personal Information
+                        Controller. This means that the hotel is in charge of establishing how and why it gathers and
+                        processes your personal data.
+                    </div>
+                    <div class="font-semibold">Purposes for Collection and Processing of your Personal Data</div>
+                    <div>
+                        We process your Personal Data for at least one of the following legal reasons:
+                    </div>
+                    <ul class="flex flex-col gap-1">
+                        <li>
+                            • Processing of your Personal Data is required to carry out the contract between you and Mary Alston Hotel.
+                        </li>
+                        <li>
+                            • Processing is based on your permission.
+                        </li>
+                    </ul>
+                    <div class="font-semibold">Other Purposes</div>
+                    <div>
+                        Your personal information will be used only for the purposes for which it was acquired or for
+                        other purposes that are compatible with the original. If your personal data is used for any other
+                        reason, Mary Alston Hotel will notify you and inform you of the legal basis for the processing, or
+                        the hotel will request your consent. In any circumstances, your personal data is treated in
+                        compliance with the following principles and the Data Privacy Act of 2012:
+                        Your personal data will be collected based on any of the following:
+                    </div>
+                    <ul class="flex flex-col gap-1">
+                        <li>
+                            • Handle any complaints, mishaps, illnesses, accidents, or emergencies that may arise during
+                            your stay at the hotel.
+                        </li>
+                        <li>
+                            • To contact you or any other appropriate contact in the event of an emergency
+                        </li>
+                        <li>
+                            • Identifying, investigating, and preventing fraud and other criminal actions. Personal data may
+                            be shared with third parties for these reasons, such as law enforcement authorities and external
+                            consultants.
+                        </li>
+                        <li>
+                            • To improve visitor experience by using information from your evaluations and ratings
+                        </li>
+                    </ul>
+                    <div class="font-semibold">Personal Data We Collect and Collection Methods</div>
+                    <div>
+                        Personal Data are components of data that identify you as an identifiable individual. The
+                        Personal Data that we gather and process are outlined in full below:
+                    </div>
+                    <ul class="flex flex-col gap-1">
+                        <li>
+                            • Personal information (name, last name, date of birth, etc.)
+                        </li>
+                        <li>
+                            • Contact information (home address, telephone number, email address, etc.)
+                        </li>
+                        <li>
+                            • Information about your stay (room preferences, arrival and departure dates, name)
+                        </li>
+                        <li>
+                            • Financial information, such as your payment method and transaction details
+                        </li>
+                        <li>
+                            • Special requests and preferences for your stay in order to accommodate specific conditions
+                        </li>
+                        <li>
+                            • Information gathered from hotel and customer security equipment such as CCTV
+                        </li>
+                        <li>
+                            • Information about your level of satisfaction with our products and services, as well as your
+                            overall experience during your stay
+                        </li>
+                    </ul>
+                    <div>
+                        When you use our site, we automatically collect information, some of which may be personal data.
+                    </div>
+                    <div class="font-semibold">Retention</div>
+                    <div>
+                        The Mary Alston Hotel keeps personal information of its various stakeholders in both computer
+                        and paper-based records. It takes all reasonable precautions to protect your personal
+                        information from misuse, loss, unauthorized access, disclosure, or transfer.
+                    </div>
+                    <div>
+                        We will keep your personal data for as long as it is necessary to fulfill the purposes described in
+                        this Privacy Notice and as long as it is necessary to fulfill our contractual and legal obligations,
+                        unless required or permitted by law for a longer retention period, or the user requests, opposes,
+                        or withdraws his or her consent. Several things affect our retention periods:
+                    </div>
+                    <ul class="flex flex-col gap-1">
+                        <li>
+                            • The period during which we have a continuous interaction with you and provide you
+                            with our services
+                        </li>
+                        <li>
+                            • If you have a partially completed reservation
+                        </li>
+                        <li>
+                            • If there is a legal requirement that we must uphold (for example, some laws require
+                            us to keep your transaction records for a certain period before deleting them)
+                        </li>
+                        <li>
+                            • If we have legitimate business needs, such as managing our relationship with you
+                            and our operations.
+                        </li>
+                        <li>
+                            • Maintenance intervals determined by legal and regulatory requirements or directions
+                        </li>
+                    </ul>
+                    <div>
+                        Only authorized Mary Alston Hotel personnel have access to this personal information, which
+                        will remain with the University Hotel for as long as it deems appropriate, after which physical
+                        records will be shredded and digital files will be permanently deleted, with the exception of those
+                        that will be kept perpetually as necessary in the course of its operation.
+                    </div>
+                    <div class="font-semibold">Updating/Amendment of our Privacy Notice</div>
+                    <div>
+                        We reserve the right to update our Privacy Notice from time to time in order to comply with new
+                        and current legislation affecting the DPA, as well as any modifications or improvements we
+                        make to protect your personal information.
+                        Unless otherwise required by law, any updates or alterations will have no effect on how we treat
+                        previously collected personal data unless you consent.
                     </div>
                 </div>
                 <div class="p-5 flex justify-end">
@@ -86,12 +231,20 @@
                     <span class="closeTerms cursor-pointer">❌</span>
                 </div>
                 <div class="flex flex-col gap-4 p-5 h-[400px] overflow-auto">
-                    <div class="font-semibold">Mary Alston Hotel's Terms and Conditions</div>
+                    <div class="font-semibold">RESERVATION POLICY:</div>
+                    <div class="font-semibold">Modification Policy:</div>
+                    <div>Reschedule is allowed but contact the admin first to let you know if the rescheduled date is available.</div>
+                    <div class="font-semibold">Cancellation Policy:</div>
+                    <div>Cancellation is not allowed; non-refundable.</div>
+                    <div class="font-semibold">No Show Policy:</div>
+                    <div>Failure to arrive at the hotel will be treated as Expired and no refund will be given.</div>
+                    <div class="font-semibold">Check-In/ Check-Out Time:</div>
+                    <div>Check-in time is at 2pm and check-out time is at 12nn of the following day.</div>
+                    <div class="font-semibold">Policy for prepaid bookings:</div>
                     <div>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni tempore in sint distinctio blanditiis. Accusamus nostrum, sed magnam quae rerum nulla! Illo deserunt, dignissimos ut aut commodi blanditiis. Ex ab odit incidunt consectetur maiores culpa, adipisci molestias, ipsa laborum deserunt voluptates nihil nesciunt. Quam voluptates consequatur modi porro unde illum fugiat atque dicta, eius ut voluptatibus ipsam iure. Ad dicta perspiciatis excepturi reprehenderit eaque fugit sapiente ullam et! Commodi facere neque nesciunt reiciendis fugiat assumenda alias, esse aut obcaecati molestias impedit corporis quod quibusdam necessitatibus ipsa harum eaque laborum doloremque a autem voluptatibus ducimus unde, praesentium aliquid! Cupiditate, temporibus impedit.
-                    </div>
-                    <div>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni tempore in sint distinctio blanditiis. Accusamus nostrum, sed magnam quae rerum nulla! Illo deserunt, dignissimos ut aut commodi blanditiis. Ex ab odit incidunt consectetur maiores culpa, adipisci molestias, ipsa laborum deserunt voluptates nihil nesciunt. Quam voluptates consequatur modi porro unde illum fugiat atque dicta, eius ut voluptatibus ipsam iure. Ad dicta perspiciatis excepturi reprehenderit eaque fugit sapiente ullam et! Commodi facere neque nesciunt reiciendis fugiat assumenda alias, esse aut obcaecati molestias impedit corporis quod quibusdam necessitatibus ipsa harum eaque laborum doloremque a autem voluptatibus ducimus unde, praesentium aliquid! Cupiditate, temporibus impedit.
+                        In the event that the person who made the reservation is not present upon check-in, guest should
+                        submit an authorization letter and a copy of government-issued ID signed by the person who booked
+                        the hotel. Failure to submit the required documents, hotel has the right to refuse or deny the stay.
                     </div>
                 </div>
                 <div class="p-5 flex justify-end">
@@ -193,25 +346,13 @@
                                     <div class="flex w-full gap-6">
                                         <!-- 3 -->
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                            <div class="font-medium text-base lg:text-lg">No. of Adults*</div>
-                                            <input type="number" name="noAdults" id="noAdults" value="1" min="1" max="2" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                            <div class="font-medium text-base lg:text-lg">No. of Guests*</div>
+                                            <input type="number" name="guests" id="guests" value="0" min="1" max="2" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
                                         </div>
                                         <!-- 4 -->
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                            <div class="font-medium text-base lg:text-lg">No. of Children*</div>
-                                            <input type="number" name="noChildren" id="noChildren" value="0" min="0" max="1" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
-                                        </div>
-                                    </div>
-                                    <div class="flex w-full gap-6">
-                                        <!-- 5 -->
-                                        <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">No. of Night(s):</div>
                                             <div class="text-sm lg:text-base browser-default px-2 py-2 w-full "> <b  id="nights">0</b> night(s)</div>
-                                        </div>
-                                        <!-- 6 -->
-                                        <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                            <div class="font-medium text-base lg:text-lg">No. of Guest(s):</div>
-                                            <div class="text-sm lg:text-base browser-default px-2 py-2 w-full "> <b  id="guests">1</b> guest(s)</div>
                                         </div>
                                     </div>
                                 </div>
@@ -298,7 +439,6 @@
                                                 </label>
                                             </p>
                                         </div>
-                                        <!-- <input type="radio" name="birthDate" id="birthDate" required class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black"> -->
                                     </div>
                                 </div>
                             </div>
@@ -622,7 +762,7 @@
                         capacity: 2,
                         bed: '(1) Double Bed',
                         cost: 2500,
-                        img: 'gallery/pahiyas4.jpg',
+                        img: 'previewImages/pahiyas.jpg',
                         adults: 2,
                         children: 1,
                         perPerson: 1000
@@ -634,7 +774,7 @@
                         capacity: 2,
                         bed: '(2) Single Beds',
                         cost: 1800,
-                        img: 'gallery/harana3.jpg',
+                        img: 'previewImages/harana.jpg',
                         adults: 2,
                         children: 1,
                         perPerson: 600
@@ -646,7 +786,7 @@
                         capacity: 2,
                         bed: '(2) Single Beds',
                         cost: 1800,
-                        img: 'gallery/imbayah2.jpg',
+                        img: 'previewImages/imbayah.jpg',
                         adults: 2,
                         children: 1,
                         perPerson: 600
@@ -658,7 +798,7 @@
                         capacity: 5,
                         bed: '(4) Single Beds',
                         cost: 2800,
-                        img: 'gallery/pagdayao2.jpg',
+                        img: 'previewImages/pagdayao.jpg',
                         adults: 5,
                         children: 4,
                         perPerson: 500
@@ -670,7 +810,7 @@
                         capacity: 5,
                         bed: '(4) Single Beds',
                         cost: 2800,
-                        img: 'gallery/moriones2.jpg',
+                        img: 'previewImages/moriones.jpg',
                         adults: 5,
                         children: 4,
                         perPerson: 500
@@ -769,14 +909,15 @@
                     if(StepID == 1){
                         const strD = $('#inDate').val();
                         const endD = $('#outDate').val();
+                        const guests = parseInt($('#guests').val());
 
                         if( !strD || !endD ){
                             alert('Please select a date.')
                             return false;
                         }
-
-                        if( ($('#guests').text()) > formData.roomDetail.capacity ){
-                            alert('The max allowed capacity is only ' + formData.roomDetail.capacity + ' !')
+                        console.log(guests);
+                        if( !guests ){
+                            alert('Please enter the number of guests.')
                             return false;
                         }
 
@@ -784,19 +925,13 @@
 
                         formData.inDate = $('#inDate').val();
                         formData.outDate = $('#outDate').val();
-                        formData.guests = {
-                            adults: $('#noAdults').val(),
-                            children: $('#noChildren').val(),
-                            total: $('#guests').text(),
-                        }
+                        formData.guests = $('#guests').val(),
                         formData.nights = $('#nights').text();
                         formData.costs = {
                             firstNight: $('#tb_roomCost').text(),
                             otherNights: $('#tb_roomOtherCosts').text(),
                             total: $('#tb_total').text(),
                         }
-
-                        console.table('FormData |', formData)
 
                         return true;
 
@@ -839,8 +974,6 @@
                             specialRequests: $('#specialRequest').val(),
                         }
 
-                        console.table('FormData |', formData)
-
                         updateStep3()
 
                         return true;
@@ -852,7 +985,7 @@
                 }
 
                 const updateTotal = () => {
-                    var guests = $("#guests").text();
+                    var guests = parseInt($("#guests").val());
                     var nights = $("#nights").text();
 
                     $("#tb_roomName").text(formData.roomDetail.name)
@@ -877,7 +1010,7 @@
 
                 const updateStep3 = () => {
                     $("#bi_roomName").text(formData.roomDetail.name + ' - ' + formData.roomDetail.type);
-                    $("#bi_guests").text(formData.guests.total);
+                    $("#bi_guests").text(formData.guests);
                     $("#bi_inDate").text(formData.inDate);
                     $("#bi_outDate").text(formData.outDate);
                     $("#gi_fname").text(formData.guestInfo.firstName);
@@ -896,10 +1029,10 @@
 
                     if(formData.nights > 0){
                         $("#ta_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
-                        $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
+                        $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
                     }else{
                         $("#ta_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
-                        $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x 0 night(s)');
+                        $("#ta_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests + ' guest(s) x 0 night(s)');
                     }
 
                     $("#tc_roomName").text(formData.roomDetail.name);
@@ -910,10 +1043,10 @@
 
                     if(formData.nights > 0){
                         $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
-                        $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
+                        $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
                     }else{
                         $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
-                        $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests.total + ' guest(s) x 0 night(s)');
+                        $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests + ' guest(s) x 0 night(s)');
                     }
                     const down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
                     $("#tc_downpayment").text(new Intl.NumberFormat().format(down) + '.00');
@@ -941,6 +1074,7 @@
 
                     if ($('#privacyTerms').is(":checked")){
                         if (confirm(text) == true) {
+                            $('#submitBtn').prop('disabled', true);
                             $.post("/api/newBooking.php",{
                                 formData: formData,
                                 channel1,
@@ -954,6 +1088,7 @@
                             }).fail(function() {
                                 alert('Submission Success')
                                 stepperInstance.nextStep();
+                                $('#submitBtn').prop('disabled', false);
                             })
                         }
                     } else{
@@ -1171,7 +1306,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width:160px">
-                                    <p><span style="font-size:12px"><strong>Number of nights</strong></span></p>
+                                    <p><span style="font-size:12px"><strong>Number of Nights</strong></span></p>
                                     </td>
                                     <td style="width:181px">
                                     <p style="text-align:center"><span style="font-size:12px">${formData.nights}</span></p>
@@ -1179,10 +1314,10 @@
                                 </tr>
                                 <tr>
                                     <td style="width:160px">
-                                    <p><span style="font-size:12px"><strong>Number of&nbsp;guests</strong></span></p>
+                                    <p><span style="font-size:12px"><strong>Number of Guests</strong></span></p>
                                     </td>
                                     <td style="width:181px">
-                                    <p style="text-align:center"><span style="font-size:12px">${formData.guests.total}</span></p>
+                                    <p style="text-align:center"><span style="font-size:12px">${formData.guests}</span></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1245,30 +1380,14 @@
                     $('#roomBed').text(roomDetail.bed)
                     $('#roomCost').text(new Intl.NumberFormat().format(roomDetail.cost) + '.00')
                     $("#roomImg").attr("src",roomDetail.img);
-                    $("#noAdults").attr("max",roomDetail.adults);
-                    $("#noChildren").attr("max",roomDetail.children);
+                    $("#guests").attr("max", roomDetail.capacity);
 
                     updateTotal();
                 });
 
-                $('#noAdults').on('change', function() {
-                    var adults = $("#noAdults").val();
-                    var children = $("#noChildren").val();
-                    var sum = parseInt(adults) + parseInt(children);
-                    $("#guests").text(sum);
-
+                $('#guests').on('change', function() {
                     updateTotal();
                 });
-
-                $('#noChildren').on('change', function() {
-                    var adults = $("#noAdults").val();
-                    var children = $("#noChildren").val();
-                    var sum = parseInt(adults) + parseInt(children);
-                    $("#guests").text(sum);
-
-                    updateTotal();
-                });
-
 
                 // DATA FETCH
                 function updateAllReservations(num) {
@@ -1278,6 +1397,7 @@
                         var reservations = data.bookings.map((booking) => {return {booking, guest: data.guests.find((guest) => { return booking.guest_id === guest.id })}});
                         allReservations = reservations
 
+                        // console.log(allReservations);
                         resetEvents();
 
                         allReservations.forEach( (reservation, i) =>{

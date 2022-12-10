@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2022 at 06:20 AM
+-- Generation Time: Dec 05, 2022 at 02:55 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -54,8 +54,6 @@ CREATE TABLE `booking_tbl` (
   `inDate` date NOT NULL,
   `outDate` date NOT NULL,
   `nights` int(3) NOT NULL,
-  `children` int(2) NOT NULL,
-  `adult` int(2) NOT NULL,
   `guests` int(2) NOT NULL,
   `specialRequests` varchar(500) DEFAULT NULL,
   `costFirst` varchar(15) NOT NULL,
@@ -65,7 +63,6 @@ CREATE TABLE `booking_tbl` (
   `bookingStatus` varchar(20) NOT NULL DEFAULT 'Pending',
   `inTime` varchar(100) DEFAULT NULL,
   `outTime` varchar(100) DEFAULT NULL,
-  `costAdditional` varchar(15) DEFAULT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

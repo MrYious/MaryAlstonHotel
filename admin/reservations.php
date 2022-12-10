@@ -179,29 +179,17 @@
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">Date & Time Booked</div>
-                                <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
+                                <div class="font-bold text-base lg:text-lg">No. of Guest(s)</div>
+                                <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="flex flex-col lg:flex-row gap-4">
-                        <div class="flex gap-4 w-full lg:w-1/2">
-                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">No. of Adult(s)</div>
-                                <div id="adults" class="text-sm lg:text-base  py-2 w-full ">
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">No. of Children</div>
-                                <div id="children" class="text-sm lg:text-base  py-2 w-full ">
-                                </div>
-                            </div>
-                        </div>
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">Total no. of Guest(s)</div>
-                                <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
+                                <div class="font-bold text-base lg:text-lg">Date & Time Booked</div>
+                                <div id="dateBooked" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
                         </div>
@@ -388,7 +376,7 @@
                     capacity: 2,
                     bed: '(1) Double Bed',
                     cost: 2500,
-                    img: 'gallery/pahiyas4.jpg',
+                    img: 'previewImages/pahiyas.jpg',
                     adults: 2,
                     children: 1,
                     perPerson: 1000
@@ -400,7 +388,7 @@
                     capacity: 2,
                     bed: '(2) Single Beds',
                     cost: 1800,
-                    img: 'gallery/harana3.jpg',
+                    img: 'previewImages/harana.jpg',
                     adults: 2,
                     children: 1,
                     perPerson: 600
@@ -412,7 +400,7 @@
                     capacity: 2,
                     bed: '(2) Single Beds',
                     cost: 1800,
-                    img: 'gallery/imbayah2.jpg',
+                    img: 'previewImages/imbayah.jpg',
                     adults: 2,
                     children: 1,
                     perPerson: 600
@@ -424,7 +412,7 @@
                     capacity: 5,
                     bed: '(4) Single Beds',
                     cost: 2800,
-                    img: 'gallery/pagdayao2.jpg',
+                    img: 'previewImages/pagdayao.jpg',
                     adults: 5,
                     children: 4,
                     perPerson: 500
@@ -436,7 +424,7 @@
                     capacity: 5,
                     bed: '(4) Single Beds',
                     cost: 2800,
-                    img: 'gallery/moriones2.jpg',
+                    img: 'previewImages/moriones.jpg',
                     adults: 5,
                     children: 4,
                     perPerson: 500
@@ -532,8 +520,6 @@
                 $('#outDate').text('');
                 $('#nights').text('');
                 $('#dateBooked').text('');
-                $('#adults').text('');
-                $('#children').text('');
                 $('#guests').text('');
 
                 $('#roomName').text('');
@@ -571,8 +557,6 @@
                 $('#outDate').text(selectedReservation.booking.outDate);
                 $('#nights').text(selectedReservation.booking.nights);
                 $('#dateBooked').text(new Date(selectedReservation.booking.createdAt).toLocaleString());
-                $('#adults').text(selectedReservation.booking.adult);
-                $('#children').text(selectedReservation.booking.children);
                 $('#guests').text(selectedReservation.booking.guests);
 
                 $('#roomName').text(roomDetails[selectedReservation.booking.roomCode].name);

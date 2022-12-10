@@ -189,31 +189,16 @@
                     <div class="flex flex-col lg:flex-row gap-4">
                         <div class="flex gap-4 w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">No. of Children</div>
-                                <div id="children" class="text-sm lg:text-base  py-2 w-full ">
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">No. of Adult(s)</div>
-                                <div id="adults" class="text-sm lg:text-base  py-2 w-full ">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-4  w-full lg:w-1/2">
-                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">Total no. of Guest(s)</div>
-                                <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
-                                <div class="font-bold text-base lg:text-lg">Nights</div>
+                                <div class="font-bold text-base lg:text-lg">No. of Night(s)</div>
                                 <div id="nights" class="text-sm lg:text-base  py-2 w-full ">
                                 </div>
                             </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-bold text-base lg:text-lg">No. of Guest(s)</div>
+                                <div id="guests" class="text-sm lg:text-base  py-2 w-full ">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- 1 -->
-                    <div class="flex flex-col lg:flex-row gap-4">
                         <div class="flex gap-4  w-full lg:w-1/2">
                             <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                 <div class="font-bold text-base lg:text-lg">Date Booked</div>
@@ -545,8 +530,6 @@
                 $('#outTime').text('');
                 $('#nights').text('');
                 $('#dateBooked').text('');
-                $('#adults').text('');
-                $('#children').text('');
                 $('#guests').text('');
 
                 $('#roomName').text('');
@@ -580,8 +563,6 @@
                 $('#outTime').text(selectedReservation.booking.outTime ? new Date(selectedReservation.booking.outTime).toLocaleTimeString() : 'N/A');
                 $('#nights').text(selectedReservation.booking.nights);
                 $('#dateBooked').text(new Date(selectedReservation.booking.createdAt).toLocaleDateString());
-                $('#adults').text(selectedReservation.booking.adult);
-                $('#children').text(selectedReservation.booking.children);
                 $('#guests').text(selectedReservation.booking.guests);
 
                 $('#roomName').text(roomDetails[selectedReservation.booking.roomCode].name);
