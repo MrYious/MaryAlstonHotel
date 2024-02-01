@@ -51,6 +51,19 @@
                         </div>
                         <div class="my-2 bg-gray-600 h-[1px]"></div>
                     </div>
+                    <div class="p-2.5 mt-3 flex items-center rounded-md text-white">
+                        <i class="bi bi-person-circle text-3xl"></i>
+                        <div class="flex flex-col items-start gap-1">
+                            <?php
+                                if ($_SESSION["role"] === 'master') {
+                                    echo '<span class="text-[15px] ml-4 text-gray-200 font-bold">'. $_SESSION["username"] .'</span>';
+                                } else if(isset($_SESSION["username"])){
+                                    echo '<span class="text-[15px] ml-4 text-gray-200 font-bold">'. $_SESSION["name"] .'</span>';
+                                }
+                            ?>
+                            <span class="text-[15px] ml-4 text-gray-200 font-bold">Administrator</span>
+                        </div>
+                    </div>
                     <a href="/admin/dashboard.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-columns"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Dashboard</span>
@@ -59,60 +72,168 @@
                         <i class="bi bi-calendar-week"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Official Calendar</span>
                     </a>
-                    <a href="/admin/today.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-hourglass"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Today</span>
-                    </a>
-                    <a href="/admin/reschedule.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-arrow-repeat"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Reschedule</span>
-                    </a>
-                    <a href="/admin/reservations.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-calendar-plus"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Pending Reservations</span>
-                    </a>
-                    <div onclick="dropdown1()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-clock-history"></i>
-                        <div class="flex justify-between w-full items-center">
-                            <span class="text-[15px] ml-4 text-gray-200 font-bold">History</span>
-                            <span class="text-sm rotate-180" id="arrow1">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </div>
-                    </div>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->manageCurrent === 'true')) {
+                            echo '
+                                <a href="/admin/today.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-hourglass"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Today</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->rescheduling === 'true')) {
+                            echo '
+                                <a href="/admin/reschedule.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Reschedule</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->managePending === 'true')) {
+                            echo '
+                                <a href="/admin/reservations.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-calendar-plus"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Pending Reservations</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->managePayments === 'true')) {
+                            echo '
+                                <a href="/admin/payments.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-calendar-week"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Payments</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"])
+                            && ( $_SESSION["permissions"]->viewCompleted === 'true'
+                            || $_SESSION["permissions"]->viewExpired === 'true'
+                            || $_SESSION["permissions"]->viewDeclined === 'true' ))
+                        ) {
+                            echo '
+                                <div onclick="dropdown1()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-clock-history"></i>
+                                    <div class="flex justify-between w-full items-center">
+                                        <span class="text-[15px] ml-4 text-gray-200 font-bold">History</span>
+                                        <span class="text-sm rotate-180" id="arrow1">
+                                            <i class="bi bi-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            ';
+                        }
+                    ?>
                     <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu1">
-                        <a href="/admin/completed.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Completed
-                        </a>
-                        <a href="/admin/expired.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Expired
-                        </a>
-                        <a href="/admin/declined.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Declined
-                        </a>
+                        <?php
+                            if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->viewCompleted === 'true')) {
+                                echo '
+                                    <a href="/admin/completed.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Completed
+                                    </a>
+                                ';
+                            }
+                        ?>
+                        <?php
+                            if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->viewExpired === 'true')) {
+                                echo '
+                                    <a href="/admin/expired.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Expired
+                                    </a>
+                                ';
+                            }
+                        ?>
+                        <?php
+                            if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->viewDeclined === 'true')) {
+                                echo '
+                                    <a href="/admin/declined.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Declined
+                                    </a>
+                                ';
+                            }
+                        ?>
                     </div>
                     <div class="my-4 bg-gray-600 h-[1px]"></div>
-                    <div onclick="dropdown2()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-bar-chart"></i>
-                        <div class="flex justify-between w-full items-center">
-                            <span class="text-[15px] ml-4 text-gray-200 font-bold">Reports</span>
-                            <span class="text-sm rotate-180" id="arrow2">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu2">
-                        <a href="/admin/reports/monthly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Monthly
-                        </a>
-                        <a href="/admin/reports/yearly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Yearly
-                        </a>
-                    </div>
-                    <a href="/admin/settings.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-gear"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Settings</span>
-                    </a>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->viewReports === 'true')) {
+                            echo '
+                                <div onclick="dropdown2()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-bar-chart"></i>
+                                    <div class="flex justify-between w-full items-center">
+                                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Reports</span>
+                                        <span class="text-sm rotate-180" id="arrow2">
+                                            <i class="bi bi-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu2">
+                                    <a href="/admin/reports/monthly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Monthly
+                                    </a>
+                                    <a href="/admin/reports/yearly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Yearly
+                                    </a>
+                                </div>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->manageMessages === 'true')) {
+                            echo '
+                                <a href="/admin/messages.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-envelope"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Messages</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if (isset($_SESSION["role"]) && $_SESSION["role"] === 'master') {
+                            echo '
+                                <a href="/admin/accounts.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-people"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Administrator Accounts</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->manageDiscounts === 'true')) {
+                            echo '
+                                <a href="/admin/discounts.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-tag"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Discounts</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ($_SESSION["role"] === 'master' || (isset($_SESSION["permissions"]) && $_SESSION["permissions"]->manageBlacklist === 'true')) {
+                            echo '
+                                <a href="/admin/blacklist.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-person-x"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Blacklist</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if (isset($_SESSION["role"]) && $_SESSION["role"] === 'master') {
+                            echo '
+                                <a href="/admin/settings.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-gear"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Settings</span>
+                                </a>
+                            ';
+                        }
+                    ?>
                     <a href="/api/logout.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-box-arrow-in-right"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
@@ -129,37 +250,37 @@
                         <div class="flex gap-5">
                             <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-blue-900 gap-2">
                                 <div > Ongoing Reservations for Today</div>
-                                <div id="1" class="text-7xl">20</div>
-                                <div id="2" class="text-xs italic text-right">October 10, 2022</div>
+                                <div id="1" class="text-7xl">0</div>
+                                <div id="2" class="text-xs italic text-right"></div>
                             </div>
                             <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-green-900 gap-2">
                                 <div >Total Confirmed Reservations</div>
-                                <div id="3" class="text-7xl">20</div>
-                                <div id="4" class="text-xs italic text-right">Month of October</div>
+                                <div id="3" class="text-7xl">0</div>
+                                <div id="4" class="text-xs italic text-right"></div>
                             </div>
                         </div>
                         <div class="flex gap-5">
                             <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-orange-900 gap-2">
                                 <div >New Pending Reservations</div>
-                                <div id="5" class="text-7xl">20</div>
-                                <div id="6" class="text-xs italic text-right">October 10, 2022</div>
+                                <div id="5" class="text-7xl">0</div>
+                                <div id="6" class="text-xs italic text-right"></div>
                             </div>
                             <div class="flex flex-col w-[50%] bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-purple-900 gap-2">
                                 <div >Total Pending Reservations</div>
-                                <div id="7" class="text-7xl">20</div>
+                                <div id="7" class="text-7xl">0</div>
                                 <div id="8" class="text-xs italic text-right">Overall</div>
                             </div>
                         </div>
                     </div>
                     <div class="flex gap-5 w-full lg:w-1/3 bg-red-400">
                         <div class="flex flex-col justify-between w-full bg-gray-100 shadow-sm shadow-black border-b-8 p-4 border-purple-900 gap-2">
-                            <div >Total Completed Reservations</div>
+                            <div>Total Completed Reservations</div>
                             <div id="9" class="text-6xl"></div>
-                            <div >Total Sales</div>
+                            <div>Total Sales</div>
                             <div id="10" class="text-4xl"></div>
-                            <div >Most Booked Room</div>
+                            <div>Most Booked Room</div>
                             <div id="11" class="text-3xl"></div>
-                            <div id="12" class="text-xs italic text-right">Month of September</div>
+                            <div id="12" class="text-xs italic text-right"></div>
                         </div>
                     </div>
                 </section>
@@ -273,7 +394,7 @@
 
                 stats.dateToday = monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
                 stats.currentMonth = monthNames[date.getMonth()];
-                stats.previousMonth = monthNames[date.getMonth()-1 ? date.getMonth()-1 : 11];
+                stats.previousMonth = monthNames[date.getMonth()-1 !== -1 ? date.getMonth()-1 : 11];
 
                 $.post("/api/getAll.php")
                 .done(function(data, status) {

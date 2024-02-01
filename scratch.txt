@@ -1,0 +1,31 @@
+Revisions
+
+//EASY
+✓ Remove “invalid date” word sa calendar legend
+✓ Use “Reserved” instead of “Unavailable Date”
+✓ Bawal mag input ng number of guest na lagpas sa maximum
+   (tinatanggap po yung sa system. Example sa dorm: maximum 5 pero pag mag nag type ng higher number, mag pproceed pa rin)
+✓ Tinatanggap yung birthday na 2022 and above.
+
+//MEDIUM
+// Block clients via emailaddress? since they have no account
+✓ - Add blocklist clients
+
+//MEDIUM - HARD
+//how does this work? in specific
+- Maglagay ng option sa side ni admin na pwedeng i-on na yung mga discounts (pwd, senior, etc.)
+
+//HARD
+//Admin account creation + admin roles ? (master, ? ...)
+✓ - May option na pwede mag add si admin ng new users with accessibility level.
+✓  Add the name of person-in-charge pag mag generate ng reports.
+
+//HARD
+//Contact Us Form + Handle messages + Email response
+✓ - Pa-add din ng form na if may tanong or message yung guest, marreceive ni admin and marreceive ni guest yung reply thru gmail.
+
+//HARD
+//Proof of Payment Form + Handle submissions
+✓ - Nakalagay sa email na click this link/form to submit yung receipt.
+✓  Yung link is another webpage para pang upload ng receipt ng down payment tas marreceive ni admin side.
+✓  Then si guest na yung mag iinput ng amount ng binayad hindi na si admin.

@@ -60,6 +60,19 @@
                         </div>
                         <div class="my-2 bg-gray-600 h-[1px]"></div>
                     </div>
+                    <div class="p-2.5 mt-3 flex items-center rounded-md text-white">
+                        <i class="bi bi-person-circle text-3xl"></i>
+                        <div class="flex flex-col items-start gap-1">
+                            <?php
+                                if ($_SESSION["role"] === 'master') {
+                                    echo '<span class="text-[15px] ml-4 text-gray-200 font-bold">'. $_SESSION["username"] .'</span>';
+                                } else if(isset($_SESSION["username"])){
+                                    echo '<span class="text-[15px] ml-4 text-gray-200 font-bold">'. $_SESSION["name"] .'</span>';
+                                }
+                            ?>
+                            <span class="text-[15px] ml-4 text-gray-200 font-bold">Administrator</span>
+                        </div>
+                    </div>
                     <a href="/admin/dashboard.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-columns"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Dashboard</span>
@@ -68,60 +81,168 @@
                         <i class="bi bi-calendar-week"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Official Calendar</span>
                     </a>
-                    <a href="/admin/today.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-hourglass"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Today</span>
-                    </a>
-                    <a href="/admin/reschedule.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-arrow-repeat"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Reschedule</span>
-                    </a>
-                    <a href="/admin/reservations.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-calendar-plus"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Pending Reservations</span>
-                    </a>
-                    <div onclick="dropdown1()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-clock-history"></i>
-                        <div class="flex justify-between w-full items-center">
-                            <span class="text-[15px] ml-4 text-gray-200 font-bold">History</span>
-                            <span class="text-sm rotate-180" id="arrow1">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </div>
-                    </div>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->manageCurrent === 'true')) {
+                            echo '
+                                <a href="/admin/today.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-hourglass"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Today</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->rescheduling === 'true')) {
+                            echo '
+                                <a href="/admin/reschedule.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Reschedule</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->managePending === 'true')) {
+                            echo '
+                                <a href="/admin/reservations.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-calendar-plus"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Pending Reservations</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->managePayments === 'true')) {
+                            echo '
+                                <a href="/admin/payments.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-calendar-week"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Payments</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"])
+                            && ( $_SESSION["permissions"]->viewCompleted === 'true'
+                            || $_SESSION["permissions"]->viewExpired === 'true'
+                            || $_SESSION["permissions"]->viewDeclined === 'true' ))
+                        ) {
+                            echo '
+                                <div onclick="dropdown1()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-clock-history"></i>
+                                    <div class="flex justify-between w-full items-center">
+                                        <span class="text-[15px] ml-4 text-gray-200 font-bold">History</span>
+                                        <span class="text-sm rotate-180" id="arrow1">
+                                            <i class="bi bi-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            ';
+                        }
+                    ?>
                     <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu1">
-                        <a href="/admin/completed.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Completed
-                        </a>
-                        <a href="/admin/expired.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Expired
-                        </a>
-                        <a href="/admin/declined.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Declined
-                        </a>
+                        <?php
+                            if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->viewCompleted === 'true')) {
+                                echo '
+                                    <a href="/admin/completed.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Completed
+                                    </a>
+                                ';
+                            }
+                        ?>
+                        <?php
+                            if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->viewExpired === 'true')) {
+                                echo '
+                                    <a href="/admin/expired.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Expired
+                                    </a>
+                                ';
+                            }
+                        ?>
+                        <?php
+                            if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->viewDeclined === 'true')) {
+                                echo '
+                                    <a href="/admin/declined.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Declined
+                                    </a>
+                                ';
+                            }
+                        ?>
                     </div>
                     <div class="my-4 bg-gray-600 h-[1px]"></div>
-                    <div onclick="dropdown2()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-bar-chart"></i>
-                        <div class="flex justify-between w-full items-center">
-                            <span class="text-[15px] ml-4 text-gray-200 font-bold">Reports</span>
-                            <span class="text-sm rotate-180" id="arrow2">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu2">
-                        <a href="/admin/reports/monthly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Monthly
-                        </a>
-                        <a href="/admin/reports/yearly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                            Yearly
-                        </a>
-                    </div>
-                    <a href="/admin/settings.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-                        <i class="bi bi-gear"></i>
-                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Settings</span>
-                    </a>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->viewReports === 'true')) {
+                            echo '
+                                <div onclick="dropdown2()" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-bar-chart"></i>
+                                    <div class="flex justify-between w-full items-center">
+                                        <span class="text-[15px] ml-4 text-gray-200 font-bold">Reports</span>
+                                        <span class="text-sm rotate-180" id="arrow2">
+                                            <i class="bi bi-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu2">
+                                    <a href="/admin/reports/monthly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Monthly
+                                    </a>
+                                    <a href="/admin/reports/yearly.php"  class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                                        Yearly
+                                    </a>
+                                </div>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->manageMessages === 'true')) {
+                            echo '
+                                <a href="/admin/messages.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-envelope"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Messages</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if (isset($_SESSION["role"]) && $_SESSION["role"] === 'master') {
+                            echo '
+                                <a href="/admin/accounts.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-people"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Administrator Accounts</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ( $_SESSION["role"] === 'master' || ( isset($_SESSION["permissions"]) && $_SESSION["permissions"]->manageDiscounts === 'true')) {
+                            echo '
+                                <a href="/admin/discounts.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-tag"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Discounts</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if ($_SESSION["role"] === 'master' || (isset($_SESSION["permissions"]) && $_SESSION["permissions"]->manageBlacklist === 'true')) {
+                            echo '
+                                <a href="/admin/blacklist.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-person-x"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Manage Blacklist</span>
+                                </a>
+                            ';
+                        }
+                    ?>
+                    <?php
+                        if (isset($_SESSION["role"]) && $_SESSION["role"] === 'master') {
+                            echo '
+                                <a href="/admin/settings.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+                                    <i class="bi bi-gear"></i>
+                                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Settings</span>
+                                </a>
+                            ';
+                        }
+                    ?>
                     <a href="/api/logout.php" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                         <i class="bi bi-box-arrow-in-right"></i>
                         <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
@@ -334,6 +455,12 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- 5 -->
+                    <div id="displayDiscount" class="flex flex-col lg:flex-row gap-4">
+                    </div>
+                    <!-- 5 -->
+                    <div id="displayID" class="flex items-center justify-center w-full px-2 py-2 border-[1px] rounded border-black">
                     </div>
                 </section>
             </div>
@@ -549,6 +676,7 @@
 
             // EVENT HANDLER
             $('#myTable tbody').on( 'click', 'tr', function () {
+                $('#displayDiscount').empty()
                 var selectedReservation = myTable.row( this ).data().data;
 
                 $('#inDate').text(selectedReservation.booking.inDate);
@@ -573,12 +701,89 @@
 
                 $('#transCode').text(selectedReservation.booking.transactionCode);
                 $('#status').text(selectedReservation.booking.bookingStatus);
-                const down = parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) / 2;
+                var down;
+                var total;
+                if (selectedReservation.booking.isDiscounted === 'true') {
+                    total = parseInt(selectedReservation.booking.costDiscounted)
+                    down = Math.round(parseInt(total)) / 2;
+                    let discount = JSON.parse(selectedReservation.booking.discount);
+                    // console.log(discount);
+                    $('#displayID').empty();
+
+                    if(discount.type === 'senior'){
+                        $('#displayDiscount').append(`
+                            <div class="flex gap-4  w-full lg:w-1/2">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Senior Citizen ID Number:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full">${discount.number}</div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Senior Citizen ID Name:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full">${discount.name}</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4  w-full lg:w-1/2">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Senior Citizen Discount:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full "> ${discount.discountValue + '% off'} </div>
+                                </div>
+                            </div>
+                        `)
+                        $('#displayID').append(`<img id="imgPreview" class="w-fit h-full" src="#" alt="pic" />`);
+                        $('#imgPreview').attr('src', selectedReservation.booking.discountImage);
+                    } else if(discount.type === 'pwd'){
+                        $('#displayDiscount').append(`
+                            <div class="flex gap-4  w-full lg:w-1/2">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">PWD ID Number:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full">${discount.number}</div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">PWD ID Name:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full">${discount.name}</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4  w-full lg:w-1/2">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">PWD Discount:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full "> ${discount.discountValue + '% off'} </div>
+                                </div>
+                            </div>
+                        `)
+                        $('#displayID').append(`<img id="imgPreview" class="w-fit h-full" src="#" alt="pic" />`);
+                        $('#imgPreview').attr('src', selectedReservation.booking.discountImage);
+                    } else if(discount.type === 'voucher'){
+                        $('#displayDiscount').append(`
+                            <div class="flex gap-4  w-full lg:w-1/2">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Voucher Name:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full">${discount.code.name}</div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Voucher Code:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full">${discount.code.code}</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4  w-full lg:w-1/2">
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-bold text-base lg:text-lg">Voucher Discount:</div>
+                                    <div class="text-sm lg:text-base py-2 w-full "> ${discount.discountValue}${discount.voucherType === 'percent' ? '% off' : ' PHP'} </div>
+                                </div>
+                            </div>
+                        `)
+                    }
+
+                } else {
+                    total = parseInt(selectedReservation.booking.costTotal.replaceAll(',', ''))
+                    down = parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) / 2;
+                }
+                const balance = selectedReservation.booking.amountPaid ? total - parseInt(selectedReservation.booking.amountPaid.replaceAll(',', '')) : total;
+                // console.log(down);
+                // console.log(total);
                 $("#downPayment").text(new Intl.NumberFormat().format(down) + '.00');
-                $('#totalAmount').text(selectedReservation.booking.costTotal);
-                const balance = selectedReservation.booking.amountPaid ? parseInt(selectedReservation.booking.costTotal.replaceAll(',', '')) - parseInt(selectedReservation.booking.amountPaid.replaceAll(',', '')) : parseInt(selectedReservation.booking.costTotal.replaceAll(',', ''));
+                $('#totalAmount').text(new Intl.NumberFormat().format(total) + '.00');
                 $('#amountPaid').text(selectedReservation.booking.amountPaid ? selectedReservation.booking.amountPaid : '0.00');
-                $('#balance').text(new Intl.NumberFormat().format(balance > 0 ? balance : 0) + '.00');
+                $('#balance').text(new Intl.NumberFormat().format(balance) + '.00');
             } );
 
             const handleCheckIn = (idx) => {
@@ -703,7 +908,6 @@ Guest :  ${tableData[idx].data.guest.lastname + ", " + tableData[idx].data.guest
                             data: reservation
                         }
                     });
-
 
                     // LOAD TABLE DATA INTO TABLE
                     myTable.rows.add(tableData).draw(false);

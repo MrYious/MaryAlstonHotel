@@ -305,11 +305,7 @@
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="border-[1px] border-red-400 bg-red-400 w-3 h-3 rounded-full"></div>
-                                        <div class="text-xs lg:text-sm">Unavailable Date</div>
-                                    </div>
-                                    <div class="flex gap-2 items-center">
-                                        <div class="border-[1px] border-gray-600 bg-gray-600 w-3 h-3 rounded-full"></div>
-                                        <div class="text-xs lg:text-sm">Invalid Date</div>
+                                        <div class="text-xs lg:text-sm">Reserved Date</div>
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="border-[1px] border-blue-500 bg-blue-500 w-3 h-3 rounded-full"></div>
@@ -393,7 +389,7 @@
                 <!-- 2 -->
                 <li class="step">
                     <div class="step-title waves-effect text-xl"> Guest Information</div>
-                    <div class="step-content flex flex-col">
+                    <div class="step-content flex flex-col gap-4">
                         <input type="text" class="id hidden" value="2">
                         <div class="flex flex-col lg:flex-row h-fit gap-4 lg:gap-10">
                             <!-- 1 -->
@@ -443,15 +439,60 @@
                                 </div>
                             </div>
                             <!-- 2 -->
-                            <div class="flex lg:w-1/2 w-full ">
+                            <div class="flex flex-col lg:w-1/2 w-full gap-4">
                                 <div class="flex flex-col gap-2 w-full lg:w-2/3">
-                                    <div class="flex gap-1">
-                                        <div class="font-medium text-lg lg:text-2xl">Special Request</div>
-                                        <div class="text-xs">(optional)</div>
-                                    </div>
-                                    <div class="font-medium text-xs lg:text-sm">(Subject to availability)</div>
-                                    <textarea name="specialRequest" id="specialRequest" maxlength="500" class="w-full h-32 lg:h-full text-sm lg:text-base browser-default bg-white px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black resize-none"></textarea>
+                                    <div class="font-medium text-base lg:text-lg">Discount</div>
+                                    <select name="discountType" id="discountType" class="inline w-full px-2 border-[1px] focus:border-blue-800 rounded border-black text-sm lg:text-base ">
+                                        <option selected value="default">None</option>
+                                    </select>
                                 </div>
+                                <!-- Use Voucher Code Function -->
+                                <div id="discRow1" class="flex gap-4">
+                                    <!-- <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                        <div class="font-medium text-base lg:text-lg">Voucher Code*</div>
+                                        <div class="flex items-center gap-2">
+                                            <input type="text" name="discNumber" id="discNumber" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                            <button onclick="useVoucherCode()" class="flex w-fit items-center py-2 px-5 border border-green-700 bg-green-100 hover:bg-green-300 text-green-700 rounded">
+                                                Use
+                                            </button>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                        <div class="font-medium text-base lg:text-lg">Senior Citizen ID Number*</div>
+                                        <input type="text" name="discNumber" id="discNumber" required class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    </div>
+                                    <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                        <div class="font-medium text-base lg:text-lg">Senior Citizen ID Name*</div>
+                                        <input type="text" name="discName" id="discName" required class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    </div> -->
+                                </div>
+                                <div id="discRow2" class="flex gap-4">
+                                    <!-- <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                        <div class="font-medium text-base lg:text-lg">Voucher Result</div>
+                                        <div class="text-sm w-full lg:text-base px-2 py-2 text-red-700">❌ Invalid Voucher Code</div>
+                                        <div class="text-sm w-full lg:text-base px-2 py-2 text-red-700">✅ Christmas Voucher applied</div>
+                                        <div class="text-sm w-full lg:text-base px-2 py-2 text-red-700">5 % Discount</div>
+                                    </div> -->
+                                    <!-- <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                        <div class="font-medium text-base lg:text-lg">PWD ID Number*</div>
+                                        <input type="text" name="discNumber" id="discNumber" required class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    </div>
+                                    <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                        <div class="font-medium text-base lg:text-lg">PWD ID Name*</div>
+                                        <input type="text" name="discName" id="discName" required class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col lg:flex-row h-fit gap-4 lg:gap-10 ">
+                            <!-- 2 -->
+                            <div class="flex flex-col gap-2 lg:w-1/2 w-full ">
+                                <div class="flex gap-1">
+                                    <div class="font-medium text-lg lg:text-2xl">Special Request</div>
+                                    <div class="text-xs">(optional)</div>
+                                </div>
+                                <div class="font-medium text-xs lg:text-sm">(Subject to availability)</div>
+                                <textarea name="specialRequest" id="specialRequest" rows="3" maxlength="500" class="w-full lg:h-full text-sm lg:text-base browser-default bg-white px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black resize-none"></textarea>
                             </div>
                         </div>
                         <div class="step-actions">
@@ -530,11 +571,7 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-col lg:flex-row gap-4">
-                                    <div class="flex flex-col gap-2 w-full lg:w-1/2 ">
-                                        <div class="font-medium text-base lg:text-lg">Special Request</div>
-                                        <div id="gi_specialRequests" class="text-sm lg:text-base  py-2 w-full font-bold "></div>
-                                    </div>
-                                    <div class="flex gap-4 w-full lg:w-1/2 shrink-0 lg:pl-2">
+                                    <div class="flex gap-4 w-full lg:w-1/2 ">
                                         <div class="flex flex-col gap-2 w-full lg:w-1/2">
                                             <div class="font-medium text-base lg:text-lg">Birth Date</div>
                                             <div id="gi_birthDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
@@ -544,6 +581,20 @@
                                             <div id="gi_fromTua" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
                                         </div>
                                     </div>
+                                    <div id="step3discount" class="flex gap-4 w-full lg:w-1/2">
+                                        <!-- <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                            <div class="font-medium text-base lg:text-lg">Birth Date</div>
+                                            <div id="gi_birthDate" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
+                                        </div>
+                                        <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                            <div class="font-medium text-base lg:text-lg">From TUA</div>
+                                            <div id="gi_fromTua" class="text-sm lg:text-base  py-2 w-full font-bold truncate"></div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full ">
+                                    <div class="font-medium text-base lg:text-lg">Special Request</div>
+                                    <div id="gi_specialRequests" class="text-sm lg:text-base  py-2 w-full font-bold "></div>
                                 </div>
                                 <label class="text-black flex items-center">
                                     <input id="privacyTerms" type="checkbox" class="filled-in reset-checkbox" />
@@ -586,11 +637,22 @@
                                                 <b id="ta_roomOtherCosts">0.00</b>
                                             </div>
                                             <div class="flex justify-between pl-7">
-                                                <div  id="ta_sub2">1,000 x 1 guest(s) x 0 night(s)</div>
+                                                <div id="ta_sub2">1,000 x 1 guest(s) x 0 night(s)</div>
                                             </div>
                                             <div class="border-2 border-black w-full h-1"></div>
                                         </div>
                                         <div class="text-right w-full p-3"><b id="ta_total" class="text-3xl">0.00</b> PHP</div>
+                                        <div id="infoDiscount" class="flex flex-col gap-2 px-3">
+                                            <!-- <div class="flex justify-between">
+                                                <b>Senior Discount </b>
+                                                <b>- 1,000.00</b>
+                                            </div>
+                                            <div class="flex justify-between pl-7">
+                                                <div>1,000 x 1 guest(s) x 0 night(s)</div>
+                                            </div>
+                                            <div class="border-2 border-black w-full h-1"></div>
+                                            <div class="text-right w-full p-3"><b class="text-3xl">0.00</b> PHP</div> -->
+                                        </div>
                                     </div>
                                     <div class="text-sm">
                                         <b>Note:</b> You have to pay at least <b>50%</b> of the total amount as down payment for the reservation to be official.
@@ -628,11 +690,12 @@
                                             Failure to pay within alloted time allows the system to automatically remove your reservation from the official list.
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
-                                            The down payment must be paid via the provided official payment channels below. You shall receive an email in a few minutes containing the booking and payment information.
-                                            The guest must reply to the email attaching a valid proof of payment such as official receipts and other similar valid proofs.
+                                            The down payment must be paid via the provided official payment channels below. You shall receive an email in a few minutes containing your booking and payment information.
+                                            The email will contain a link to the form where you must submit your proof of payment, it must be filled up in order for your payment to be acknowledged by the management and for your reservation to be official.
+                                            You must provide the necessary information in the provided form as proof of your payment.
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
-                                            For important concerns and issues, you can reach us via the following email: <b>maryalstonhall@gmail.com. </b> Also, save your transaction number for future reference.
+                                            For important concerns and issues, you can reach us via the following email: <b>maryalstonhall@gmail.com. </b> Always keep your transaction number for future concerns.
                                         </div>
                                         <div class="text-sm lg:text-base  py-2 w-full  ">
                                             The standard check-in time starts at <b>2 PM</b>, and the guests should already check-out before <b>12 PM</b> in the last day.
@@ -705,6 +768,17 @@
                                             <div class="border-2 border-black w-full h-1"></div>
                                         </div>
                                         <div class="text-right w-full p-3"><b id="tc_total" class="text-3xl">0.00</b> PHP</div>
+                                        <div id="info4Discount" class="flex flex-col gap-2 px-3">
+                                            <!-- <div class="flex justify-between">
+                                                <b>Senior Discount </b>
+                                                <b>- 1,000.00</b>
+                                            </div>
+                                            <div class="flex justify-between pl-7">
+                                                <div>1,000 x 1 guest(s) x 0 night(s)</div>
+                                            </div>
+                                            <div class="border-2 border-black w-full h-1"></div>
+                                            <div class="text-right w-full p-3"><b class="text-3xl">0.00</b> PHP</div> -->
+                                        </div>
                                     </div>
                                     <div class="flex justify-center items-center border-[1px] border-black p-3 gap-1 rounded-xl">
                                         <b class="text-md shrink-0">Down Payment</b>
@@ -748,6 +822,15 @@
                         perPerson: 1000
                     },
                 };
+                var codes = []
+                var selectedCode;
+                var isPWD;
+                var isSenior;
+                var isVoucher;
+
+                var pwdVal;
+                var seniorVal;
+                var imageFile;
 
                 var channel1 = {name: '', number: '', type: ''}
                 var channel2 = {name: '', number: '', type: ''}
@@ -933,6 +1016,8 @@
                             total: $('#tb_total').text(),
                         }
 
+                        console.log(formData);
+
                         return true;
 
                     } else if(StepID == 2){
@@ -974,6 +1059,89 @@
                             specialRequests: $('#specialRequest').val(),
                         }
 
+                        if ($('#discountType').val() !== 'default') {
+                            if ($('#discountType').val() === 'pwd' || $('#discountType').val() === 'senior') {
+                                var number = $('#discNumber').val();
+                                var name = $('#discName').val();
+
+                                var image = $('#image').prop('files');
+                                if (number !== '' && name !== '' && image.length > 0 ) {
+                                    var discountValue = $('#discountType').val() === 'pwd' ? pwdVal : seniorVal
+                                    var discountAmount = parseInt(formData.costs.total.replaceAll(',', '')) * ( parseInt(discountValue) / 100 )
+                                    var costDiscounted = formData.costs.total.replaceAll(',', '') - discountAmount;
+
+                                    formData.discount = {
+                                        isDiscounted: 'true',
+                                        image: imageFile,
+                                        costDiscounted: costDiscounted,
+                                        discountDetails: {
+                                            type: $('#discountType').val(),
+                                            discountValue: discountValue,
+                                            discountAmount: discountAmount,
+                                            name: name,
+                                            number: number,
+                                        }
+                                    }
+                                } else {
+                                    formData.discount = {
+                                        isDiscounted: 'false',
+                                        image: '',
+                                        costDiscounted: 0,
+                                        discountDetails: {
+                                            none: 'none'
+                                        }
+                                    }
+                                }
+                            } else {
+                                var inputCode = $("#discCode").val();
+                                if (inputCode) {
+                                    selectedCode = codes.find((code) => (code.isEnabled === 'true' && code.code === inputCode))
+                                    console.log(selectedCode);
+
+                                    if (!selectedCode) {
+                                        formData.discount = {
+                                            isDiscounted: 'false',
+                                            image: '',
+                                            costDiscounted: 0,
+                                            discountDetails: {
+                                                none: 'none'
+                                            }
+                                        }
+                                    } else {
+                                        var voucherType = selectedCode.type;
+                                        var discountValue = selectedCode.value;
+                                        var discountAmount = voucherType === 'fixed' ? discountValue : parseInt(formData.costs.total.replaceAll(',', '')) * ( parseInt(discountValue) / 100 )
+                                        var costDiscounted = formData.costs.total.replaceAll(',', '') - discountAmount;
+
+                                        formData.discount = {
+                                            isDiscounted: 'true',
+                                            image: imageFile,
+                                            costDiscounted: costDiscounted,
+                                            discountDetails: {
+                                                type: $('#discountType').val(),
+                                                voucherType: voucherType,
+                                                discountValue: discountValue,
+                                                discountAmount: discountAmount,
+                                                code: selectedCode,
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        } else {
+                            formData.discount = {
+                                isDiscounted: 'false',
+                                image: '',
+                                costDiscounted: 0,
+                                discountDetails: {
+                                    none: 'none'
+                                }
+                            }
+                        }
+
+                        console.log(formData);
+
                         updateStep3()
 
                         return true;
@@ -985,7 +1153,7 @@
                 }
 
                 const updateTotal = () => {
-                    var guests = parseInt($("#guests").val());
+                    var guests = $("#guests").val();
                     var nights = $("#nights").text();
 
                     $("#tb_roomName").text(formData.roomDetail.name)
@@ -1009,6 +1177,10 @@
                 }
 
                 const updateStep3 = () => {
+                    $('#step3discount').empty();
+                    $('#infoDiscount').empty();
+                    $('#info4Discount').empty();
+
                     $("#bi_roomName").text(formData.roomDetail.name + ' - ' + formData.roomDetail.type);
                     $("#bi_guests").text(formData.guests);
                     $("#bi_inDate").text(formData.inDate);
@@ -1041,6 +1213,94 @@
                     $("#tc_roomOtherCosts").text(formData.costs.otherNights);
                     $("#tc_total").text(formData.costs.total);
 
+                    if(formData.discount.isDiscounted === 'true'){
+
+                        if (formData.discount.discountDetails.type === 'senior' || formData.discount.discountDetails.type === 'pwd') {
+                            $('#step3discount').append(`
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-medium text-base lg:text-lg"> ID Number</div>
+                                    <div class="text-sm lg:text-base  py-2 w-full font-bold truncate">${formData.discount.discountDetails.number}</div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-medium text-base lg:text-lg"> ID Name</div>
+                                    <div class="text-sm lg:text-base  py-2 w-full font-bold truncate">${formData.discount.discountDetails.name}</div>
+                                </div>
+                            `)
+                            $('#infoDiscount').append(`
+                                <div class="border-2 border-black w-full h-1"></div>
+                                <div class="flex justify-between">
+                                    <b>${formData.discount.discountDetails.type === 'pwd' ? 'PWD' :  'Senior' } Discount </b>
+                                    <b>- ${new Intl.NumberFormat().format(formData.discount.discountDetails.discountAmount) + '.00'}</b>
+                                </div>
+                                <div class="flex justify-between pl-7">
+                                    <div>${formData.costs.total} x ${formData.discount.discountDetails.discountValue}% discount </div>
+                                </div>
+                                <div class="border-2 border-black w-full h-1"></div>
+                                <div class="text-right w-full p-3"><b class="text-3xl">${new Intl.NumberFormat().format(formData.discount.costDiscounted) + '.00'}</b> PHP</div>
+                            `)
+                            $('#info4Discount').append(`
+                                <div class="border-2 border-black w-full h-1"></div>
+                                <div class="flex justify-between">
+                                    <b>${formData.discount.discountDetails.type === 'pwd' ? 'PWD' :  'Senior' } Discount </b>
+                                    <b>- ${new Intl.NumberFormat().format(formData.discount.discountDetails.discountAmount) + '.00'}</b>
+                                </div>
+                                <div class="flex justify-between pl-7">
+                                    <div>${formData.costs.total} x ${formData.discount.discountDetails.discountValue}% discount </div>
+                                </div>
+                                <div class="border-2 border-black w-full h-1"></div>
+                                <div class="text-right w-full p-3"><b class="text-3xl">${new Intl.NumberFormat().format(formData.discount.costDiscounted) + '.00'}</b> PHP</div>
+                            `)
+                        } else {
+                            $('#step3discount').append(`
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-medium text-base lg:text-lg"> Voucher Name </div>
+                                    <div class="text-sm lg:text-base  py-2 w-full font-bold truncate">${formData.discount.discountDetails.code.name}</div>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                    <div class="font-medium text-base lg:text-lg"> Voucher Discount </div>
+                                    <div class="text-sm lg:text-base  py-2 w-full font-bold truncate">${formData.discount.discountDetails.code.type === 'fixed' ? formData.discount.discountDetails.code.value + ' PHP' : formData.discount.discountDetails.code.value + '%'}</div>
+                                </div>
+                            `)
+                            $('#infoDiscount').append(`
+                                <div class="border-2 border-black w-full h-1"></div>
+                                <div class="flex justify-between">
+                                    <b>Voucher Discount </b>
+                                    <b>- ${new Intl.NumberFormat().format(formData.discount.discountDetails.discountAmount) + '.00'}</b>
+                                </div>
+                                <div class="flex justify-between pl-7">
+                                    ${
+                                        formData.discount.discountDetails.voucherType === 'fixed' ? `
+                                            <div>${new Intl.NumberFormat().format(formData.discount.discountDetails.discountValue) + '.00'} off </div>
+                                        ` : `
+                                            <div>${formData.costs.total} x ${formData.discount.discountDetails.discountValue}% discount </div>
+                                        `
+                                    }
+                                </div>
+                                <div class="border-2 border-black w-full h-1"></div>
+                                <div class="text-right w-full p-3"><b class="text-3xl">${new Intl.NumberFormat().format(formData.discount.costDiscounted) + '.00'}</b> PHP</div>
+                            `)
+                            $('#info4Discount').append(`
+                                <div class="border-2 border-black w-full h-1"></div>
+                                <div class="flex justify-between">
+                                    <b>Voucher Discount </b>
+                                    <b>- ${new Intl.NumberFormat().format(formData.discount.discountDetails.discountAmount) + '.00'}</b>
+                                </div>
+                                <div class="flex justify-between pl-7">
+                                    ${
+                                        formData.discount.discountDetails.voucherType === 'fixed' ? `
+                                            <div>${new Intl.NumberFormat().format(formData.discount.discountDetails.discountValue) + '.00'} off </div>
+                                        ` : `
+                                            <div>${formData.costs.total} x ${formData.discount.discountDetails.discountValue}% discount </div>
+                                        `
+                                    }
+                                </div>
+                                <div class="border-2 border-black w-full h-1"></div>
+                                <div class="text-right w-full p-3"><b class="text-3xl">${new Intl.NumberFormat().format(formData.discount.costDiscounted) + '.00'}</b> PHP</div>
+                            `)
+                        }
+
+                    }
+
                     if(formData.nights > 0){
                         $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 1 night')
                         $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests + ' guest(s) x '+ (formData.nights - 1) + ' night(s)');
@@ -1048,8 +1308,11 @@
                         $("#tc_sub1").text(new Intl.NumberFormat().format(formData.roomDetail.cost) + ' x 0 night')
                         $("#tc_sub2").text(new Intl.NumberFormat().format(formData.roomDetail.perPerson) + ' x ' + formData.guests + ' guest(s) x 0 night(s)');
                     }
-                    const down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
-                    $("#tc_downpayment").text(new Intl.NumberFormat().format(down) + '.00');
+
+                    var val = formData.discount.isDiscounted === 'true' ? parseInt(formData.discount.costDiscounted) : parseInt(formData.costs.total.replaceAll(',', ''))
+                    var down = Math.round(val / 2);
+                    down = new Intl.NumberFormat().format(down) + '.00';
+                    $("#tc_downpayment").text(down);
                 }
 
                 const resetEvents = () => {
@@ -1067,6 +1330,22 @@
                 }
 
                 // EVENT HANDLERS
+                $('#guests').on('input', function() {
+                    if($('#guests').val() > formData.roomDetail.capacity){
+                        $('#guests').val(formData.roomDetail.capacity)
+                    }
+                });
+
+                $('#birthDate').on('input', function() {
+                    var today = new Date().getFullYear();
+                    var bDate = new Date($('#birthDate').val()).getFullYear();
+                    if(today <= bDate){
+                        $('#birthDate').val('')
+                    }
+                });
+
+// TODO, SAVE DATA TO DB, LOAD DISCOUNT ON INFOS
+
                 $( "#submitBtn" ).click(function(e) {
                     e.preventDefault();
 
@@ -1081,12 +1360,18 @@
                                 channel2,
                                 channel3
                             }).done(function(data, status) {
-                                alert('Submission Success')
-                                stepperInstance.nextStep();
-                                formData.transCode = data.transactionCode;
-                                $("#transCode").text(data.transactionCode)
+                                console.log(data);
+                                console.log(data.isExisting);
+                                if(data.isExisting){
+                                    alert('You are blacklisted from the hotel. You are not allowed to book reservations.')
+                                } else {
+                                    alert('Submission Success')
+                                    stepperInstance.nextStep();
+                                    formData.transCode = data.transactionCode;
+                                    $("#transCode").text(data.transactionCode)
+                                }
                             }).fail(function() {
-                                alert('Submission Success')
+                                alert('Submission Failed')
                                 stepperInstance.nextStep();
                                 $('#submitBtn').prop('disabled', false);
                             })
@@ -1094,7 +1379,6 @@
                     } else{
                         alert('To proceed, you must agree to our Privacy Policy and Terms and Conditions!')
                     }
-
                 });
 
                 $( "#finishBtn" ).click(function(e) {
@@ -1123,7 +1407,8 @@
                     const date = new Date();
                     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     let month = months[date.getMonth()];
-                    var down = parseInt(formData.costs.total.replaceAll(',', '')) / 2;
+                    var val = formData.discount.isDiscounted === 'true' ? parseInt(formData.discount.costDiscounted) : parseInt(formData.costs.total.replaceAll(',', ''))
+                    var down = Math.round(val / 2);
                     down = new Intl.NumberFormat().format(down) + '.00';
                     var element = `
                         <div class="flex justify-center items-center">
@@ -1328,6 +1613,20 @@
                                     <p style="text-align:center"><span style="font-size:12px">&nbsp;${formData.costs.total}</span></p>
                                     </td>
                                 </tr>
+                                ${
+                                    formData.discount.isDiscounted === 'true'
+                                    ?
+                                        `<tr>
+                                            <td style="width:160px">
+                                            <p><span style="font-size:12px"><strong>Discounted Total Cost</strong></span></p>
+                                            </td>
+                                            <td style="width:181px">
+                                            <p style="text-align:center"><span style="font-size:12px">&nbsp;${new Intl.NumberFormat().format(formData.discount.costDiscounted) + '.00' }</span></p>
+                                            </td>
+                                        </tr>`
+                                    :
+                                        ''
+                                }
                                 <tr>
                                     <td style="width:160px">
                                     <p><span style="font-size:12px"><strong>Required Down Payment</strong></span></p>
@@ -1372,6 +1671,8 @@
                     }
                     // console.table(roomDetail);
                     formData.roomDetail = roomDetail;
+                    $('#discountType').empty();
+                    $('#discountType').append('<option selected value="default">None</option>');
                     updateAllReservations(roomDetail.id)
 
                     $('#roomName').text(roomDetail.name)
@@ -1383,6 +1684,121 @@
                     $("#guests").attr("max", roomDetail.capacity);
 
                     updateTotal();
+                });
+
+                $('#discountType').on('change', function() {
+                    // alert( this.value );
+                    // console.log(formData);
+                    const val = this.value;
+                    $("#discRow1").empty();
+                    $("#discRow2").empty();
+                    if( val === 'senior'){
+                        $('#discRow1').append(`
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-medium text-base lg:text-lg">Senior Citizen ID Number*</div>
+                                <input required type="text" name="discNumber" id="discNumber" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-medium text-base lg:text-lg">Senior Citizen ID Name*</div>
+                                <input required type="text" name="discName" id="discName" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                            </div>
+                        `);
+                        $('#discRow2').append(`
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-medium text-base lg:text-lg">Senior Citizen ID Image*</div>
+                                <input type="file" name="image" id="image" accept="image/png, image/jpeg" required class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black"/>
+                            </div>
+                        `);
+                        $('#image').change(function(){
+                            const file = this.files[0];
+                            // console.log(file);
+                            if (file) {
+                                let reader = new FileReader();
+                                reader.onload = function(event){
+                                    // console.log(event.target.result);
+                                    imageFile = event.target.result;
+                                }
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                        $('#discName').change(function(e){
+                            var val = $(this).val();
+                            if (/\d/.test(val)) {
+                                $('#discName').val('')
+                            }
+                        });
+                    } else if( val === 'pwd'){
+                        $('#discRow1').append(`
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-medium text-base lg:text-lg">PWD ID Number*</div>
+                                <input required type="text" name="discNumber" id="discNumber" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                            </div>
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-medium text-base lg:text-lg">PWD ID Name*</div>
+                                <input required type="text" name="discName" id="discName" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                            </div>
+                        `);
+                        $('#discRow2').append(`
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-medium text-base lg:text-lg">PWD ID Image*</div>
+                                <input type="file" name="image" id="image" accept="image/png, image/jpeg" required class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black"/>
+                            </div>
+                        `);
+                        $('#image').change(function(){
+                            const file = this.files[0];
+                            // console.log(file);
+                            if (file) {
+                                let reader = new FileReader();
+                                reader.onload = function(event){
+                                    // console.log(event.target.result);
+                                    imageFile = event.target.result;
+                                }
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                        $('#discName').change(function(e){
+                            var val = $(this).val();
+                            if (/\d/.test(val)) {
+                                $('#discName').val('')
+                            }
+                        });
+                    } else if( val === 'voucher'){
+                        $('#discRow1').append(`
+                            <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                <div class="font-medium text-base lg:text-lg">Voucher Code</div>
+                                <div class="flex items-center gap-2">
+                                    <input required type="text" name="discCode" id="discCode" class="text-sm w-full lg:text-base browser-default px-2 py-2 border-[1px] focus:border-blue-800 outline-none rounded border-black">
+                                    <div id='checkVoucherCode' class="flex w-fit items-center cursor-pointer py-2 px-5 border border-green-700 bg-green-100 hover:bg-green-300 text-green-700 rounded">
+                                        Check
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                        $('#checkVoucherCode').on('click', function() {
+                            $("#discRow2").empty();
+                            var inputCode = $("#discCode").val();
+                            if (inputCode) {
+                                selectedCode = codes.find((code) => (code.isEnabled === 'true' && code.code === inputCode))
+                                console.log(selectedCode);
+
+                                if (!selectedCode) {
+                                    $('#discRow2').append(`
+                                        <div class="flex flex-col gap-2 w-full lg:w-1/2">
+                                            <div class="font-medium text-base lg:text-lg">Voucher Result</div>
+                                            <div class="text-sm w-full lg:text-base px-2 py-2 text-red-700">❌ Invalid Voucher Code</div>
+                                        </div>
+                                    `);
+                                } else {
+                                    $('#discRow2').append(`
+                                        <div class="flex flex-col gap-2 w-full">
+                                            <div class="font-medium text-base lg:text-lg">Voucher Result</div>
+                                            <div class="w-full text-base lg:text-lg px-2 py-2">✅ ${selectedCode.name} - ${selectedCode.value + ' ' + (selectedCode.type === 'fixed' ? ' PHP' : '%') } Discount</div>
+                                        </div>
+                                    `);
+                                }
+                            }
+                        });
+                    }
                 });
 
                 $('#guests').on('change', function() {
@@ -1409,7 +1825,37 @@
                                 backgroundColor: 'red',
                             });
                         });
+                        $.post("/api/getDiscounts.php")
+                        .done(function(data, status) {
+                            var list = data.list
+                            console.log(list);
 
+                            isPWD = list.find((x) => x.type === "pwd").enabled;
+                            isSenior = list.find((x) => x.type === "seniorCitizen").enabled;
+                            isVoucher = list.find((x) => x.type === "voucher").enabled;
+
+                            pwdVal = parseInt(JSON.parse(list.find((x) => x.type === "pwd").codes))
+                            seniorVal = parseInt(JSON.parse(list.find((x) => x.type === "seniorCitizen").codes))
+
+                            // $('#discountType').append('');
+
+                            if(isPWD === 'true'){
+                                $('#discountType').append($('<option>').val('pwd').text('Persons-With-Disability (PWD) Discount | ' + pwdVal + '%'));
+                            }
+
+                            if(isSenior === 'true'){
+                                $('#discountType').append($('<option>').val('senior').text('Senior Citizen Discount | ' + seniorVal + '%'));
+                            }
+
+                            if(isVoucher === 'true'){
+                                $('#discountType').append($('<option>').val('voucher').text('Voucher Code Discount'));
+                            }
+
+                            // console.log(isPWD, isSenior, isVoucher);
+
+                            codes = JSON.parse(list.find((x) => x.type === "voucher").codes);
+                            console.log('Codes ', codes);
+                        });
                     }).fail(function() {
                         alert( "Retrieval Error" );
                     })
